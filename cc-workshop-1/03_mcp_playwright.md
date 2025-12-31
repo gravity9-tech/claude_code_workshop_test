@@ -1,4 +1,4 @@
-# Workshop 02: MCP Servers & Playwright Testing
+# Workshop 03: MCP Servers & Playwright Testing
 
 **Duration: ~12 minutes**
 
@@ -134,11 +134,31 @@ This file should be committed to version control so your team shares the same MC
 
 ## Task 5: Start the Application
 
-Before testing, start the Pandora application:
+Before testing, install requirements and start the Pandora (claude_code_workshop) application:
 
 **Terminal 1:**
+
+First, create a virtual environment to avoid installing packages globally:
 ```bash
-python main.py
+python3 -m venv venv
+```
+
+Activate the virtual environment:
+
+```bash
+source venv/bin/activate
+```
+After activation, you should see (venv) at the beginning of your terminal prompt:
+```bash
+(venv) <your_machine_name> claude_code_workshop
+```
+Install the required dependencies from requirements.txt:
+```bash
+pip install -r requirements.txt
+```
+Now you are ready to start the application:
+```bash
+python3 main.py
 ```
 
 The app runs at `http://localhost:8000`

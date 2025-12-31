@@ -24,26 +24,9 @@ Before starting, ensure you have:
 
 ---
 
-## Step 1: Create a Workshop Directory
+## Step 1: Clone the Workshop Repository
 
-Create a dedicated folder for the workshop on your Desktop:
-
-```bash
-# Navigate to Desktop
-cd ~/Desktop
-
-# Create workshop directory
-mkdir g9-workshop
-
-# Enter the directory
-cd g9-workshop
-```
-
----
-
-## Step 2: Clone the Workshop Repository
-
-Clone the project from GitHub:
+Clone the python project from GitHub to a new directory:
 
 ```bash
 git clone https://github.com/gravity9-tech/claude_code_workshop.git
@@ -53,14 +36,14 @@ This creates a `claude_code_workshop` folder containing all workshop materials.
 
 ---
 
-## Step 3: Enter the Project
+## Step 2: Enter the Project
 
 ```bash
 cd claude_code_workshop
 ```
 ---
 
-## Step 4: Open in Your Editor
+## Step 3: Open in Your Editor
 
 **VS Code:**
 ```bash
@@ -85,7 +68,7 @@ nvim .
 
 ---
 
-## Step 5: Verify Claude Code Installation
+## Step 4: Verify Claude Code Installation
 
 Test that Claude Code is installed:
 
