@@ -1,4 +1,4 @@
-# Workshop 03: Creating Custom Slash Commands
+# Workshop 04: Creating Custom Slash Commands
 
 **Duration: ~12 minutes**
 
@@ -58,8 +58,12 @@ mkdir -p .claude/commands
 
 This command uses the Playwright MCP server we set up in the previous workshop to test shopping basket functionality.
 
-Create `.claude/commands/test-basket.md`:
+Create `.claude/commands/test-basket.md` with command:
 
+```bash
+touch .claude/commands/test-basket.md
+````
+and copy paste the following content:
 ```markdown
 ---
 description: Test shopping basket functionality using Playwright MCP

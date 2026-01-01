@@ -1,4 +1,4 @@
-# Workshop 01: Getting Started with Claude Code
+# Workshop 02: Getting Started with Claude Code
 
 **Duration: ~8 minutes**
 
