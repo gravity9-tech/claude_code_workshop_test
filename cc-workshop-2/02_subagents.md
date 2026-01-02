@@ -1,4 +1,4 @@
-# Workshop 05: Mastering Subagents
+# Workshop 02: Mastering Subagents
 
 **Duration: ~16 minutes**
 

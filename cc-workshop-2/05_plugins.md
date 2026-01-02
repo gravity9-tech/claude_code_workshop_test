@@ -144,9 +144,12 @@ You are an expert at crafting warm, personalized greetings.
 
 Test your plugin locally:
 
+1. Start Claude Code with your plugin directory:
 ```bash
-/plugin install ./my-plugin
+claude --plugin-dir ./my-plugin
 ```
+
+2. Once Claude starts, run the `/plugin` command and select your plugin from the list
 
 ---
 

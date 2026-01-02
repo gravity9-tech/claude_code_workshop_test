@@ -1,4 +1,4 @@
-# Workshop 07: Hooks
+# Workshop 03: Hooks
 
 **Duration: ~8 minutes**
 
@@ -58,6 +58,8 @@ Hooks live in settings files:
   }
 }
 ```
+
+**Important:** You must restart Claude Code after adding or modifying hooks. Changes to hooks configuration are only loaded when Claude starts.
 
 ---
 
