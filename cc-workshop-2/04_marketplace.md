@@ -1,4 +1,4 @@
-# Workshop 07: Plugins & Marketplaces
+# Workshop 04: Plugins & Marketplaces
 
 **Duration: ~8 minutes**
 
@@ -50,7 +50,7 @@ A **marketplace** is a catalog of plugins you can browse and install from:
 Add the official Anthropic marketplace:
 
 ```bash
-/plugin marketplace add anthropics/claude-code-plugins
+/plugin marketplace add anthropics/claude-code
 ```
 
 Or add a community marketplace:
@@ -79,21 +79,6 @@ Or add a community marketplace:
 # Install from specific marketplace
 /plugin install plugin-name@marketplace-name
 ```
-
----
-
-## Example: Official Plugin Dev Tools
-
-Install Anthropic's plugin development toolkit:
-
-```bash
-/plugin install anthropics/claude-code:plugin-dev
-```
-
-This adds:
-- `/plugin-dev:create-plugin` — Guided plugin creation
-- Plugin validator agent
-- Skills for building commands, hooks, MCP servers
 
 ---
 

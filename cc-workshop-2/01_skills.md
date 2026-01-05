@@ -1,4 +1,4 @@
-# Workshop 04: Building Reusable Skills
+# Workshop 01: Building Reusable Skills
 
 **Duration: ~12 minutes**
 
