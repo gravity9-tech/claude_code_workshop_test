@@ -10,29 +10,7 @@
 
 ---
 
-## What is Claude Code?
-
-Claude Code is Anthropic's official CLI that brings Claude into your terminal. It can:
-
-- Read, write, and execute code in your project
-- Maintain context through CLAUDE.md memory files
-- Run bash commands, search files, make edits
-- Work autonomously on multi-step tasks
-
----
-
-## Task 1: Start Claude Code
-
-Navigate to the project and start Claude in terminal, witht keyword `claude`:
-
-```bash
-cd claude_code_workshop
-claude
-```
-
----
-
-## Task 2: Initialize with `/init`
+## Task 1: Initialize with `/init`
 
 The `/init` command creates a `CLAUDE.md` file - Claude's memory for your project.
 
@@ -46,19 +24,15 @@ In Claude Code, type:
 
 Claude will:
 1. Analyze your project structure
-2. Read configuration files (pyproject.toml, requirements.txt, etc.)
-3. Identify your tech stack
+2. Read configuration files (requirements.txt, pyproject.toml, etc.)
+3. Identify your tech stack (FastAPI, Python, etc.)
 4. Generate a `CLAUDE.md` with project context
 
 ---
 
-## Task 3: Explore the Generated CLAUDE.md
+## Task 2: Explore the Generated CLAUDE.md
 
-Open the generated file:
-
-```bash
-cat CLAUDE.md
-```
+Open the generated `CLAUDE.md` file in your editor.
 
 You'll see sections like:
 - Project overview
@@ -66,11 +40,11 @@ You'll see sections like:
 - Common commands (run, test, lint)
 - Project structure
 
-**Why this matters**: Every new Claude session reads this file first, so Claude immediately understands your project.
+**Why this matters**: Every new Claude session reads this file first, so Claude immediately understands your project. 
 
 ---
 
-## Task 4: Understanding Permissions
+## Task 3: Understanding Permissions
 
 Claude Code uses a permission system:
 
@@ -79,13 +53,14 @@ Claude Code uses a permission system:
 | Reading files | Usually automatic |
 | Writing/editing files | Requires approval |
 | Running commands | Requires approval |
+| MCP tool calls | Requires approval |
 
 Try it - ask Claude to:
 ```
 Find all the API endpoints in this project and list them
 ```
 
-This runs in the **main context** using Claude's built-in subagent (the Explore agent) to search and analyze your codebase efficiently.
+This runs in the **main context** using Claude's built-in Explore agent to search and analyze your codebase efficiently.
 
 Then try a write operation:
 ```
@@ -93,6 +68,26 @@ Add a comment to the top of app/main.py
 ```
 
 Notice how Claude asks permission before making changes.
+
+---
+
+## Task 4: Explore the Codebase
+
+Ask Claude to help you understand the project:
+
+```
+Explain how the shopping basket API works in this project
+```
+
+```
+What models are defined and what fields do they have?
+```
+
+```
+Show me the available API routes
+```
+
+This exploration will be useful later when we create tickets for new features.
 
 ---
 
@@ -111,13 +106,14 @@ Notice how Claude asks permission before making changes.
 
 Before continuing, verify:
 
-- [ ] Claude Code is running
+- [ ] Claude Code is running in pandora-demo
 - [ ] You ran `/init`
 - [ ] `CLAUDE.md` exists in project root
 - [ ] You understand the permission model
+- [ ] You've explored the project structure
 
 ---
 
 ## Next Up
 
-Continue to: [03_mcp_playwright.md](./03_mcp_playwright.md) - Browser automation with MCP
+Continue to: [03_jira_mcp.md](./03_jira_mcp.md) - Set up Jira integration

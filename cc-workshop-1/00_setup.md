@@ -4,9 +4,10 @@
 
 ## What You'll Do
 
-- Create a workshop directory
-- Clone the workshop repository
-- Open the project in your editor
+- Clone the Tea Store project
+- Understand the project structure
+- Install dependencies
+- Verify Claude Code installation
 
 ---
 
@@ -15,32 +16,41 @@
 Before starting, ensure you have:
 
 - **Git** installed
-- **Node.js** (v18+) for MCP servers
-- **Claude Code** installed:
+- **Python 3.12+** for the backend
+- **Node.js 18+** for the frontend
+- **Claude Code** installed (choose one):
   ```bash
+  # Option 1: Using npm
   npm install -g @anthropic-ai/claude-code
+
+  # Option 2: Using Homebrew (macOS/Linux)
+  brew install --cask claude-code
   ```
 - A code editor (VS Code, Cursor, Vim, etc.)
+- **Jira Cloud account** with:
+  - A project you can create tickets in
+  - An API token (we'll create this in Module 03)
 
 ---
 
-## Step 1: Clone the Workshop Repository
+## Step 1: Clone the Tea Store Project
 
-Clone the python project from GitHub to a new directory:
+Clone the full-stack e-commerce application we'll be working with:
 
 ```bash
-git clone https://github.com/gravity9-tech/claude_code_workshop.git
+git clone https://github.com/gravity9-tech/claude_code_workshop.git tea-store-demo
 ```
 
-This creates a `claude_code_workshop` folder containing all workshop materials.
+This creates a `tea-store-demo` folder containing a tea shop application.
 
 ---
 
 ## Step 2: Enter the Project
 
 ```bash
-cd claude_code_workshop
+cd tea-store-demo
 ```
+
 ---
 
 ## Step 3: Open in Your Editor
@@ -55,28 +65,74 @@ code .
 cursor .
 ```
 
-**Other editors:**
+**Vim:**
 ```bash
-# Sublime Text
-subl .
-
-# Vim/Neovim
-nvim .
-
-# Or open manually via your editor's File > Open Folder
+vim .
 ```
 
 ---
 
 ## Step 4: Verify Claude Code Installation
 
-Test that Claude Code is installed:
+Test that Claude Code is installed within your text editor:
 
 ```bash
 claude --version
 ```
 
-You should see version output like `claude 1.x.x`.
+You should see version output like `claude 2.x.x`.
+
+---
+
+## Step 5: Install & Run
+
+```bash
+make install   # Install all dependencies
+make dev       # Start both servers
+```
+
+**Access Points:**
+| URL | Description |
+|-----|-------------|
+| http://localhost:4321 | Angular frontend |
+| http://localhost:8765 | FastAPI backend |
+| http://localhost:8765/docs | API Docs |
+
+---
+
+## Project Features
+
+The Tea Store app includes:
+
+**Backend API:**
+- `GET /api/products` — List products with filters
+- `GET /api/products/{id}` — Get single product
+- `GET /api/customization-config/{category}` — Customization options
+- `GET /health` — Health check
+
+**Frontend Features:**
+- Product listing with hero section
+- Filtering by category, price, material
+- Shopping cart (localStorage)
+- Wishlist functionality
+- Product customization wizard
+- Dark/light theme toggle
+- Responsive design
+
+---
+
+## Useful Makefile Commands
+
+| Command | Description |
+|---------|-------------|
+| `make install` | Install all dependencies |
+| `make dev` | Start both servers |
+| `make start-backend` | Backend only (port 8765) |
+| `make start-frontend` | Frontend only (port 4321) |
+| `make test` | Run all tests |
+| `make lint` | Check code style |
+| `make format` | Format code |
+| `make clean` | Clean build artifacts |
 
 ---
 
@@ -84,10 +140,12 @@ You should see version output like `claude 1.x.x`.
 
 Before continuing, verify:
 
-- [ ] Workshop directory created (`~/Desktop/g9-workshop/`)
-- [ ] Repository cloned successfully
-- [ ] Project opened in your editor
+- [ ] Tea Store repository cloned successfully
+- [ ] Dependencies installed (`make install`)
+- [ ] Backend running at http://localhost:8765
+- [ ] Frontend running at http://localhost:4321
 - [ ] `claude --version` works
+- [ ] You have access to a Jira Cloud project
 
 ---
 
