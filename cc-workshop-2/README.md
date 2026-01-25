@@ -1,79 +1,101 @@
-# Claude Code Workshop 2: Advanced Features
+# Claude Code Workshop 2: Subagents & Orchestration
 
-**Total Duration: ~60 min**
+**Total Duration: ~70 min**
 
-Build and test features using ticket-driven development with Playwright automation.
+Enhance your Workshop 1 skills by injecting them into subagents for parallel execution, updating your slash command for agent orchestration, and adding event-driven hooks.
 
 ## Prerequisites
 
-- **Completed Workshop 1** (or equivalent knowledge)
-- A **planned Jira ticket** from Workshop 1 (with P1/P2/QA subtasks)
-- Claude Code installed with dev-tools plugin
-- Jira MCP configured and working
+Before starting Workshop 2, you must have completed **Workshop 1** with:
+
+- tea-store-demo project configured
+- Four lifecycle skills: `create-ticket`, `expand-ticket`, `implement-ticket`, `qa-ticket`
+- `/deploy-ticket` slash command
+- Jira MCP server configured
+- Meta-skills: `skill-creator`, `command-creator`, `agent-creator`
 
 ## Workshop Modules
 
 | Module | Topic | Duration |
 |--------|-------|----------|
-| 01 | [Playwright MCP](./01_playwright_mcp.md) | 10 min |
-| 02 | [Slash Commands](./02_slash_commands.md) | 8 min |
-| 03 | [Custom Agents](./03_custom_agents.md) | 10 min |
-| 04 | [Implement Ticket](./04_implement_ticket.md) | 10 min |
-| 05 | [QA Ticket](./05_qa_ticket.md) | 10 min |
-| 06 | [Hooks](./06_hooks.md) | 6 min |
-| 07 | [Full Workflow](./07_full_workflow.md) | 8 min |
+| 00 | [Setup](./00_setup.md) | 5 min |
+| 01 | [Subagents Introduction](./01_subagents_intro.md) | 10 min |
+| 02 | [Custom Subagents](./02_custom_subagents.md) | 12 min |
+| 03 | [Skills + Agents](./03_skills_and_agents.md) | 15 min |
+| 04 | [Orchestrating Agents](./04_orchestrating_agents.md) | 15 min |
+| 05 | [Hooks](./05_hooks.md) | 15 min |
+| 06 | [Full Workflow](./06_full_workflow.md) | 15 min |
+
+---
 
 ## Learning Path
 
 ```
-01 Playwright MCP (browser automation)
-         |
-         v
-02 Slash Commands (reusable prompts)
-         |
-         v
-03 Custom Agents (specialized workers)
-         |
-         v
-04 Implement Ticket (phase-by-phase building)
-         |
-         v
-05 QA Ticket (automated BDD testing)
-         |
-         v
-06 Hooks (event automation)
-         |
-         v
-07 Full Workflow (/build-and-qa orchestration)
+Workshop 1 Complete
+(skills + /deploy-ticket)
+         │
+         ▼
+00 Setup (verify prerequisites)
+         │
+         ▼
+01 Subagents Intro (built-in agents, Task tool)
+         │
+         ▼
+02 Custom Subagents (create AGENT.md structure)
+   └── code-reviewer agent (standalone)
+         │
+         ▼
+03 Skills + Agents (INJECT existing skills)
+   ├── dev-agent ← create + expand + implement skills
+   └── qa-agent ← qa-ticket skill
+         │
+         ▼
+04 Orchestrating Agents (UPDATE /deploy-ticket)
+   └── Parallel agent execution
+         │
+         ▼
+05 Hooks (event-driven automation)
+   └── Pre/post tool hooks
+         │
+         ▼
+06 Full Workflow (complete demonstration)
+```
+
+---
+
+## Key Concept: Evolution, Not Recreation
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                              │
+│   Workshop 1 created:          Workshop 2 enhances:         │
+│                                                              │
+│   • create-ticket skill   ──►  Injected into dev-agent      │
+│   • expand-ticket skill   ──►  Injected into dev-agent      │
+│   • implement-ticket skill──►  Injected into dev-agent      │
+│   • qa-ticket skill       ──►  Injected into qa-agent       │
+│   • /deploy-ticket        ──►  Updated for parallel agents  │
+│                                                              │
+│   Skills remain the source of truth.                        │
+│   Agents provide isolated execution.                        │
+│   Command orchestrates everything.                          │
+│   Hooks add automation.                                     │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## What You'll Learn
 
-| Module | Feature | What It Does |
+| Module | Concept | What It Does |
 |--------|---------|--------------|
-| 01 | Playwright MCP | Browser automation for testing |
-| 02 | Slash Commands | Reusable prompts via `/name` |
-| 03 | Custom Agents | Specialized subagents with skills |
-| 04 | Implement Ticket | Build features phase-by-phase |
-| 05 | QA Ticket | Automated testing against BDD scenarios |
-| 06 | Hooks | Shell commands triggered by events |
-| 07 | Full Workflow | End-to-end `/build-and-qa` |
-
----
-
-## What You'll Accomplish
-
-By the end of this workshop, you will have:
-
-1. **Set up Playwright MCP** for browser automation
-2. **Created a slash command** for running tests
-3. **Built a custom agent** that uses skills
-4. **Implemented your ticket** using the implement-ticket skill
-5. **Run automated QA tests** against BDD acceptance criteria
-6. **Added hooks** for file protection
-7. **Used the full workflow** `/build-and-qa` command
+| 01 | Subagents | Isolated context, parallel execution |
+| 02 | AGENT.md | Custom agent structure and frontmatter |
+| 03 | Skill Injection | Inject existing skills into agents |
+| 04 | Orchestration | Update command for parallel agents |
+| 05 | Hooks | Event-driven pre/post automation |
+| 06 | Full Workflow | Complete end-to-end integration |
 
 ---
 
@@ -82,48 +104,88 @@ By the end of this workshop, you will have:
 After completing Workshop 2:
 
 ```
-pandora-demo/
+tea-store-demo/
 ├── .claude/
+│   ├── agents/                   # NEW in Workshop 2
+│   │   ├── code-reviewer.md      # Standalone agent
+│   │   ├── dev-agent.md          # Injects 3 skills
+│   │   └── qa-agent.md           # Injects 1 skill
 │   ├── commands/
-│   │   └── test-feature.md        # Custom test command
-│   ├── agents/
-│   │   └── feature-builder.md     # Custom agent
-│   └── settings.json              # Hooks config
-├── .mcp.json                      # MCP servers (Jira + Playwright)
-├── CLAUDE.md                      # Project memory
-└── [your new feature code]        # Implemented from ticket!
+│   │   └── deploy-ticket.md      # UPDATED for agents
+│   ├── hooks/                    # NEW in Workshop 2
+│   │   ├── pre-commit-check.sh
+│   │   ├── log-activity.sh
+│   │   └── notify-complete.sh
+│   ├── skills/                   # FROM Workshop 1 + agent-creator
+│   │   ├── skill-creator/        # Meta-skill
+│   │   ├── command-creator/      # Meta-skill
+│   │   ├── agent-creator/        # Meta-skill (used in W2)
+│   │   ├── create-ticket/        # → dev-agent
+│   │   ├── expand-ticket/        # → dev-agent
+│   │   ├── implement-ticket/     # → dev-agent
+│   │   └── qa-ticket/            # → qa-agent
+│   └── settings.json             # NEW: hook config
+└── ...
 ```
+
+---
+
+## What You'll Accomplish
+
+By the end of Workshop 2:
+
+1. **Understand subagent architecture** — isolated context, parallel execution
+2. **Create custom agents** — AGENT.md files with frontmatter
+3. **Inject existing skills** — dev-agent and qa-agent with Workshop 1 skills
+4. **Update orchestration** — /deploy-ticket runs agents in parallel
+5. **Implement hooks** — event-driven automation
+6. **Run complete workflow** — end-to-end with all components
+
+---
+
+## Before & After Comparison
+
+| Aspect | Workshop 1 | Workshop 2 |
+|--------|-----------|------------|
+| **Execution** | Sequential | Parallel |
+| **Context** | Main window fills | Isolated per agent |
+| **Skills** | Direct calls | Injected into agents |
+| **Automation** | Manual trigger only | Hooks for events |
+| **Speed** | Sum of all steps | Longest step only |
 
 ---
 
 ## Troubleshooting
 
-**Playwright not working:**
-```bash
-claude mcp list
-claude mcp get playwright
-# May need: npx @playwright/mcp --help
-```
+**Agent not loading:**
+- Check file is in `.claude/agents/`
+- Verify `name` field in frontmatter
+- Restart Claude Code
 
-**Implement-ticket fails:**
-- Check ticket status is "Selected for Development"
-- Ensure P1/P2 subtasks exist
+**Skill not injected:**
+- Check `skills:` list in frontmatter
+- Verify skill file exists
 
-**QA tests fail:**
-- Is the app running? (`python main.py`)
-- Check browser is launching (Playwright)
-- Review the BDD scenario in QA subtask
+**Hooks not firing:**
+- Check matcher pattern in settings.json
+- Ensure scripts are executable (`chmod +x`)
+- Check hook script exit codes
 
-**Hooks not triggering:**
-- Restart Claude Code after changing hooks
-- Check `.claude/settings.json` syntax
+**Parallel execution not working:**
+- Ensure agents are independent
+- Check that command instructs parallel launch
+
+---
 
 ## Help
 
 - Type `/help` in Claude Code
-- Type `/mcp` to check MCP server status
+- Type `/agents` to see available agents
+- Type `/skills` to see available skills
 - [Claude Code Docs](https://docs.anthropic.com/claude-code)
 
 ---
 
-Start with [01_playwright_mcp.md](./01_playwright_mcp.md)
+## Start Here
+
+Begin with [00_setup.md](./00_setup.md) to verify your Workshop 1 completion and preview Workshop 2.

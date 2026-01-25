@@ -334,7 +334,7 @@ Create a skill called "review-ticket" that checks code quality before marking Do
 
 ## Next Up
 
-Continue to **Workshop 2** for:
-- Playwright MCP setup and browser automation
-- Running the full workflow end-to-end
-- Advanced hooks and workflow orchestration
+Continue to [07_slash_commands.md](./07_slash_commands.md) to:
+- Learn the difference between skills and slash commands
+- Use the `command-creator` to build an orchestrator
+- Run the entire dev lifecycle with `/deploy-ticket`

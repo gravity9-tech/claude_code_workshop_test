@@ -1,6 +1,6 @@
 # Claude Code Workshop 1: Foundations
 
-**Total Duration: ~70 min**
+**Total Duration: ~80 min**
 
 A hands-on guide to getting started with Claude Code and building a complete dev lifecycle automation using Jira.
 
@@ -22,6 +22,7 @@ A hands-on guide to getting started with Claude Code and building a complete dev
 | 04 | [Skills Introduction](./04_skills_intro.md) | 5 min |
 | 05 | [Skill Builder](./05_skill_builder.md) | 8 min |
 | 06 | [Dev Lifecycle Skills](./06_dev_lifecycle.md) | 25 min |
+| 07 | [Slash Commands](./07_slash_commands.md) | 10 min |
 
 ## Learning Path
 
@@ -49,6 +50,10 @@ A hands-on guide to getting started with Claude Code and building a complete dev
    ├── expand-ticket (DEV + QA subtasks)
    ├── implement-ticket (code & mark done)
    └── qa-ticket (Playwright tests & mark done)
+         |
+         v
+07 Deploy Ticket Orchestrator (use command-creator)
+   └── /deploy-ticket (orchestrates all skills)
 ```
 
 ---
@@ -63,6 +68,7 @@ A hands-on guide to getting started with Claude Code and building a complete dev
 | 04 | Skills | Domain expertise for Claude |
 | 05 | Skill Builder | Explore the skill-creator skill |
 | 06 | Dev Lifecycle | Build a complete 4-skill workflow automation |
+| 07 | Orchestrator | Use command-creator to build /deploy-ticket orchestrator |
 
 ---
 
@@ -73,8 +79,12 @@ After completing Workshop 1:
 ```
 tea-store-demo/
 ├── .claude/
+│   ├── commands/
+│   │   └── deploy-ticket.md    # Slash command: full lifecycle orchestrator
 │   └── skills/
-│       ├── skill-creator/      # Pre-built meta-skill
+│       ├── skill-creator/      # Pre-built: creates domain skills
+│       ├── command-creator/    # Pre-built: creates slash commands
+│       ├── agent-creator/      # Pre-built: creates custom agents (for W2)
 │       ├── create-ticket/      # Your skill: BDD ticket creation
 │       ├── expand-ticket/      # Your skill: DEV + QA subtasks
 │       ├── implement-ticket/   # Your skill: implement & transition
@@ -91,13 +101,14 @@ By the end of this workshop, you will have:
 
 1. **Set up Claude Code** with a real project (tea-store-demo)
 2. **Connected to Jira** via MCP for ticket management
-3. **Built a complete dev lifecycle skill suite:**
-   - `create-ticket` — Creates tickets with BDD acceptance criteria
-   - `expand-ticket` — Breaks tickets into DEV and QA subtasks
-   - `implement-ticket` — Implements code and transitions DEV tasks to Done
-   - `qa-ticket` — Runs Playwright tests and transitions QA tasks to Done
+3. **Built a complete dev lifecycle automation:**
+   - `create-ticket` — Skill that creates tickets with BDD acceptance criteria
+   - `expand-ticket` — Skill that breaks tickets into DEV and QA subtasks
+   - `implement-ticket` — Skill that implements code and transitions DEV tasks to Done
+   - `qa-ticket` — Skill that runs Playwright tests and transitions QA tasks to Done
+   - `/deploy-ticket` — Slash command that orchestrates all skills into a single workflow
 
-You'll have a fully automated development workflow from idea to tested code!
+You'll have a fully automated development workflow from idea to tested code with one command!
 
 ---
 
