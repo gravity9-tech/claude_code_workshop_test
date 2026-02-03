@@ -4,7 +4,7 @@
 
 ## What You'll Do
 
-- Clone the Tea Store project
+- Download the Tea Store project
 - Understand the project structure
 - Install dependencies
 - Verify Claude Code installation
@@ -15,7 +15,6 @@
 
 Before starting, ensure you have:
 
-- **Git** installed
 - **Python 3.9+** for the backend
 - **Node.js 18+** for the frontend
 - **Claude Code** installed (choose one):
@@ -33,46 +32,18 @@ Before starting, ensure you have:
 
 ---
 
-## Step 1: Clone the Tea Store Project
+## Step 1: Download and Open the Tea Store Project
 
-Clone the full-stack e-commerce application we'll be working with:
+1. Download the project zip file:
+   **https://github.com/gravity9-tech/claude_code_workshop/archive/refs/heads/main.zip**
 
-```bash
-git clone https://github.com/gravity9-tech/claude_code_workshop.git tea-store-demo
-```
+2. Extract the zip file to a location of your choice
 
-This creates a `tea-store-demo` folder containing a tea shop application.
-
----
-
-## Step 2: Enter the Project
-
-```bash
-cd tea-store-demo
-```
+3. Open the extracted folder in your favorite text editor (VS Code, Cursor, Vim, etc.)
 
 ---
 
-## Step 3: Open in Your Editor
-
-**VS Code:**
-```bash
-code .
-```
-
-**Cursor:**
-```bash
-cursor .
-```
-
-**Vim:**
-```bash
-vim .
-```
-
----
-
-## Step 4: Verify Claude Code Installation
+## Step 2: Verify Claude Code Installation
 
 Test that Claude Code is installed within your text editor:
 
@@ -84,7 +55,7 @@ You should see version output like `claude 2.x.x`.
 
 ---
 
-## Step 5: Install & Run
+## Step 3: Install & Run
 
 ```bash
 # macOS/Linux
@@ -145,7 +116,7 @@ The Tea Store app includes:
 
 Before continuing, verify:
 
-- [ ] Tea Store repository cloned successfully
+- [ ] Tea Store project downloaded and extracted
 - [ ] Started the app with `./start.sh` (macOS/Linux) or `start.bat` (Windows)
 - [ ] Backend running at http://localhost:8765
 - [ ] Frontend running at http://localhost:4321
