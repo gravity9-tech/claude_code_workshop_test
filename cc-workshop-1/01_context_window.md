@@ -110,7 +110,7 @@ Use `/compact` when:
 
 ## Try It Out
 
-1. Start a Claude Code session in your pandora-demo directory
+1. Start a Claude Code session in your tea-store-demo directory
 2. Have a brief conversation
 3. Run `/stats` to see your usage
 4. Try `/context` to see what's taking up space

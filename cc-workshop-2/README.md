@@ -168,7 +168,8 @@ By the end of Workshop 2:
 
 **Hooks not firing:**
 - Check matcher pattern in settings.json
-- Ensure scripts are executable (`chmod +x`)
+- macOS/Linux: Ensure scripts are executable (`chmod +x`)
+- Windows: Use Git Bash or WSL to run bash hook scripts
 - Check hook script exit codes
 
 **Parallel execution not working:**

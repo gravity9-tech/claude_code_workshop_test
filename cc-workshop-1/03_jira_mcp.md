@@ -59,6 +59,8 @@ Keep this token handy for the next step.
 
 Set your Jira credentials as environment variables. This keeps them secure and out of command history.
 
+### macOS/Linux
+
 **In your terminal:**
 
 ```bash
@@ -87,11 +89,44 @@ echo $JIRA_EMAIL
 echo $JIRA_API_TOKEN
 ```
 
+### Windows
+
+**In Command Prompt (temporary):**
+
+```cmd
+set JIRA_HOST=https://your-domain.atlassian.net
+set JIRA_EMAIL=your-email@example.com
+set JIRA_API_TOKEN=your-api-token-here
+```
+
+**To make these permanent**, use System Properties:
+1. Press `Win + R`, type `sysdm.cpl`, press Enter
+2. Go to **Advanced** tab → **Environment Variables**
+3. Under **User variables**, click **New** and add each variable
+
+**Or use PowerShell:**
+
+```powershell
+[Environment]::SetEnvironmentVariable("JIRA_HOST", "https://your-domain.atlassian.net", "User")
+[Environment]::SetEnvironmentVariable("JIRA_EMAIL", "your-email@example.com", "User")
+[Environment]::SetEnvironmentVariable("JIRA_API_TOKEN", "your-api-token-here", "User")
+```
+
+**Verify they're set (restart terminal first):**
+
+```cmd
+echo %JIRA_HOST%
+echo %JIRA_EMAIL%
+echo %JIRA_API_TOKEN%
+```
+
 ---
 
 ## Task 3: Install the MCP Server Locally
 
 The `mcp-atlassian` package requires a local installation with its dependencies. Run this in your project root:
+
+### macOS/Linux
 
 ```bash
 # Create a local MCP servers directory
@@ -102,6 +137,22 @@ npm init -y && npm install mcp-atlassian jsdom
 
 # Return to project root and add to .gitignore (contains node_modules)
 cd ../.. && echo ".mcp-servers/" >> .gitignore
+```
+
+### Windows (Command Prompt)
+
+```cmd
+:: Create a local MCP servers directory
+mkdir .mcp-servers\jira
+cd .mcp-servers\jira
+
+:: Initialize and install with required dependencies
+npm init -y
+npm install mcp-atlassian jsdom
+
+:: Return to project root and add to .gitignore
+cd ..\..
+echo .mcp-servers/ >> .gitignore
 ```
 
 ---

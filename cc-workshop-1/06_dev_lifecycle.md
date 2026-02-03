@@ -49,10 +49,14 @@ The skill should:
 - Return the ticket key and URL when done
 ```
 
-**Review the generated skill:**
+**Review the generated skill** (open in your editor or use terminal):
 
 ```bash
+# macOS/Linux
 cat .claude/skills/create-ticket/SKILL.md
+
+# Windows
+type .claude\skills\create-ticket\SKILL.md
 ```
 
 Verify it includes:
@@ -91,10 +95,14 @@ The skill should:
 - Report the created subtask keys when done
 ```
 
-**Review the generated skill:**
+**Review the generated skill** (open in your editor or use terminal):
 
 ```bash
+# macOS/Linux
 cat .claude/skills/expand-ticket/SKILL.md
+
+# Windows
+type .claude\skills\expand-ticket\SKILL.md
 ```
 
 Verify it:
@@ -129,10 +137,14 @@ The skill should:
 - Skip subtasks that are already Done
 ```
 
-**Review the generated skill:**
+**Review the generated skill** (open in your editor or use terminal):
 
 ```bash
+# macOS/Linux
 cat .claude/skills/implement-ticket/SKILL.md
+
+# Windows
+type .claude\skills\implement-ticket\SKILL.md
 ```
 
 Verify it:
@@ -170,10 +182,14 @@ The skill should:
 - Include screenshots for failed tests when possible
 ```
 
-**Review the generated skill:**
+**Review the generated skill** (open in your editor or use terminal):
 
 ```bash
+# macOS/Linux
 cat .claude/skills/qa-ticket/SKILL.md
+
+# Windows
+type .claude\skills\qa-ticket\SKILL.md
 ```
 
 Verify it:

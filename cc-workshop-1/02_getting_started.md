@@ -106,7 +106,7 @@ This exploration will be useful later when we create tickets for new features.
 
 Before continuing, verify:
 
-- [ ] Claude Code is running in pandora-demo
+- [ ] Claude Code is running in tea-store-demo
 - [ ] You ran `/init`
 - [ ] `CLAUDE.md` exists in project root
 - [ ] You understand the permission model

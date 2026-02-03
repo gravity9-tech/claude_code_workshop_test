@@ -17,8 +17,14 @@ This repository includes a pre-built skill called `skill-creator` that can gener
 Take a look at it:
 
 ```bash
+# macOS/Linux
 cat .claude/skills/skill-creator/SKILL.md
+
+# Windows
+type .claude\skills\skill-creator\SKILL.md
 ```
+
+Or simply open the file in your editor.
 
 Notice the structure:
 - **Frontmatter** with name, description, and allowed-tools

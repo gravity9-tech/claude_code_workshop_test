@@ -16,14 +16,14 @@
 Before starting, ensure you have:
 
 - **Git** installed
-- **Python 3.12+** for the backend
+- **Python 3.9+** for the backend
 - **Node.js 18+** for the frontend
 - **Claude Code** installed (choose one):
   ```bash
-  # Option 1: Using npm
+  # Option 1: Using npm (all platforms)
   npm install -g @anthropic-ai/claude-code
 
-  # Option 2: Using Homebrew (macOS/Linux)
+  # Option 2: Using Homebrew (macOS/Linux only)
   brew install --cask claude-code
   ```
 - A code editor (VS Code, Cursor, Vim, etc.)
@@ -87,14 +87,19 @@ You should see version output like `claude 2.x.x`.
 ## Step 5: Install & Run
 
 ```bash
-make install   # Install all dependencies
-make dev       # Start both servers
+# macOS/Linux
+./start.sh
+
+# Windows
+start.bat
 ```
+
+This will install all dependencies and start both servers.
 
 **Access Points:**
 | URL | Description |
 |-----|-------------|
-| http://localhost:4321 | Angular frontend |
+| http://localhost:4321 | React frontend |
 | http://localhost:8765 | FastAPI backend |
 | http://localhost:8765/docs | API Docs |
 
@@ -121,18 +126,18 @@ The Tea Store app includes:
 
 ---
 
-## Useful Makefile Commands
+## Useful Commands
 
 | Command | Description |
 |---------|-------------|
-| `make install` | Install all dependencies |
-| `make dev` | Start both servers |
-| `make start-backend` | Backend only (port 8765) |
-| `make start-frontend` | Frontend only (port 4321) |
-| `make test` | Run all tests |
-| `make lint` | Check code style |
-| `make format` | Format code |
-| `make clean` | Clean build artifacts |
+| `./start.sh` | Install deps & start both servers (macOS/Linux) |
+| `start.bat` | Install deps & start both servers (Windows) |
+| `./test.sh` | Run backend + frontend unit tests |
+| `./test.sh --e2e` | Include E2E tests |
+| `./test.sh --e2e --headed` | E2E with visible browser |
+| `./test.sh --coverage` | Run with coverage reports |
+
+> **Note:** On Windows, use `test.sh` with Git Bash or WSL.
 
 ---
 
@@ -141,7 +146,7 @@ The Tea Store app includes:
 Before continuing, verify:
 
 - [ ] Tea Store repository cloned successfully
-- [ ] Dependencies installed (`make install`)
+- [ ] Started the app with `./start.sh` (macOS/Linux) or `start.bat` (Windows)
 - [ ] Backend running at http://localhost:8765
 - [ ] Frontend running at http://localhost:4321
 - [ ] `claude --version` works

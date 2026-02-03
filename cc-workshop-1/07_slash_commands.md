@@ -106,8 +106,14 @@ disable-model-invocation: true
 
 ## Task 2: Review the Generated Command
 
+Open the file in your editor or use terminal:
+
 ```bash
+# macOS/Linux
 cat .claude/commands/deploy-ticket.md
+
+# Windows
+type .claude\commands\deploy-ticket.md
 ```
 
 **Verify the frontmatter includes:**

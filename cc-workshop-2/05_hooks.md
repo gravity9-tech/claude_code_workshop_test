@@ -11,6 +11,10 @@
 
 ---
 
+> **Windows Users:** Hook scripts in this module use bash shell syntax. You'll need **Git Bash** or **WSL** (Windows Subsystem for Linux) to run these hooks. Alternatively, you can create equivalent PowerShell scripts (`.ps1`) or batch files (`.bat`).
+
+---
+
 ## What Are Hooks?
 
 Hooks are **shell commands** that run in response to Claude Code events. They enable:
@@ -98,7 +102,11 @@ Block commits that contain "WIP" or "TODO" in the message.
 ### Step 1: Create hooks directory
 
 ```bash
+# macOS/Linux
 mkdir -p .claude/hooks
+
+# Windows (Command Prompt)
+mkdir .claude\hooks
 ```
 
 ### Step 2: Create the hook script
@@ -121,11 +129,13 @@ fi
 exit 0
 ```
 
-### Step 3: Make it executable
+### Step 3: Make it executable (macOS/Linux only)
 
 ```bash
 chmod +x .claude/hooks/pre-commit-check.sh
 ```
+
+> **Windows:** This step is not needed. If using Git Bash, the script will run directly.
 
 ### Step 4: Configure in settings.json
 
@@ -171,7 +181,7 @@ echo "" >> "$LOG_FILE"
 exit 0
 ```
 
-Make executable:
+Make executable (macOS/Linux only):
 
 ```bash
 chmod +x .claude/hooks/log-activity.sh
@@ -223,7 +233,7 @@ echo "[$(date '+%H:%M:%S')] Completed: $TOOL_NAME" >> .claude/logs/notifications
 exit 0
 ```
 
-Make executable:
+Make executable (macOS/Linux only):
 
 ```bash
 chmod +x .claude/hooks/notify-complete.sh
@@ -343,7 +353,11 @@ Should be blocked by the pre-commit hook.
 After any tool use:
 
 ```bash
+# macOS/Linux
 cat .claude/logs/activity.log
+
+# Windows
+type .claude\logs\activity.log
 ```
 
 Should show logged tool usage.

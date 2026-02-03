@@ -142,7 +142,11 @@ Should show: Explore, Plan, general-purpose, code-reviewer, dev-agent, qa-agent
 
 **Check hooks:**
 ```bash
+# macOS/Linux
 cat .claude/settings.json
+
+# Windows
+type .claude\settings.json
 ```
 Should show PreToolUse and PostToolUse configurations
 
@@ -178,7 +182,11 @@ Should show PreToolUse and PostToolUse configurations
 
 **View activity log:**
 ```bash
+# macOS/Linux
 cat .claude/logs/activity.log
+
+# Windows
+type .claude\logs\activity.log
 ```
 
 **Check Jira:**

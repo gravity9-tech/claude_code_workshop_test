@@ -49,10 +49,14 @@ You should see:
 ### 2. Check Command Exists
 
 ```bash
+# macOS/Linux
 cat .claude/commands/deploy-ticket.md
+
+# Windows
+type .claude\commands\deploy-ticket.md
 ```
 
-Verify it has:
+Or open the file in your editor. Verify it has:
 - YAML frontmatter with `description` and `allowed-tools`
 - Workflow phases for create → expand → implement → qa
 
