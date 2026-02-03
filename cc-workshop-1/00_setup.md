@@ -17,7 +17,7 @@ Before starting, ensure you have:
 
 - **Python 3.9+** for the backend
 - **Node.js 18+** for the frontend
-- **Claude Code** installed (choose one):
+- **Claude Code** installed (run one of these in your terminal):
   ```bash
   # Option 1: Using npm (all platforms)
   npm install -g @anthropic-ai/claude-code
@@ -45,7 +45,7 @@ Before starting, ensure you have:
 
 ## Step 2: Verify Claude Code Installation
 
-Test that Claude Code is installed within your text editor:
+Open a terminal in your project folder and run:
 
 ```bash
 claude --version
@@ -56,6 +56,8 @@ You should see version output like `claude 2.x.x`.
 ---
 
 ## Step 3: Install & Run
+
+In the terminal, run:
 
 ```bash
 # macOS/Linux
