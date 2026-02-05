@@ -1,101 +1,71 @@
-# Claude Code Workshop 2: Subagents & Orchestration
+# Claude Code Workshop 2: Development Lifecycle
 
-**Total Duration: ~70 min**
+**Total Duration: ~85 min**
 
-Enhance your Workshop 1 skills by injecting them into subagents for parallel execution, updating your slash command for agent orchestration, and adding event-driven hooks.
+A hands-on guide to building a complete development lifecycle automation using custom agents, skills, and slash commands in Claude Code.
 
 ## Prerequisites
 
-Before starting Workshop 2, you must have completed **Workshop 1** with:
-
-- tea-store-demo project configured
-- Four lifecycle skills: `create-ticket`, `expand-ticket`, `implement-ticket`, `qa-ticket`
-- `/deploy-ticket` slash command
-- Jira MCP server configured
-- Meta-skills: `skill-creator`, `command-creator`, `agent-creator`
+- Completed [Workshop 1](../cc-workshop-1/)
+- Claude Code installed (`npm install -g @anthropic-ai/claude-code`)
+- Node.js (for MCP servers)
+- Basic command line familiarity
 
 ## Workshop Modules
 
 | Module | Topic | Duration |
 |--------|-------|----------|
 | 00 | [Setup](./00_setup.md) | 5 min |
-| 01 | [Subagents Introduction](./01_subagents_intro.md) | 10 min |
-| 02 | [Custom Subagents](./02_custom_subagents.md) | 12 min |
-| 03 | [Skills + Agents](./03_skills_and_agents.md) | 15 min |
-| 04 | [Orchestrating Agents](./04_orchestrating_agents.md) | 15 min |
-| 05 | [Hooks](./05_hooks.md) | 15 min |
-| 06 | [Full Workflow](./06_full_workflow.md) | 15 min |
-
----
+| 01 | [Dev Lifecycle Introduction](./01_dev_lifecycle_intro.md) | 10 min |
+| 02 | [TDD Workflow Skill](./02_tdd_workflow_skill.md) | 10 min |
+| 03 | [Understanding Agents](./03_agents_intro.md) | 10 min |
+| 04 | [Planner Agent](./04_planner_agent.md) | 10 min |
+| 05 | [TDD Guide Agent](./05_tdd_guide_agent.md) | 10 min |
+| 06 | [Code Reviewer Agent](./06_code_reviewer_agent.md) | 10 min |
+| 07 | [Orchestrate Command](./07_orchestrate_command.md) | 10 min |
+| 08 | [Full Workflow](./08_full_workflow.md) | 10 min |
 
 ## Learning Path
 
 ```
-Workshop 1 Complete
-(skills + /deploy-ticket)
-         │
-         ▼
-00 Setup (verify prerequisites)
-         │
-         ▼
-01 Subagents Intro (built-in agents, Task tool)
-         │
-         ▼
-02 Custom Subagents (create AGENT.md structure)
-   └── code-reviewer agent (standalone)
-         │
-         ▼
-03 Skills + Agents (INJECT existing skills)
-   ├── dev-agent ← create + expand + implement skills
-   └── qa-agent ← qa-ticket skill
-         │
-         ▼
-04 Orchestrating Agents (UPDATE /deploy-ticket)
-   └── Parallel agent execution
-         │
-         ▼
-05 Hooks (event-driven automation)
-   └── Pre/post tool hooks
-         │
-         ▼
-06 Full Workflow (complete demonstration)
-```
-
----
-
-## Key Concept: Evolution, Not Recreation
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                                                              │
-│   Workshop 1 created:          Workshop 2 enhances:         │
-│                                                              │
-│   • create-ticket skill   ──►  Injected into dev-agent      │
-│   • expand-ticket skill   ──►  Injected into dev-agent      │
-│   • implement-ticket skill──►  Injected into dev-agent      │
-│   • qa-ticket skill       ──►  Injected into qa-agent       │
-│   • /deploy-ticket        ──►  Updated for parallel agents  │
-│                                                              │
-│   Skills remain the source of truth.                        │
-│   Agents provide isolated execution.                        │
-│   Command orchestrates everything.                          │
-│   Hooks add automation.                                     │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+Setup → Concept Introduction
+              │
+              ▼
+      ┌───────────────┐
+      │  tdd-workflow  │  ← Skill (knowledge layer)
+      │    (skill)     │
+      └───────┬───────┘
+              │
+    ┌─────────┼─────────┐
+    ▼         ▼         ▼
+┌────────┐ ┌─────────┐ ┌─────────────┐
+│planner │ │tdd-guide│ │code-reviewer│  ← Agents (execution layer)
+│        │ │(+skill) │ │             │
+└───┬────┘ └───┬─────┘ └──────┬──────┘
+    │          │              │
+    └──────────┼──────────────┘
+               ▼
+      ┌────────────────┐
+      │  /orchestrate   │  ← Command (orchestration layer)
+      └───────┬────────┘
+              ▼
+        Full Workflow
 ```
 
 ---
 
 ## What You'll Learn
 
-| Module | Concept | What It Does |
+| Module | Feature | What It Does |
 |--------|---------|--------------|
-| 01 | Subagents | Isolated context, parallel execution |
-| 02 | AGENT.md | Custom agent structure and frontmatter |
-| 03 | Skill Injection | Inject existing skills into agents |
-| 04 | Orchestration | Update command for parallel agents |
-| 05 | Hooks | Event-driven pre/post automation |
-| 06 | Full Workflow | Complete end-to-end integration |
+| 01 | Dev Lifecycle | Understand the Plan → TDD → Review cycle |
+| 02 | `tdd-workflow` skill | Encode TDD methodology (red-green-refactor) |
+| 03 | Agents | Understand agents, isolation, and `AGENT.md` structure |
+| 04 | `planner` agent | Break work into steps, identify files, define acceptance criteria |
+| 05 | `tdd-guide` agent | Write failing tests first, implement to green, refactor |
+| 06 | `code-reviewer` agent | Review implementation against plan and TDD principles |
+| 07 | `/orchestrate` command | Chain all agents into a single development workflow |
+| 08 | Full Workflow | Run the complete lifecycle end-to-end |
 
 ---
 
@@ -106,87 +76,57 @@ After completing Workshop 2:
 ```
 tea-store-demo/
 ├── .claude/
-│   ├── agents/                   # NEW in Workshop 2
-│   │   ├── code-reviewer.md      # Standalone agent
-│   │   ├── dev-agent.md          # Injects 3 skills
-│   │   └── qa-agent.md           # Injects 1 skill
+│   ├── agents/
+│   │   ├── planner.md          # Agent: breaks work into implementation steps
+│   │   ├── tdd-guide.md        # Agent: TDD-driven implementation (+skill)
+│   │   └── code-reviewer.md    # Agent: reviews code against plan & standards
 │   ├── commands/
-│   │   └── deploy-ticket.md      # UPDATED for agents
-│   ├── hooks/                    # NEW in Workshop 2
-│   │   ├── pre-commit-check.sh
-│   │   ├── log-activity.sh
-│   │   └── notify-complete.sh
-│   ├── skills/                   # FROM Workshop 1 + agent-creator
-│   │   ├── skill-creator/        # Meta-skill
-│   │   ├── command-creator/      # Meta-skill
-│   │   ├── agent-creator/        # Meta-skill (used in W2)
-│   │   ├── create-ticket/        # → dev-agent
-│   │   ├── expand-ticket/        # → dev-agent
-│   │   ├── implement-ticket/     # → dev-agent
-│   │   └── qa-ticket/            # → qa-agent
-│   └── settings.json             # NEW: hook config
-└── ...
+│   │   └── orchestrate.md      # Slash command: chains planner → tdd-guide → code-reviewer
+│   └── skills/
+│       ├── skill-creator/      # Pre-built: creates domain skills
+│       ├── command-creator/    # Pre-built: creates slash commands
+│       ├── agent-creator/      # Pre-built: creates custom agents
+│       └── tdd-workflow/       # Your skill: TDD methodology knowledge
+└── CLAUDE.md                    # Project memory (via /init)
 ```
 
 ---
 
 ## What You'll Accomplish
 
-By the end of Workshop 2:
+By the end of this workshop, you will have:
 
-1. **Understand subagent architecture** — isolated context, parallel execution
-2. **Create custom agents** — AGENT.md files with frontmatter
-3. **Inject existing skills** — dev-agent and qa-agent with Workshop 1 skills
-4. **Update orchestration** — /deploy-ticket runs agents in parallel
-5. **Implement hooks** — event-driven automation
-6. **Run complete workflow** — end-to-end with all components
-
----
-
-## Before & After Comparison
-
-| Aspect | Workshop 1 | Workshop 2 |
-|--------|-----------|------------|
-| **Execution** | Sequential | Parallel |
-| **Context** | Main window fills | Isolated per agent |
-| **Skills** | Direct calls | Injected into agents |
-| **Automation** | Manual trigger only | Hooks for events |
-| **Speed** | Sum of all steps | Longest step only |
+1. **Built a TDD knowledge skill** that encodes red-green-refactor methodology
+2. **Created three development lifecycle agents:**
+   - `planner` — Breaks tasks into steps with acceptance criteria
+   - `tdd-guide` — Implements features using test-driven development
+   - `code-reviewer` — Reviews code against the plan and TDD standards
+3. **Built the `/orchestrate` command** that chains all agents into a single workflow
+4. **Run a full development lifecycle** from planning to reviewed code with one command
 
 ---
 
 ## Troubleshooting
 
-**Agent not loading:**
-- Check file is in `.claude/agents/`
-- Verify `name` field in frontmatter
-- Restart Claude Code
+**Claude Code not found:**
+```bash
+npm install -g @anthropic-ai/claude-code
+```
 
-**Skill not injected:**
-- Check `skills:` list in frontmatter
-- Verify skill file exists
+**Skills not triggering:**
+- Ensure your task description matches the skill's trigger words
+- Check that MCP servers are running with `/mcp`
 
-**Hooks not firing:**
-- Check matcher pattern in settings.json
-- macOS/Linux: Ensure scripts are executable (`chmod +x`)
-- Windows: Use Git Bash or WSL to run bash hook scripts
-- Check hook script exit codes
-
-**Parallel execution not working:**
-- Ensure agents are independent
-- Check that command instructs parallel launch
-
----
+**Agents not found:**
+- Verify `.claude/agents/` directory exists
+- Check agent file names match expected format
 
 ## Help
 
 - Type `/help` in Claude Code
-- Type `/agents` to see available agents
-- Type `/skills` to see available skills
+- Type `/mcp` to check MCP server status
 - [Claude Code Docs](https://docs.anthropic.com/claude-code)
 
 ---
 
-## Start Here
-
-Begin with [00_setup.md](./00_setup.md) to verify your Workshop 1 completion and preview Workshop 2.
+Start with [00_setup.md](./00_setup.md)

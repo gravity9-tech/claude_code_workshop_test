@@ -1,150 +1,138 @@
-# Workshop 00: Setup & Prerequisites
+# Workshop 00: Setup & Verification
 
 **Duration: ~5 minutes**
 
-## What You'll Learn
+## What You'll Do
 
 - Verify Workshop 1 completion
-- Understand what Workshop 2 will build
-- Preview the subagents and hooks architecture
+- Confirm project state and pre-built skills
+- Preview what we're building in this workshop
 
 ---
 
 ## Prerequisites
 
-Before starting Workshop 2, you must have completed **Workshop 1** with:
+Before starting, ensure you have completed **[Workshop 1](../cc-workshop-1/)** in full.
 
-- [ ] tea-store-demo project cloned and configured
-- [ ] Jira MCP server configured and working
-- [ ] Four lifecycle skills created:
-  - `create-ticket`
-  - `expand-ticket`
-  - `implement-ticket`
-  - `qa-ticket`
-- [ ] `/deploy-ticket` slash command created
-- [ ] Meta-skills available:
-  - `skill-creator`
-  - `command-creator`
-  - `agent-creator` (for Workshop 2)
+You should already have:
+
+- **Claude Code** installed and working
+- **Tea Store project** downloaded and running
+- **CLAUDE.md** generated via `/init`
+- **Jira MCP** configured and connected
+- **Workshop 1 skills** created (create-ticket, expand-ticket, implement-ticket, qa-ticket)
 
 ---
 
-## Verification Steps
+## Step 1: Verify Claude Code
 
-### 1. Check Skills Are Loaded
+Open a terminal in your Tea Store project folder and run:
 
+```bash
+claude --version
 ```
-/skills
+
+You should see version output like `claude 2.x.x`.
+
+---
+
+## Step 2: Verify Project State
+
+Confirm the following files exist in your project:
+
+```bash
+ls CLAUDE.md
+ls .claude/skills/
 ```
 
 You should see:
-- `skill-creator`
-- `command-creator`
-- `agent-creator`
-- `create-ticket`
-- `expand-ticket`
-- `implement-ticket`
-- `qa-ticket`
 
-### 2. Check Command Exists
-
-```bash
-# macOS/Linux
-cat .claude/commands/deploy-ticket.md
-
-# Windows
-type .claude\commands\deploy-ticket.md
+```
+.claude/skills/
+├── skill-creator/       # Pre-built: creates domain skills
+├── command-creator/     # Pre-built: creates slash commands
+├── agent-creator/       # Pre-built: creates custom agents
+├── create-ticket/       # Workshop 1: BDD ticket creation
+├── expand-ticket/       # Workshop 1: DEV + QA subtasks
+├── implement-ticket/    # Workshop 1: implement & transition
+└── qa-ticket/           # Workshop 1: Playwright testing
 ```
 
-Or open the file in your editor. Verify it has:
-- YAML frontmatter with `description` and `allowed-tools`
-- Workflow phases for create → expand → implement → qa
+> **Important:** The `agent-creator` skill is essential for this workshop — we'll use it to create all three agents.
 
-### 3. Check Jira MCP
+---
+
+## Step 3: Verify MCP Servers
+
+Start Claude Code and check MCP status:
+
+```bash
+claude
+```
+
+Then inside Claude Code, type:
 
 ```
 /mcp
 ```
 
-Verify Jira MCP server is connected and tools are available.
+Confirm that your Jira MCP server is connected and healthy.
 
 ---
 
-## What's New in Workshop 2
+## What We're Building
 
-Workshop 2 builds on your existing skills by introducing three new concepts:
-
-### 1. Subagents
-
-Specialized agents that run in **isolated context windows**:
-- Don't pollute your main conversation context
-- Can run in **parallel** for faster execution
-- Return only **summarized results**
-
-### 2. Skill Injection
-
-Take your existing Workshop 1 skills and **inject them into agents**:
-- `dev-agent` gets: create-ticket + expand-ticket + implement-ticket
-- `qa-agent` gets: qa-ticket
-
-Skills remain the source of truth. Agents provide isolated execution.
-
-### 3. Hooks
-
-Event-driven automation that triggers on Claude Code actions:
-- `PreToolUse` - Run before a tool executes
-- `PostToolUse` - Run after a tool completes
-- Enable validation, logging, notifications
-
----
-
-## Workshop 2 Architecture Preview
+In this workshop, you'll build a complete development lifecycle automation with three layers:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    WORKSHOP 2 STACK                          │
-│                                                              │
-│   HOOKS ──────────► Event-driven triggers                   │
-│       │              (pre/post tool execution)              │
-│       ▼                                                      │
-│   SLASH COMMAND ──► /deploy-ticket                          │
-│       │              (updated for agent orchestration)      │
-│       ▼                                                      │
-│   SUBAGENTS ──────► dev-agent, qa-agent                     │
-│       │              (parallel execution, isolated context) │
-│       ▼                                                      │
-│   SKILLS ─────────► create-ticket, expand-ticket, etc.      │
-│                      (from Workshop 1, injected into agents) │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+Setup → Concept Introduction
+              │
+              ▼
+      ┌───────────────┐
+      │  tdd-workflow  │  ← Skill (knowledge layer)
+      │    (skill)     │
+      └───────┬───────┘
+              │
+    ┌─────────┼─────────┐
+    ▼         ▼         ▼
+┌────────┐ ┌─────────┐ ┌─────────────┐
+│planner │ │tdd-guide│ │code-reviewer│  ← Agents (execution layer)
+│        │ │(+skill) │ │             │
+└───┬────┘ └───┬─────┘ └──────┬──────┘
+    │          │              │
+    └──────────┼──────────────┘
+               ▼
+      ┌────────────────┐
+      │  /orchestrate   │  ← Command (orchestration layer)
+      └───────┬────────┘
+              ▼
+        Full Workflow
 ```
 
----
+**Skill (knowledge layer):** `tdd-workflow` encodes TDD methodology so agents can follow red-green-refactor patterns.
 
-## The Journey: Workshop 1 → Workshop 2
+**Agents (execution layer):** Three specialized agents each handle one phase of the development cycle:
+- `planner` — Breaks work into steps with acceptance criteria
+- `tdd-guide` — Implements using test-driven development (injects the skill)
+- `code-reviewer` — Reviews code against the plan and TDD standards
 
-| Component | Workshop 1 | Workshop 2 |
-|-----------|-----------|------------|
-| Skills | Created 4 lifecycle skills | Same skills, injected into agents |
-| Agents | N/A | dev-agent, qa-agent |
-| Commands | Sequential skill execution | Parallel agent orchestration |
-| Hooks | N/A | Pre/post automation |
-| Context | Main window fills up | Isolated per agent |
-| Execution | Sequential | Parallel |
+**Command (orchestration layer):** `/orchestrate` chains all three agents into a single workflow.
 
 ---
 
 ## Checkpoint
 
-Before proceeding, confirm:
+Before continuing, verify:
 
-- [ ] All Workshop 1 skills are loaded
-- [ ] `/deploy-ticket` command exists
-- [ ] Jira MCP is connected
-- [ ] You understand the Workshop 2 architecture
+- [ ] Claude Code is installed and working
+- [ ] Tea Store project is set up
+- [ ] `CLAUDE.md` exists in project root
+- [ ] `.claude/skills/` contains pre-built creators (skill-creator, command-creator, agent-creator)
+- [ ] Workshop 1 skills are present (create-ticket, expand-ticket, implement-ticket, qa-ticket)
+- [ ] Jira MCP server is connected
 
 ---
 
 ## Next Up
 
-Continue to [01_subagents_intro.md](./01_subagents_intro.md) to learn about subagents and how Claude delegates tasks.
+Continue to: [01_dev_lifecycle_intro.md](./01_dev_lifecycle_intro.md) — Understanding the Development Lifecycle
