@@ -350,7 +350,7 @@ Create a skill called "review-ticket" that checks code quality before marking Do
 
 ## Next Up
 
-Continue to [07_slash_commands.md](./07_slash_commands.md) to:
+Continue to [06_slash_commands.md](./06_slash_commands.md) to:
 - Learn the difference between skills and slash commands
 - Use the `command-creator` to build an orchestrator
 - Run the entire dev lifecycle with `/deploy-ticket`

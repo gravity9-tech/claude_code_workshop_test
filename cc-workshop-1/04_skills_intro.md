@@ -113,4 +113,4 @@ You now understand:
 
 ## Next Up
 
-Continue to: [05_skill_builder.md](./05_skill_builder.md) - Explore the Skill Creator
+Continue to: [05_dev_lifecycle.md](./05_dev_lifecycle.md) - Build Your Dev Lifecycle Skill Suite
