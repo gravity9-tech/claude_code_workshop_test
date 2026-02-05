@@ -6,7 +6,6 @@
 
 - What MCP (Model Context Protocol) is
 - How to create Jira API credentials
-- Add a Jira MCP server to Claude Code
 - Verify the connection works
 
 ---
@@ -57,125 +56,25 @@ Keep this token handy for the next step.
 
 ## Task 2: Set Environment Variables
 
-Set your Jira credentials as environment variables. This keeps them secure and out of command history.
+The project includes an `env.example` file with placeholder values.
 
-### macOS/Linux
-
-**In your terminal:**
+**1. Copy and rename it to `.env`:**
 
 ```bash
-export JIRA_HOST="https://your-domain.atlassian.net"
-export JIRA_EMAIL="your-email@example.com"
-export JIRA_API_TOKEN="your-api-token-here"
+cp env.example .env
 ```
 
-**To make these permanent**, add them to your shell profile (`~/.zshrc` or `~/.bashrc`):
+**2. Edit `.env` and replace the placeholder values with your real credentials:**
 
-```bash
-# Add to your shell profile
-echo 'export JIRA_HOST="https://your-domain.atlassian.net"' >> ~/.zshrc
-echo 'export JIRA_EMAIL="your-email@example.com"' >> ~/.zshrc
-echo 'export JIRA_API_TOKEN="your-api-token-here"' >> ~/.zshrc
-
-# Reload the profile
-source ~/.zshrc
 ```
-
-**Verify they're set:**
-
-```bash
-echo $JIRA_HOST
-echo $JIRA_EMAIL
-echo $JIRA_API_TOKEN
-```
-
-### Windows
-
-**In Command Prompt (temporary):**
-
-```cmd
-set JIRA_HOST=https://your-domain.atlassian.net
-set JIRA_EMAIL=your-email@example.com
-set JIRA_API_TOKEN=your-api-token-here
-```
-
-**To make these permanent**, use System Properties:
-1. Press `Win + R`, type `sysdm.cpl`, press Enter
-2. Go to **Advanced** tab → **Environment Variables**
-3. Under **User variables**, click **New** and add each variable
-
-**Or use PowerShell:**
-
-```powershell
-[Environment]::SetEnvironmentVariable("JIRA_HOST", "https://your-domain.atlassian.net", "User")
-[Environment]::SetEnvironmentVariable("JIRA_EMAIL", "your-email@example.com", "User")
-[Environment]::SetEnvironmentVariable("JIRA_API_TOKEN", "your-api-token-here", "User")
-```
-
-**Verify they're set (restart terminal first):**
-
-```cmd
-echo %JIRA_HOST%
-echo %JIRA_EMAIL%
-echo %JIRA_API_TOKEN%
+JIRA_HOST=https://your-domain.atlassian.net
+JIRA_EMAIL=your-email@example.com
+JIRA_API_TOKEN=your-api-token-here
 ```
 
 ---
 
-## Task 3: Install the MCP Server Locally
-
-The `mcp-atlassian` package requires a local installation with its dependencies. Run this in your project root:
-
-### macOS/Linux
-
-```bash
-# Create a local MCP servers directory
-mkdir -p .mcp-servers/jira && cd .mcp-servers/jira
-
-# Initialize and install with required dependencies
-npm init -y && npm install mcp-atlassian jsdom
-
-# Return to project root and add to .gitignore (contains node_modules)
-cd ../.. && echo ".mcp-servers/" >> .gitignore
-```
-
-### Windows (Command Prompt)
-
-```cmd
-:: Create a local MCP servers directory
-mkdir .mcp-servers\jira
-cd .mcp-servers\jira
-
-:: Initialize and install with required dependencies
-npm init -y
-npm install mcp-atlassian jsdom
-
-:: Return to project root and add to .gitignore
-cd ..\..
-echo .mcp-servers/ >> .gitignore
-```
-
----
-
-## Task 4: Add the MCP Server
-
-Use the `claude mcp add-json` command to register the Jira MCP server:
-
-```bash
-claude mcp add-json jira '{
-    "type": "stdio",
-    "command": "node",
-    "args": [".mcp-servers/jira/node_modules/mcp-atlassian/dist/index.js"],
-    "env": {
-      "ATLASSIAN_BASE_URL": "${JIRA_HOST}",
-      "ATLASSIAN_EMAIL": "${JIRA_EMAIL}",
-      "ATLASSIAN_API_TOKEN": "${JIRA_API_TOKEN}"
-    }
-}' -s project
-```
----
-
-## Task 5: Verify the Connection
+## Task 3: Verify the Connection
 
 Start (or restart) Claude Code:
 
@@ -237,9 +136,7 @@ node --version  # Should be v18+
 Before continuing, verify:
 
 - [ ] Jira API token created
-- [ ] Environment variables set (JIRA_HOST, JIRA_EMAIL, JIRA_API_TOKEN)
-- [ ] Local installation created in `.mcp-servers/jira/`
-- [ ] MCP server added via `claude mcp add-json`
+- [ ] `.env` file created from `env.example` with your credentials
 - [ ] `/mcp` shows jira server as connected
 - [ ] Can list projects or search issues
 
@@ -248,10 +145,8 @@ Before continuing, verify:
 ## What You've Learned
 
 1. **MCP** extends Claude Code with external service integrations
-2. **Environment variables** keep credentials secure (never commit them!)
-3. **`claude mcp add-json`** configures MCP servers per-project
-4. **Local installation** ensures dependencies are properly resolved
-5. **mcp-atlassian** is a community package providing Jira and Confluence tools
+2. **`.env` files** keep credentials secure and easy to manage (never commit them!)
+3. **mcp-atlassian** is a community package providing Jira and Confluence tools
 
 ---
 
