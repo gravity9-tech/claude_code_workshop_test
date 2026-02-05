@@ -142,7 +142,29 @@ Verify it:
 
 ---
 
-## Task 4: Create the QA-Ticket Skill
+## Task 4: Install Playwright MCP
+
+Before creating the QA skill, we need to install the Playwright MCP server for browser automation.
+
+**In Claude Code, type:**
+
+```
+/create-playwright-mcp create playwright mcp server for this project
+```
+
+This will configure the Playwright MCP server automatically.
+
+Verify it's connected:
+
+```
+/mcp
+```
+
+You should see both `jira` and `playwright` listed as connected.
+
+---
+
+## Task 5: Create the QA-Ticket Skill
 
 This skill tests the QA subtasks using Playwright and moves them to Done.
 
@@ -183,7 +205,7 @@ Verify it:
 
 ---
 
-## Task 5: Restart and Verify All Skills
+## Task 6: Restart and Verify All Skills
 
 Restart Claude Code to load all new skills:
 
@@ -323,7 +345,7 @@ Create a skill called "review-ticket" that checks code quality before marking Do
 - Check the parent ticket key is correct
 
 **Playwright tests failing:**
-- Ensure Playwright MCP is configured (covered in Workshop 2)
+- Ensure Playwright MCP is configured (see Task 4)
 - Verify the application is running locally
 
 **Transition errors:**

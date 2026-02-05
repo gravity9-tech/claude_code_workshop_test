@@ -79,15 +79,17 @@ JIRA_API_TOKEN=your-api-token-here
 
 ---
 
-## Task 3: Verify the Connection
+## Task 3: Install Jira MCP Server
 
-Start (or restart) Claude Code:
+Use our meta-skill to create the Jira MCP server configuration:
 
-```bash
-claude
+```
+/create-jira-mcp create jira mcp server for this project
 ```
 
-Check that Jira MCP is registered:
+This will set up the MCP server configuration automatically.
+
+Once complete, verify the connection by checking that Jira MCP is registered:
 
 ```
 /mcp
