@@ -54,21 +54,6 @@ Setup → Concept Introduction
 
 ---
 
-## What You'll Learn
-
-| Module | Feature | What It Does |
-|--------|---------|--------------|
-| 01 | Dev Lifecycle | Understand the Plan → TDD → Review cycle |
-| 02 | `tdd-workflow` skill | Encode TDD methodology (red-green-refactor) |
-| 03 | Agents | Understand agents, isolation, and `AGENT.md` structure |
-| 04 | `planner` agent | Break work into steps, identify files, define acceptance criteria |
-| 05 | `tdd-guide` agent | Write failing tests first, implement to green, refactor |
-| 06 | `code-reviewer` agent | Review implementation against plan and TDD principles |
-| 07 | `/orchestrate` command | Chain all agents into a single development workflow |
-| 08 | Full Workflow | Run the complete lifecycle end-to-end |
-
----
-
 ## Final Project Structure
 
 After completing Workshop 2:
@@ -89,20 +74,6 @@ tea-store-demo/
 │       └── tdd-workflow/       # Your skill: TDD methodology knowledge
 └── CLAUDE.md                    # Project memory (via /init)
 ```
-
----
-
-## What You'll Accomplish
-
-By the end of this workshop, you will have:
-
-1. **Built a TDD knowledge skill** that encodes red-green-refactor methodology
-2. **Created three development lifecycle agents:**
-   - `planner` — Breaks tasks into steps with acceptance criteria
-   - `tdd-guide` — Implements features using test-driven development
-   - `code-reviewer` — Reviews code against the plan and TDD standards
-3. **Built the `/orchestrate` command** that chains all agents into a single workflow
-4. **Run a full development lifecycle** from planning to reviewed code with one command
 
 ---
 

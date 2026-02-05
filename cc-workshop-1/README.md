@@ -20,50 +20,33 @@ A hands-on guide to getting started with Claude Code and building a complete dev
 | 02 | [Getting Started](./02_getting_started.md) | 8 min |
 | 03 | [Jira MCP](./03_jira_mcp.md) | 15 min |
 | 04 | [Skills Introduction](./04_skills_intro.md) | 5 min |
-| 05 | [Dev Lifecycle Skills](./05_dev_lifecycle.md) | 25 min |
-| 06 | [Slash Commands](./06_slash_commands.md) | 10 min |
+| 05 | [Dev Lifecycle Skills](./05_qa_lifecycle.md) | 25 min |
+| 06 | [Deploy Ticket Command](./06_slash_commands.md) | 10 min |
 
 ## Learning Path
 
 ```
-00 Project Setup (clone tea-store-demo)
-         |
-         v
-01 Context Window (memory management)
-         |
-         v
-02 Getting Started (/init, CLAUDE.md)
-         |
-         v
-03 Jira MCP (ticket management integration)
-         |
-         v
-04 Skills Introduction (what skills are)
-         |
-         v
-05 Dev Lifecycle Skills (build 4 skills for full workflow)
-   ├── create-ticket (BDD descriptions)
-   ├── expand-ticket (DEV + QA subtasks)
-   ├── implement-ticket (code & mark done)
-   └── qa-ticket (Playwright tests & mark done)
-         |
-         v
-06 Deploy Ticket Orchestrator (use command-creator)
-   └── /deploy-ticket (orchestrates all skills)
+Project Setup → Context Window → Getting Started
+                                       │
+                                       ▼
+                              ┌──────────────┐
+                              │   Jira MCP   │  ← Tool (capability layer)
+                              └──────┬───────┘
+                                     │
+          ┌──────────┬───────────────┼───────────────┐
+          ▼          ▼               ▼               ▼
+   ┌────────────┐ ┌────────────┐ ┌─────────────┐ ┌─────────┐
+   │  create-   │ │  expand-   │ │ implement-  │ │   qa-   │  ← Skills
+   │  ticket    │ │  ticket    │ │ ticket      │ │  ticket │    (knowledge
+   │            │ │            │ │             │ │         │     layer)
+   └─────┬──────┘ └─────┬──────┘ └──────┬──────┘ └────┬────┘
+         │              │               │              │
+         └──────────────┼───────────────┼──────────────┘
+                        ▼               ▼
+               ┌─────────────────────────────┐
+               │      /deploy-ticket         │  ← Command (orchestration)
+               └─────────────────────────────┘
 ```
-
----
-
-## What You'll Learn
-
-| Module | Feature | What It Does |
-|--------|---------|--------------|
-| 01 | Context Window | Understanding Claude's memory limits |
-| 02 | `/init` | Generates CLAUDE.md project memory |
-| 03 | Jira MCP | External tool for ticket management |
-| 04 | Skills | Domain expertise for Claude |
-| 05 | Dev Lifecycle | Build a complete 4-skill workflow automation |
-| 06 | Orchestrator | Use command-creator to build /deploy-ticket orchestrator |
 
 ---
 
@@ -87,23 +70,6 @@ tea-store-demo/
 ├── .mcp.json                    # Jira MCP server config
 └── CLAUDE.md                    # Project memory (via /init)
 ```
-
----
-
-## What You'll Accomplish
-
-By the end of this workshop, you will have:
-
-1. **Set up Claude Code** with a real project (tea-store-demo)
-2. **Connected to Jira** via MCP for ticket management
-3. **Built a complete dev lifecycle automation:**
-   - `create-ticket` — Skill that creates tickets with BDD acceptance criteria
-   - `expand-ticket` — Skill that breaks tickets into DEV and QA subtasks
-   - `implement-ticket` — Skill that implements code and transitions DEV tasks to Done
-   - `qa-ticket` — Skill that runs Playwright tests and transitions QA tasks to Done
-   - `/deploy-ticket` — Slash command that orchestrates all skills into a single workflow
-
-You'll have a fully automated development workflow from idea to tested code with one command!
 
 ---
 
@@ -134,4 +100,4 @@ claude mcp get jira
 
 Start with [00_setup.md](./00_setup.md)
 
-Continue to **Workshop 2** for: Advanced Playwright, Slash Commands, Custom Agents, Hooks, and Full Workflow orchestration
+Continue to **[Workshop 2](../cc-workshop-2/)** for: TDD workflows, custom agents, and advanced orchestration

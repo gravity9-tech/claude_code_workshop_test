@@ -114,6 +114,45 @@ The Tea Store app includes:
 
 ---
 
+## What We're Building
+
+In this workshop, you'll build a complete Jira-driven development lifecycle:
+
+```
+Project Setup → Context Window → Getting Started
+                                       │
+                                       ▼
+                              ┌──────────────┐
+                              │   Jira MCP   │  ← Tool (capability layer)
+                              └──────┬───────┘
+                                     │
+          ┌──────────┬───────────────┼───────────────┐
+          ▼          ▼               ▼               ▼
+   ┌────────────┐ ┌────────────┐ ┌─────────────┐ ┌─────────┐
+   │  create-   │ │  expand-   │ │ implement-  │ │   qa-   │  ← Skills
+   │  ticket    │ │  ticket    │ │ ticket      │ │  ticket │    (knowledge
+   │            │ │            │ │             │ │         │     layer)
+   └─────┬──────┘ └─────┬──────┘ └──────┬──────┘ └────┬────┘
+         │              │               │              │
+         └──────────────┼───────────────┼──────────────┘
+                        ▼               ▼
+               ┌─────────────────────────────┐
+               │      /deploy-ticket         │  ← Command (orchestration)
+               └─────────────────────────────┘
+```
+
+**Tool (capability layer):** Jira MCP gives Claude the ability to create, search, and transition tickets.
+
+**Skills (knowledge layer):** Four skills each handle one phase of the lifecycle:
+- `create-ticket` — Creates tickets with BDD acceptance criteria
+- `expand-ticket` — Breaks tickets into DEV and QA subtasks
+- `implement-ticket` — Implements code and transitions DEV tasks to Done
+- `qa-ticket` — Runs Playwright tests and transitions QA tasks to Done
+
+**Command (orchestration):** `/deploy-ticket` chains all four skills into a single workflow.
+
+---
+
 ## Checkpoint
 
 Before continuing, verify:

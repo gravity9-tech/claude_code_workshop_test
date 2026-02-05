@@ -41,8 +41,8 @@ You should see version output like `claude 2.x.x`.
 Confirm the following files exist in your project:
 
 ```bash
-ls CLAUDE.md
-ls .claude/skills/
+CLAUDE.md
+.claude/skills/
 ```
 
 You should see:

@@ -1,12 +1,10 @@
 # Claude Code Workshops
 
-Hands-on workshops for learning Claude Code and ticket-driven development with the dev-tools plugin.
+Hands-on workshops for learning Claude Code — from skills and MCP integrations to custom agents and orchestration.
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
-
-- **Python 3.12+** for the backend
+- **Python 3.9+** for the backend
 - **Node.js 18+** for the frontend and Claude Code
 - Claude Code installed:
   ```bash
@@ -15,64 +13,67 @@ Hands-on workshops for learning Claude Code and ticket-driven development with t
 - Jira Cloud account with API access
 - Basic command line familiarity
 
-### Installation
-
-```bash
-git clone https://github.com/gravity9-tech/workshops.git
-cd workshops
-```
-
 ## Workshops
 
 | Workshop | Level | Duration | Description |
 |----------|-------|----------|-------------|
-| [Workshop 1](./cc-workshop-1/) | Foundations | ~50 min | Setup, Jira MCP, skills, create & plan tickets |
-| [Workshop 2](./cc-workshop-2/) | Advanced | ~60 min | Playwright, agents, implement & QA tickets, full workflow |
+| [Workshop 1](./cc-workshop-1/) | Foundations | ~70 min | Setup, Jira MCP, skills, and `/deploy-ticket` command |
+| [Workshop 2](./cc-workshop-2/) | Advanced | ~85 min | TDD skill, custom agents, and `/orchestrate` command |
 
 ## Learning Path
 
 ```
-Workshop 1: Foundations (Jira workflow)
-├── 00 Project Setup (pandora-demo)
-├── 01 Context Window
-├── 02 Getting Started (/init, CLAUDE.md)
-├── 03 Jira MCP Setup
-├── 04 Skills Introduction
-├── 05 Create Ticket Skill
-└── 06 Plan Ticket Skill
-         │
-         │  [You now have a planned Jira ticket]
-         │
-         v
-Workshop 2: Advanced (Build & Test)
-├── 01 Playwright MCP Setup
-├── 02 Slash Commands
-├── 03 Custom Agents
-├── 04 Implement Ticket Skill
-├── 05 QA Ticket Skill
-├── 06 Hooks
-└── 07 Full Workflow (/build-and-qa)
+Workshop 1: Foundations
+│
+│  Setup → Context Window → Getting Started → Jira MCP
+│                                                │
+│                                                ▼
+│               ┌──────────────┐
+│               │   Jira MCP   │  ← Tool
+│               └──────┬───────┘
+│                      │
+│       ┌──────┬───────┼───────┬──────┐
+│       ▼      ▼       ▼       ▼      │
+│    create  expand  implement  qa    │  ← Skills
+│    ticket  ticket  ticket   ticket  │
+│       │      │       │       │      │
+│       └──────┼───────┼───────┘      │
+│              ▼       ▼              │
+│         /deploy-ticket              │  ← Command
+│                                     │
+│  [You now have a Jira-driven        │
+│   dev lifecycle]                    │
+│                                     │
+└─────────────────────────────────────┘
+              │
+              ▼
+Workshop 2: Advanced
+│
+│  Setup → Dev Lifecycle Intro
+│              │
+│              ▼
+│      ┌───────────────┐
+│      │  tdd-workflow  │  ← Skill
+│      └───────┬───────┘
+│              │
+│    ┌─────────┼─────────┐
+│    ▼         ▼         ▼
+│ planner  tdd-guide  code-reviewer   ← Agents
+│    │         │         │
+│    └─────────┼─────────┘
+│              ▼
+│       /orchestrate                  ← Command
+│
+└─────────────────────────────────────┘
 ```
-
-## What You'll Build
-
-By completing both workshops, you'll:
-
-1. **Set up Claude Code** with a real project (pandora-demo)
-2. **Connect to Jira** via MCP for ticket management
-3. **Create tickets** with BDD acceptance criteria
-4. **Plan tickets** with phase subtasks (P1/P2/QA)
-5. **Implement features** phase-by-phase
-6. **Run automated QA** with Playwright browser testing
-7. **Use the full workflow** `/build-and-qa` command
 
 ## Target Project
 
-Both workshops use [pandora-demo](https://github.com/gravity9-tech/pandora-demo), a full-stack luxury jewelry e-commerce application:
+Both workshops use [tea-store-demo](https://github.com/gravity9-tech/claude_code_workshop), a full-stack e-commerce application:
 
-- **Backend**: FastAPI, Python 3.12+, Pydantic
-- **Frontend**: Angular 19, TypeScript, Tailwind CSS 4
-- **Features**: Product filtering, cart, wishlist, customization, dark mode
+- **Backend**: FastAPI, Python, Pydantic
+- **Frontend**: React 19, TypeScript, Tailwind CSS
+- **Testing**: Pytest, Vitest, Playwright
 
 ## Quick Start
 

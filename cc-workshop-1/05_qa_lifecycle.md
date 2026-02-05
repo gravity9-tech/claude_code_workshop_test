@@ -52,11 +52,7 @@ The skill should:
 **Review the generated skill** (open in your editor or use terminal):
 
 ```bash
-# macOS/Linux
-cat .claude/skills/create-ticket/SKILL.md
-
-# Windows
-type .claude\skills\create-ticket\SKILL.md
+.claude/skills/create-ticket/SKILL.md
 ```
 
 Verify it includes:
@@ -98,11 +94,7 @@ The skill should:
 **Review the generated skill** (open in your editor or use terminal):
 
 ```bash
-# macOS/Linux
-cat .claude/skills/expand-ticket/SKILL.md
-
-# Windows
-type .claude\skills\expand-ticket\SKILL.md
+.claude/skills/expand-ticket/SKILL.md
 ```
 
 Verify it:
@@ -140,11 +132,7 @@ The skill should:
 **Review the generated skill** (open in your editor or use terminal):
 
 ```bash
-# macOS/Linux
 cat .claude/skills/implement-ticket/SKILL.md
-
-# Windows
-type .claude\skills\implement-ticket\SKILL.md
 ```
 
 Verify it:
@@ -185,11 +173,7 @@ The skill should:
 **Review the generated skill** (open in your editor or use terminal):
 
 ```bash
-# macOS/Linux
-cat .claude/skills/qa-ticket/SKILL.md
-
-# Windows
-type .claude\skills\qa-ticket\SKILL.md
+.claude/skills/qa-ticket/SKILL.md
 ```
 
 Verify it:
@@ -241,23 +225,23 @@ Try running through the complete workflow:
 
 **Step 1: Create a ticket**
 ```
-Create a ticket for adding a product rating feature where users can rate products 1-5 stars
+/create-ticket add ability to search title and description in {enter jira project name}
 ```
 
 **Step 2: Expand into subtasks**
 ```
-Expand ticket PROJECT-123 into dev and QA subtasks
+/expand-ticket Expand ticket PROJECT-123 into dev and QA subtasks
 ```
 (Replace PROJECT-123 with your actual ticket key)
 
 **Step 3: Implement the dev tasks**
 ```
-Implement ticket PROJECT-123
+/implement-ticket ticket PROJECT-123
 ```
 
 **Step 4: Run QA tests**
 ```
-QA ticket PROJECT-123
+/qa-ticket ticket PROJECT-123
 ```
 
 ---
@@ -350,7 +334,4 @@ Create a skill called "review-ticket" that checks code quality before marking Do
 
 ## Next Up
 
-Continue to [06_slash_commands.md](./06_slash_commands.md) to:
-- Learn the difference between skills and slash commands
-- Use the `command-creator` to build an orchestrator
-- Run the entire dev lifecycle with `/deploy-ticket`
+Continue to: [06_slash_commands.md](./06_slash_commands.md) — Build the Deploy Ticket Command
