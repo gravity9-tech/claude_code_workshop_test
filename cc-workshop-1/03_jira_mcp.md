@@ -29,6 +29,11 @@ Think of MCP servers as **plugins** that extend what Claude can do.
 ┌─────────────┐     MCP Protocol     ┌─────────────────┐
 │ Claude Code │ ◄──────────────────► │   MCP Server    │
 └─────────────┘      (stdio)         │  (mcp-atlassian)│
+                                     ├─────────────────┤
+                                     │     Tools:      │
+                                     │  • jira_search  │
+                                     │  • jira_create  │
+                                     │  • jira_update  │
                                      └────────┬────────┘
                                               │ REST API
                                               ▼
