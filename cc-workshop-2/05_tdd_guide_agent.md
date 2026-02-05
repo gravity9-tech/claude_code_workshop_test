@@ -80,10 +80,10 @@ This is the separation of concerns: the **skill** provides methodology, the **ag
 
 ## Create the Agent
 
-Use the `agent-creator` to generate the tdd-guide agent. In your Claude Code session, enter the following prompt:
+Use the `/agent-creator` to generate the tdd-guide agent. In your Claude Code session, type:
 
 ```
-Create an agent called "tdd-guide"
+/agent-creator Create an agent called "tdd-guide"
 
 The agent should:
 - Take an implementation plan as input (produced by the planner agent)
@@ -120,7 +120,7 @@ The agent should:
 
 ## Review the Generated Agent
 
-Once the agent-creator finishes, review what was generated:
+Once the `/agent-creator` finishes, review what was generated:
 
 ```bash
 # macOS/Linux
@@ -243,7 +243,7 @@ Two of three agents are done. One more to go.
 
 - [ ] Understand the tdd-guide's role (takes a plan, implements with TDD)
 - [ ] Understand how skill injection works (declared in frontmatter, loaded automatically)
-- [ ] Used the `agent-creator` to generate the tdd-guide agent
+- [ ] Used `/agent-creator` to generate the tdd-guide agent
 - [ ] Verified the agent has write tools and injects the `tdd-workflow` skill
 - [ ] Tested the agent with a sample plan
 

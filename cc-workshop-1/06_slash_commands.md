@@ -6,7 +6,7 @@
 
 - What slash commands are and how they differ from skills
 - How commands orchestrate multiple skills into a single workflow
-- How to use the `command-creator` to build `/deploy-ticket`
+- How to use the `/command-creator` to build `/deploy-ticket`
 
 ---
 
@@ -99,10 +99,10 @@ Each skill runs in sequence. The ticket key from `create-ticket` is passed to ev
 
 ## Create the Command
 
-Use the `command-creator` to generate the deploy-ticket command. In your Claude Code session, enter the following prompt:
+Use the `/command-creator` to generate the deploy-ticket command. In your Claude Code session, type:
 
 ```
-Create a slash command called "deploy-ticket"
+/command-creator Create a slash command called "deploy-ticket"
 
 The command should orchestrate the full development lifecycle by chaining
 four skills in sequence:
@@ -141,7 +141,7 @@ The command should:
 
 ## Review the Generated Command
 
-Once the command-creator finishes, review what was generated:
+Once the `/command-creator` finishes, review what was generated:
 
 ```bash
 # macOS/Linux
@@ -254,7 +254,7 @@ Every layer is built. One command runs the entire development lifecycle.
 
 - [ ] Understand what slash commands are (orchestration scripts invoked with `/command-name`)
 - [ ] Understand how commands differ from skills
-- [ ] Used the `command-creator` to generate `/deploy-ticket`
+- [ ] Used `/command-creator` to generate `/deploy-ticket`
 - [ ] Verified the command chains all four skills in sequence
 - [ ] Tested the command with a real feature
 

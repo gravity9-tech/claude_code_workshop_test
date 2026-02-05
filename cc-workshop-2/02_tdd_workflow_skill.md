@@ -6,7 +6,7 @@
 
 - What the `tdd-workflow` skill encodes and why it exists
 - Why TDD knowledge belongs in a skill rather than in agent definitions
-- How to use the `skill-creator` to build the skill
+- How to use the `/skill-creator` to build the skill
 
 ---
 
@@ -55,10 +55,10 @@ This cycle repeats for each small piece of functionality.
 
 ## Create the Skill
 
-Use the `skill-creator` to generate the `tdd-workflow` skill. In your Claude Code session, enter the following prompt:
+Use the `/skill-creator` to generate the `tdd-workflow` skill. In your Claude Code session, type:
 
 ```
-Create a skill called "tdd-workflow"
+/skill-creator Create a skill called "tdd-workflow"
 
 The skill should encode TDD (Test-Driven Development) methodology:
 
@@ -92,7 +92,7 @@ The skill should encode TDD (Test-Driven Development) methodology:
 
 ## Review the Generated Skill
 
-Once the skill-creator finishes, review what was generated:
+Once the `/skill-creator` finishes, review what was generated:
 
 ```bash
 # macOS/Linux
@@ -134,7 +134,7 @@ Guide test-driven development using the red-green-refactor cycle.
 - ...
 ```
 
-> **Note:** The exact output will vary. The skill-creator researches best practices and generates content accordingly. What matters is that the core TDD cycle and guidelines are captured.
+> **Note:** The exact output will vary. The `/skill-creator` researches best practices and generates content accordingly. What matters is that the core TDD cycle and guidelines are captured.
 
 ---
 
@@ -222,7 +222,7 @@ The knowledge layer is complete. Next, we'll build the first agent that uses it.
 ## Checkpoint
 
 - [ ] Understand why TDD knowledge belongs in a skill (reusable, single source of truth)
-- [ ] Used the `skill-creator` to generate the `tdd-workflow` skill
+- [ ] Used `/skill-creator` to generate the `tdd-workflow` skill
 - [ ] Reviewed the generated `SKILL.md` and confirmed it has TDD cycle + guidelines
 - [ ] Verified the skill loads with `/skills`
 

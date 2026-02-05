@@ -4,7 +4,7 @@
 
 ## What You'll Learn
 
-- Use the skill-creator to build a complete development workflow
+- Use the `/skill-creator` to build a complete development workflow
 - Create interconnected skills that form an automated dev lifecycle
 - Understand how skills can work together with Jira and Playwright MCP
 
@@ -32,10 +32,10 @@ Each skill handles one phase of the workflow, making them composable and reusabl
 
 This skill creates a Jira ticket with a BDD-style description.
 
-**Prompt the skill-creator:**
+**In Claude Code, type:**
 
 ```
-Create a skill called "create-ticket"
+/skill-creator Create a skill called "create-ticket"
 
 The skill should:
 - Create a Jira ticket based on a feature description
@@ -66,10 +66,10 @@ Verify it includes:
 
 This skill takes an existing ticket and breaks it down into Dev and QA subtasks.
 
-**Prompt the skill-creator:**
+**In Claude Code, type:**
 
 ```
-Create a skill called "expand-ticket"
+/skill-creator Create a skill called "expand-ticket"
 
 The skill should:
 - Take a Jira ticket key as input
@@ -108,10 +108,10 @@ Verify it:
 
 This skill implements the Dev subtasks and moves them to Done.
 
-**Prompt the skill-creator:**
+**In Claude Code, type:**
 
 ```
-Create a skill called "implement-ticket"
+/skill-creator Create a skill called "implement-ticket"
 
 The skill should:
 - Take a Jira ticket key as input (parent ticket)
@@ -146,10 +146,10 @@ Verify it:
 
 This skill tests the QA subtasks using Playwright and moves them to Done.
 
-**Prompt the skill-creator:**
+**In Claude Code, type:**
 
 ```
-Create a skill called "qa-ticket"
+/skill-creator Create a skill called "qa-ticket"
 
 The skill should:
 - Take a Jira ticket key as input (parent ticket)

@@ -5,7 +5,7 @@
 ## What You'll Learn
 
 - What the planner agent does in the development lifecycle
-- How to use the `agent-creator` to build a custom agent
+- How to use the `/agent-creator` to build a custom agent
 - How to test an agent with a sample task
 
 ---
@@ -44,10 +44,10 @@ The planner doesn't write code — it only analyzes and plans. This makes it a *
 
 ## Create the Agent
 
-Use the `agent-creator` to generate the planner agent. In your Claude Code session, enter the following prompt:
+Use the `/agent-creator` to generate the planner agent. In your Claude Code session, type:
 
 ```
-Create an agent called "planner"
+/agent-creator Create an agent called "planner"
 
 The agent should:
 - Take a task or feature description as input
@@ -82,7 +82,7 @@ The agent should:
 
 ## Review the Generated Agent
 
-Once the agent-creator finishes, review what was generated:
+Once the `/agent-creator` finishes, review what was generated:
 
 ```bash
 # macOS/Linux
@@ -191,7 +191,7 @@ Setup → Concept Introduction
 ## Checkpoint
 
 - [ ] Understand the planner's role (analyze and plan, never modify)
-- [ ] Used the `agent-creator` to generate the planner agent
+- [ ] Used `/agent-creator` to generate the planner agent
 - [ ] Reviewed the generated agent and confirmed it's read-only
 - [ ] Tested the agent with a sample task and reviewed the plan output
 

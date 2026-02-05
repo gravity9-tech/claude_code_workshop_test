@@ -6,7 +6,7 @@
 
 - What slash commands are and how they differ from agents
 - How commands orchestrate multiple agents into a workflow
-- How to use the `command-creator` to build `/orchestrate`
+- How to use the `/command-creator` to build `/orchestrate`
 
 ---
 
@@ -101,10 +101,10 @@ Each agent runs in its own context window. The command passes the relevant outpu
 
 ## Create the Command
 
-Use the `command-creator` to generate the orchestrate command. In your Claude Code session, enter the following prompt:
+Use the `/command-creator` to generate the orchestrate command. In your Claude Code session, type:
 
 ```
-Create a slash command called "orchestrate"
+/command-creator Create a slash command called "orchestrate"
 
 The command should chain three agents in sequence to run a complete
 development lifecycle:
@@ -142,7 +142,7 @@ The command should:
 
 ## Review the Generated Command
 
-Once the command-creator finishes, review what was generated:
+Once the `/command-creator` finishes, review what was generated:
 
 ```bash
 # macOS/Linux
@@ -255,7 +255,7 @@ Every layer is built. All that's left is putting it all together.
 
 - [ ] Understand what slash commands are (orchestration scripts invoked with `/command-name`)
 - [ ] Understand how commands differ from skills and agents
-- [ ] Used the `command-creator` to generate `/orchestrate`
+- [ ] Used `/command-creator` to generate `/orchestrate`
 - [ ] Verified the command chains planner → tdd-guide → code-reviewer in sequence
 - [ ] Verified context is passed between agents (plan → implementation → review)
 - [ ] Tested the command with a sample feature

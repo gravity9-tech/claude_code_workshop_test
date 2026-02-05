@@ -76,10 +76,10 @@ The reviewer doesn't need TDD methodology knowledge (no skill injection). It jus
 
 ## Create the Agent
 
-Use the `agent-creator` to generate the code-reviewer agent. In your Claude Code session, enter the following prompt:
+Use the `/agent-creator` to generate the code-reviewer agent. In your Claude Code session, type:
 
 ```
-Create an agent called "code-reviewer"
+/agent-creator Create an agent called "code-reviewer"
 
 The agent should:
 - Take two inputs: the original implementation plan and a description
@@ -130,7 +130,7 @@ The agent should:
 
 ## Review the Generated Agent
 
-Once the agent-creator finishes, review what was generated:
+Once the `/agent-creator` finishes, review what was generated:
 
 ```bash
 # macOS/Linux
@@ -268,7 +268,7 @@ Next, we'll tie them together with a single command.
 ## Checkpoint
 
 - [ ] Understand the code reviewer's role (quality gate, read-only, validates work)
-- [ ] Used the `agent-creator` to generate the code-reviewer agent
+- [ ] Used `/agent-creator` to generate the code-reviewer agent
 - [ ] Verified the agent is read-only (no Write or Edit tools)
 - [ ] Verified no skills are injected (reviewer checks TDD, doesn't do TDD)
 - [ ] Tested the agent with a sample review
