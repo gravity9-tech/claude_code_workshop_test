@@ -69,7 +69,7 @@ Important context about the project:
 - Backend: FastAPI with Python, Pydantic
 - Backend tests: Pytest
 - E2E tests: Playwright
-- Test runner: ./test.sh
+- Test runner: node test.js
 
 The agent should:
 - Be read-only (only analyze, never modify files)

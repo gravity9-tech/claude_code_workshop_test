@@ -104,7 +104,7 @@ Important context about the project:
 - Backend: FastAPI with Python, Pydantic
 - Backend tests: Pytest (files: test_*.py in backend/tests/)
 - E2E tests: Playwright (files: *.spec.ts in e2e/)
-- Test runner: ./test.sh (runs both backend and frontend tests)
+- Test runner: node test.js (runs both backend and frontend tests)
 
 The agent should:
 - Have full write access (it creates files and writes code)

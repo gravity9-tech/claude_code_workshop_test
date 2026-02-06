@@ -100,7 +100,7 @@ After the workflow completes, verify everything manually:
 ### Run the Tests
 
 ```bash
-./test.sh
+node test.js
 ```
 
 All tests — including the new ones — should pass.

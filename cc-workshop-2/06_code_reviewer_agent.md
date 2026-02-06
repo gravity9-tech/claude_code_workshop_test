@@ -115,7 +115,7 @@ Important context about the project:
 - Backend: FastAPI with Python, Pydantic
 - Backend tests: Pytest
 - E2E tests: Playwright
-- Test runner: ./test.sh
+- Test runner: node test.js
 
 The agent should:
 - Be read-only (review only, never modify files)
@@ -142,7 +142,7 @@ Once the `/agent-creator` finishes, review what was generated:
 .claude/agents/code-reviewer.md
 ```
 
-> **Note:** This agent includes `Bash` despite being "read-only" because it needs to run `./test.sh` to verify tests pass. It doesn't use `Write` or `Edit`.
+> **Note:** This agent includes `Bash` despite being "read-only" because it needs to run `node test.js` to verify tests pass. It doesn't use `Write` or `Edit`.
 
 ---
 
@@ -166,7 +166,7 @@ Implementation:
 The agent should:
 1. Find and read the relevant test and implementation files
 2. Check that the test covers the acceptance criteria
-3. Run `./test.sh` to confirm tests pass
+3. Run `node test.js` to confirm tests pass
 4. Return a structured review with a verdict
 
 ---
