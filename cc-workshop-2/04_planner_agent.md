@@ -85,11 +85,7 @@ The agent should:
 Once the `/agent-creator` finishes, review what was generated:
 
 ```bash
-# macOS/Linux
-cat .claude/agents/planner.md
-
-# Windows
-type .claude\agents\planner.md
+.claude/agents/planner.md
 ```
 
 Verify the generated `AGENT.md` includes:
@@ -146,8 +142,7 @@ Analyze tasks and produce structured implementation plans.
 Try running the planner with a sample task. In Claude Code:
 
 ```
-Use the planner agent to plan: "Add a product rating feature where users
-can rate products 1-5 stars and see the average rating on each product card"
+/planner "Add a product rating feature where users can rate products 1-5 stars and see the average rating on each product card"
 ```
 
 The agent should:
@@ -185,15 +180,6 @@ Setup → Concept Introduction
               ▼
         Full Workflow
 ```
-
----
-
-## Checkpoint
-
-- [ ] Understand the planner's role (analyze and plan, never modify)
-- [ ] Used `/agent-creator` to generate the planner agent
-- [ ] Reviewed the generated agent and confirmed it's read-only
-- [ ] Tested the agent with a sample task and reviewed the plan output
 
 ---
 

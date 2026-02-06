@@ -172,19 +172,6 @@ For this workshop, we'll create agents in the project directory so they're part 
 
 ---
 
-## Checkpoint
-
-You now understand:
-
-- [ ] Agents are isolated executors with their own context windows
-- [ ] Skills provide knowledge, agents provide execution
-- [ ] Agents only return their final result to the caller
-- [ ] `AGENT.md` has YAML frontmatter (name, tools, model, skills) + markdown instructions
-- [ ] Agents can inject skills to gain additional knowledge
-- [ ] Agents live in `.claude/agents/`
-
----
-
 ## Next Up
 
 Continue to: [04_planner_agent.md](./04_planner_agent.md) — Create the Planner Agent

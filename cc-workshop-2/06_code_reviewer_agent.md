@@ -133,68 +133,7 @@ The agent should:
 Once the `/agent-creator` finishes, review what was generated:
 
 ```bash
-# macOS/Linux
-cat .claude/agents/code-reviewer.md
-
-# Windows
-type .claude\agents\code-reviewer.md
-```
-
-Verify the generated agent includes:
-
-**Frontmatter:**
-- `name: code-reviewer`
-- `tools:` should be read-only plus Bash for running tests — `Read, Glob, Grep, Bash`
-- `model:` should be `sonnet` or `opus` (reviewing benefits from strong reasoning)
-- No `skills:` — the reviewer checks that TDD was followed, it doesn't need the methodology itself
-
-**Body:**
-- Process for reading the plan and comparing against the implementation
-- The four review categories (plan compliance, TDD discipline, code quality, issues)
-- Structured output format with severity levels and verdict
-
-The structure should look something like:
-
-```yaml
----
-name: code-reviewer
-description: Reviews code against an implementation plan. Use when you need
-  to validate that code matches a plan and follows TDD standards.
-tools: Read, Glob, Grep, Bash
-model: sonnet
----
-
-# Code Reviewer Agent
-
-## Purpose
-Review implementations against their plans and TDD standards.
-
-## Process
-1. Read the implementation plan
-2. Identify which files were created or modified
-3. Review each change against the plan's acceptance criteria
-4. Check for test coverage and TDD compliance
-5. Run the test suite
-6. Compile findings and issue a verdict
-
-## Output Format
-### Code Review: [Task Summary]
-
-#### Plan Compliance
-- ...
-
-#### TDD Discipline
-- ...
-
-#### Code Quality
-- ...
-
-#### Issues
-| # | Severity | Description |
-|---|----------|-------------|
-| 1 | warning  | ...         |
-
-#### Verdict: PASS / PASS WITH NOTES / FAIL
+.claude/agents/code-reviewer.md
 ```
 
 > **Note:** This agent includes `Bash` despite being "read-only" because it needs to run `./test.sh` to verify tests pass. It doesn't use `Write` or `Edit`.
@@ -262,16 +201,6 @@ The execution layer is complete. All three agents are built:
 | `code-reviewer` | Read + Bash | None | Reviews and validates |
 
 Next, we'll tie them together with a single command.
-
----
-
-## Checkpoint
-
-- [ ] Understand the code reviewer's role (quality gate, read-only, validates work)
-- [ ] Used `/agent-creator` to generate the code-reviewer agent
-- [ ] Verified the agent is read-only (no Write or Edit tools)
-- [ ] Verified no skills are injected (reviewer checks TDD, doesn't do TDD)
-- [ ] Tested the agent with a sample review
 
 ---
 

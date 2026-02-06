@@ -145,59 +145,7 @@ The command should:
 Once the `/command-creator` finishes, review what was generated:
 
 ```bash
-# macOS/Linux
-cat .claude/commands/orchestrate.md
-
-# Windows
-type .claude\commands\orchestrate.md
-```
-
-Verify the generated command includes:
-
-**Frontmatter:**
-- `description:` explains what the command does
-- `allowed-tools:` includes `Task` (required for spawning agents)
-- `argument-hint:` shows the expected input format
-
-**Body:**
-- `$ARGUMENTS` is used as the task description
-- Three phases in order: planner → tdd-guide → code-reviewer
-- Context is passed between agents (plan → implementation → review)
-- Final output format with summary and verdict
-
-The structure should look something like:
-
-```yaml
----
-description: Run a full dev lifecycle — plan, implement with TDD, and review
-allowed-tools: Task, Read, Glob, Grep
-argument-hint: <task or feature description>
----
-
-# Orchestrate: Full Development Lifecycle
-
-Run a complete plan → implement → review cycle for a given task.
-
-## Arguments
-
-- `$ARGUMENTS` - The task or feature to implement
-
-## Workflow
-
-### Phase 1: Plan
-1. Spawn the **planner** agent with the task description
-2. Capture the implementation plan
-
-### Phase 2: Implement
-3. Spawn the **tdd-guide** agent with the plan from Phase 1
-4. Capture the implementation summary
-
-### Phase 3: Review
-5. Spawn the **code-reviewer** agent with the plan and implementation
-6. Capture the review verdict
-
-### Phase 4: Report
-7. Output a final summary with plan, implementation, and verdict
+.claude/commands/orchestrate.md
 ```
 
 ---
@@ -207,8 +155,8 @@ Run a complete plan → implement → review cycle for a given task.
 Try running the command with a small feature. In Claude Code:
 
 ```
-/orchestrate Add a "last updated" timestamp to the product detail page
-that shows when the product data was last modified
+/orchestrate Add a "last updated" timestamp to the ProductCard component
+that shows when each product's data was last modified
 ```
 
 Watch the three phases execute in sequence:
@@ -248,17 +196,6 @@ Setup → Concept Introduction
 ```
 
 Every layer is built. All that's left is putting it all together.
-
----
-
-## Checkpoint
-
-- [ ] Understand what slash commands are (orchestration scripts invoked with `/command-name`)
-- [ ] Understand how commands differ from skills and agents
-- [ ] Used `/command-creator` to generate `/orchestrate`
-- [ ] Verified the command chains planner → tdd-guide → code-reviewer in sequence
-- [ ] Verified context is passed between agents (plan → implementation → review)
-- [ ] Tested the command with a sample feature
 
 ---
 

@@ -6,7 +6,7 @@
 
 - How all the pieces work together end-to-end
 - How to run the full development lifecycle with a single command
-- How to verify the results and extend the system
+- How to verify the results
 
 ---
 
@@ -172,36 +172,6 @@ This pattern is extensible. Each layer is independent:
 
 ---
 
-## Ideas for Extension
-
-Here are ways to build on what you've created:
-
-**Add a security reviewer agent:**
-```
-Create an agent called "security-reviewer" that checks for OWASP top 10
-vulnerabilities in the implementation
-```
-Then update `/orchestrate` to add a fourth phase.
-
-**Add automatic git commits:**
-Update the tdd-guide agent to commit after each green phase with a meaningful message referencing the plan step.
-
-**Connect to Workshop 1 Jira skills:**
-Create a new command that combines both workshops:
-```
-/full-lifecycle <ticket-key>
-1. Read the Jira ticket (Workshop 1: expand-ticket skill)
-2. Plan the implementation (planner agent)
-3. Implement with TDD (tdd-guide agent)
-4. Review the code (code-reviewer agent)
-5. Transition the ticket to Done (Workshop 1: implement-ticket skill)
-```
-
-**Add a documentation agent:**
-Create an agent that reads the implementation and generates or updates documentation (README, API docs, JSDoc/docstrings).
-
----
-
 ## Final Project Structure
 
 ```
@@ -237,3 +207,9 @@ You've built a complete, automated development lifecycle:
 - [ ] Verified the results (tests pass, app works)
 
 One skill. Three agents. One command. A full development lifecycle from idea to reviewed code.
+
+---
+
+## Next Up
+
+Ready to extend what you've built? Continue to: [Assignment 1](../cc-assignment-1/) — Extend the Development Lifecycle

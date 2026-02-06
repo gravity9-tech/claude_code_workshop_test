@@ -95,11 +95,7 @@ The skill should encode TDD (Test-Driven Development) methodology:
 Once the `/skill-creator` finishes, review what was generated:
 
 ```bash
-# macOS/Linux
-cat .claude/skills/tdd-workflow/SKILL.md
-
-# Windows
-type .claude\skills\tdd-workflow\SKILL.md
+.claude/skills/tdd-workflow/SKILL.md
 ```
 
 Verify the generated `SKILL.md` includes:
@@ -109,30 +105,6 @@ Verify the generated `SKILL.md` includes:
 - **Test writing guidelines** (independent tests, descriptive names, Arrange-Act-Assert)
 - **Phase transition rules** (when to move from red → green → refactor)
 - **Framework-agnostic** instructions (not tied to a specific test runner)
-
-The structure should look something like:
-
-```yaml
----
-name: tdd-workflow
-description: TDD methodology guide. Use when implementing features using
-  test-driven development, writing tests first, or following red-green-refactor.
-allowed-tools: Read, Glob, Grep, Bash, Edit, Write
----
-
-# TDD Workflow
-
-## Purpose
-Guide test-driven development using the red-green-refactor cycle.
-
-## Instructions
-1. RED: Write a failing test...
-2. GREEN: Write minimum code...
-3. REFACTOR: Clean up...
-
-## Best Practices
-- ...
-```
 
 > **Note:** The exact output will vary. The `/skill-creator` researches best practices and generates content accordingly. What matters is that the core TDD cycle and guidelines are captured.
 
@@ -168,7 +140,7 @@ This is the key pattern: **skills carry knowledge, agents carry intent**. The ag
 Confirm the skill file exists:
 
 ```bash
-ls .claude/skills/tdd-workflow/SKILL.md
+.claude/skills/tdd-workflow/SKILL.md
 ```
 
 Restart Claude Code to load the new skill:
@@ -216,15 +188,6 @@ Setup → Concept Introduction
 ```
 
 The knowledge layer is complete. Next, we'll build the first agent that uses it.
-
----
-
-## Checkpoint
-
-- [ ] Understand why TDD knowledge belongs in a skill (reusable, single source of truth)
-- [ ] Used `/skill-creator` to generate the `tdd-workflow` skill
-- [ ] Reviewed the generated `SKILL.md` and confirmed it has TDD cycle + guidelines
-- [ ] Verified the skill loads with `/skills`
 
 ---
 

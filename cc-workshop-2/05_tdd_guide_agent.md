@@ -88,7 +88,7 @@ Use the `/agent-creator` to generate the tdd-guide agent. In your Claude Code se
 The agent should:
 - Take an implementation plan as input (produced by the planner agent)
 - Implement each step in the plan using strict TDD methodology
-- Inject the "tdd-workflow" skill for TDD knowledge
+- Inject the "tdd-workflow" skill for TDD knowledge in frontmatter
 
 For each step in the plan:
 1. RED: Write a failing test that covers the step's acceptance criteria
@@ -123,11 +123,7 @@ The agent should:
 Once the `/agent-creator` finishes, review what was generated:
 
 ```bash
-# macOS/Linux
-cat .claude/agents/tdd-guide.md
-
-# Windows
-type .claude\agents\tdd-guide.md
+.claude/agents/tdd-guide.md
 ```
 
 Verify the generated agent includes:
@@ -135,7 +131,6 @@ Verify the generated agent includes:
 **Frontmatter:**
 - `name: tdd-guide`
 - `tools:` should include write access — `Read, Write, Edit, Bash, Glob, Grep`
-- `model:` should be `sonnet` (balanced for both reasoning and code generation)
 - `skills:` should list `tdd-workflow`
 
 **Body:**
@@ -143,40 +138,6 @@ Verify the generated agent includes:
 - Explicit red-green-refactor cycle per step
 - References to running tests between phases
 - Output format with implementation summary
-
-The structure should look something like:
-
-```yaml
----
-name: tdd-guide
-description: Implements features using TDD. Use when you need to implement
-  a plan with test-driven development, writing tests first.
-tools: Read, Write, Edit, Bash, Glob, Grep
-model: sonnet
-skills:
-  - tdd-workflow
----
-
-# TDD Guide Agent
-
-## Purpose
-Implement features by following an implementation plan using strict TDD.
-
-## Process
-1. Read and parse the implementation plan
-2. For each step in the plan:
-   a. RED — Write a failing test...
-   b. GREEN — Write minimum code...
-   c. REFACTOR — Clean up...
-3. Run the full test suite
-4. Output implementation summary
-
-## Output Format
-### Implementation Summary
-- Tests written: ...
-- Files modified: ...
-- Test results: ...
-```
 
 > **Key difference from the planner:** This agent has `Write`, `Edit`, and `Bash` tools — it modifies the codebase. The planner was read-only.
 
@@ -187,7 +148,7 @@ Implement features by following an implementation plan using strict TDD.
 Try running the tdd-guide with a small plan. In Claude Code:
 
 ```
-Use the tdd-guide agent to implement the following plan:
+/tdd-guide implement the following plan:
 
 ## Plan: Add a health check timestamp
 
@@ -236,16 +197,6 @@ Setup → Concept Introduction
 ```
 
 Two of three agents are done. One more to go.
-
----
-
-## Checkpoint
-
-- [ ] Understand the tdd-guide's role (takes a plan, implements with TDD)
-- [ ] Understand how skill injection works (declared in frontmatter, loaded automatically)
-- [ ] Used `/agent-creator` to generate the tdd-guide agent
-- [ ] Verified the agent has write tools and injects the `tdd-workflow` skill
-- [ ] Tested the agent with a sample plan
 
 ---
 

@@ -19,6 +19,7 @@ Hands-on workshops for learning Claude Code — from skills and MCP integrations
 |----------|-------|----------|-------------|
 | [Workshop 1](./cc-workshop-1/) | Foundations | ~70 min | Setup, Jira MCP, skills, and `/deploy-ticket` command |
 | [Workshop 2](./cc-workshop-2/) | Advanced | ~85 min | TDD skill, custom agents, and `/orchestrate` command |
+| [Assignment 1](./cc-assignment-1/) | Practice | ~60-90 min | Extend the lifecycle with security review, `/full-lifecycle`, and more |
 
 ## Learning Path
 
@@ -65,6 +66,17 @@ Workshop 2: Advanced
 │       /orchestrate                  ← Command
 │
 └─────────────────────────────────────┘
+              │
+              ▼
+Assignment 1: Practice
+│
+│  Extend what you built:
+│  ├── security-reviewer agent
+│  ├── /full-lifecycle command (Jira + agents)
+│  ├── documentation-agent (bonus)
+│  └── auto git commits (bonus)
+│
+└─────────────────────────────────────┘
 ```
 
 ## Pre-built Meta-Skills
@@ -93,6 +105,7 @@ Both workshops use [tea-store-demo](https://github.com/gravity9-tech/claude_code
 
 1. Complete Workshop 1 first if you're new to Claude Code
 2. Start with [cc-workshop-1/00_setup.md](./cc-workshop-1/00_setup.md)
+3. After Workshop 2, try [Assignment 1](./cc-assignment-1/) to reinforce your learning
 
 ## Help
 

@@ -152,18 +152,6 @@ The skill is the foundation — it exists so agents don't need TDD knowledge bak
 
 ---
 
-## Checkpoint
-
-You now understand:
-
-- [ ] The Plan → TDD → Review cycle and why each phase matters
-- [ ] Skills provide knowledge, agents execute work, commands orchestrate workflows
-- [ ] Agents run in isolated context windows separate from the main conversation
-- [ ] The `tdd-workflow` skill is built first because agents consume it
-- [ ] `/orchestrate` chains planner → tdd-guide → code-reviewer in sequence
-
----
-
 ## Next Up
 
 Continue to: [02_tdd_workflow_skill.md](./02_tdd_workflow_skill.md) — Build the TDD Workflow Skill

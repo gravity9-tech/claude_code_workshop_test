@@ -12,15 +12,11 @@
 
 ## Prerequisites
 
-Before starting, ensure you have completed **[Workshop 1](../cc-workshop-1/)** in full.
+1. Download the project zip file: https://github.com/gravity9-tech/claude_code_workshop/archive/refs/heads/main.zip
 
-You should already have:
+2. Extract the zip file to a location of your choice
 
-- **Claude Code** installed and working
-- **Tea Store project** downloaded and running
-- **CLAUDE.md** generated via `/init`
-- **Jira MCP** configured and connected
-- **Workshop 1 skills** created (create-ticket, expand-ticket, implement-ticket, qa-ticket)
+3. Open the extracted folder in your favorite text editor
 
 ---
 
@@ -45,19 +41,6 @@ CLAUDE.md
 .claude/skills/
 ```
 
-You should see:
-
-```
-.claude/skills/
-├── skill-creator/       # Pre-built: creates domain skills
-├── command-creator/     # Pre-built: creates slash commands
-├── agent-creator/       # Pre-built: creates custom agents
-├── create-ticket/       # Workshop 1: BDD ticket creation
-├── expand-ticket/       # Workshop 1: DEV + QA subtasks
-├── implement-ticket/    # Workshop 1: implement & transition
-└── qa-ticket/           # Workshop 1: Playwright testing
-```
-
 > **Important:** The `agent-creator` skill is essential for this workshop — we'll use it to create all three agents.
 
 ---
@@ -77,6 +60,16 @@ Then inside Claude Code, type:
 ```
 
 Confirm that your Jira MCP server is connected and healthy.
+
+### If No MCP Server is Found
+
+If you don't see a Jira MCP server connected, run the setup command:
+
+```
+/create-jira-mcp create jira mcp server for this project
+```
+
+Follow the prompts to configure your Jira connection, then verify with `/mcp` again.
 
 ---
 
@@ -117,19 +110,6 @@ Setup → Concept Introduction
 - `code-reviewer` — Reviews code against the plan and TDD standards
 
 **Command (orchestration layer):** `/orchestrate` chains all three agents into a single workflow.
-
----
-
-## Checkpoint
-
-Before continuing, verify:
-
-- [ ] Claude Code is installed and working
-- [ ] Tea Store project is set up
-- [ ] `CLAUDE.md` exists in project root
-- [ ] `.claude/skills/` contains pre-built creators (skill-creator, command-creator, agent-creator)
-- [ ] Workshop 1 skills are present (create-ticket, expand-ticket, implement-ticket, qa-ticket)
-- [ ] Jira MCP server is connected
 
 ---
 
