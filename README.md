@@ -2,6 +2,198 @@
 
 Hands-on workshops for learning Claude Code — from skills and MCP integrations to custom agents and orchestration.
 
+---
+
+## What You'll Learn
+
+These workshops teach you to extend Claude Code with custom automation. Here are the core concepts:
+
+### MCP Servers (Tools)
+
+MCP servers give Claude new capabilities — external APIs, databases, services.
+
+```
+┌─────────────────────────────────────────────────────┐
+│                    Claude Code                       │
+│                                                      │
+│   "Create a Jira ticket for the login bug"          │
+│                         │                            │
+│                         ▼                            │
+│              ┌─────────────────┐                     │
+│              │    MCP Server   │                     │
+│              │      (Jira)     │                     │
+│              └────────┬────────┘                     │
+│                       │                              │
+│         ┌─────────────┼─────────────┐               │
+│         ▼             ▼             ▼               │
+│   jira_create    jira_search   jira_update          │
+│     _issue         _issues      _issue              │
+│                                                      │
+└─────────────────────────────────────────────────────┘
+                        │
+                        ▼
+                   Jira Cloud API
+```
+
+### Skills (Knowledge)
+
+Skills are markdown files that teach Claude *how* to do things — procedures, templates, best practices.
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                      │
+│   .claude/skills/create-ticket/SKILL.md             │
+│   ┌───────────────────────────────────────────┐     │
+│   │ name: create-ticket                       │     │
+│   │ description: Creates Jira tickets with    │     │
+│   │              BDD acceptance criteria      │     │
+│   │                                           │     │
+│   │ ## Instructions                           │     │
+│   │ 1. Search for duplicate tickets first    │     │
+│   │ 2. Use Given/When/Then format            │     │
+│   │ 3. Include acceptance criteria           │     │
+│   │ 4. Set appropriate priority              │     │
+│   └───────────────────────────────────────────┘     │
+│                         │                            │
+│                         ▼                            │
+│            Claude follows these steps                │
+│            when creating any ticket                  │
+│                                                      │
+└─────────────────────────────────────────────────────┘
+```
+
+### Commands (Orchestration)
+
+Commands are slash-invoked workflows that chain multiple operations together.
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                      │
+│   User: /deploy-ticket Add search feature in PROJ   │
+│                         │                            │
+│                         ▼                            │
+│   .claude/commands/deploy-ticket.md                 │
+│   ┌───────────────────────────────────────────┐     │
+│   │ 1. Run create-ticket skill → PROJ-123    │     │
+│   │              │                            │     │
+│   │              ▼                            │     │
+│   │ 2. Run expand-ticket skill → subtasks    │     │
+│   │              │                            │     │
+│   │              ▼                            │     │
+│   │ 3. Run implement-ticket skill → code     │     │
+│   │              │                            │     │
+│   │              ▼                            │     │
+│   │ 4. Run qa-ticket skill → tests           │     │
+│   └───────────────────────────────────────────┘     │
+│                         │                            │
+│                         ▼                            │
+│                  Final Report                        │
+│                                                      │
+└─────────────────────────────────────────────────────┘
+```
+
+### Subagents (Isolated Execution)
+
+Subagents run in their own context window — isolated, focused, with specific tools.
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  Main Claude Session                 │
+│                                                      │
+│   "Implement this feature with TDD"                 │
+│                         │                            │
+│          ┌──────────────┼──────────────┐            │
+│          ▼              ▼              ▼            │
+│   ┌────────────┐ ┌────────────┐ ┌────────────┐     │
+│   │  planner   │ │ tdd-guide  │ │  reviewer  │     │
+│   │   agent    │ │   agent    │ │   agent    │     │
+│   ├────────────┤ ├────────────┤ ├────────────┤     │
+│   │ Tools:     │ │ Tools:     │ │ Tools:     │     │
+│   │ Read, Grep │ │ Read,Write │ │ Read, Grep │     │
+│   │            │ │ Bash, Edit │ │            │     │
+│   ├────────────┤ ├────────────┤ ├────────────┤     │
+│   │ Read-only  │ │ Can modify │ │ Read-only  │     │
+│   └──────┬─────┘ └──────┬─────┘ └──────┬─────┘     │
+│          │              │              │            │
+│          ▼              ▼              ▼            │
+│        Plan      Implementation     Review          │
+│                                                      │
+│   Each agent has its own context — no bleed-over    │
+│                                                      │
+└─────────────────────────────────────────────────────┘
+```
+
+### Context Window Management
+
+Claude Code automatically manages context — but skills, agents, and commands help you control what goes where.
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                      │
+│   Main Context Window                                │
+│   ┌───────────────────────────────────────────┐     │
+│   │ Conversation history                      │     │
+│   │ Project files read                        │     │
+│   │ Tool results                              │     │
+│   │ ─────────────────────────────────────     │     │
+│   │ Getting full... what to do?               │     │
+│   └───────────────────────────────────────────┘     │
+│                         │                            │
+│          ┌──────────────┴──────────────┐            │
+│          ▼                             ▼            │
+│   ┌─────────────┐              ┌─────────────┐     │
+│   │   Spawn     │              │   Skills    │     │
+│   │  Subagent   │              │   inject    │     │
+│   │             │              │  knowledge  │     │
+│   │ Fresh       │              │  on-demand  │     │
+│   │ context     │              │             │     │
+│   │ window      │              │ Not always  │     │
+│   │             │              │ loaded      │     │
+│   └─────────────┘              └─────────────┘     │
+│                                                      │
+│   Subagents: isolated context, returns summary      │
+│   Skills: loaded when triggered, not always present │
+│                                                      │
+└─────────────────────────────────────────────────────┘
+```
+
+### Skills vs Commands vs Subagents
+
+When to use what:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   SKILLS                 COMMANDS              SUBAGENTS         │
+│   (Knowledge)            (Orchestration)       (Execution)       │
+│                                                                  │
+│   ┌─────────────┐       ┌─────────────┐       ┌─────────────┐   │
+│   │   SKILL.md  │       │ command.md  │       │  AGENT.md   │   │
+│   │             │       │             │       │             │   │
+│   │ "How to do  │       │ "Chain of   │       │ "Isolated   │   │
+│   │  something" │       │  operations"│       │  executor"  │   │
+│   └─────────────┘       └─────────────┘       └─────────────┘   │
+│                                                                  │
+│   USE WHEN:              USE WHEN:             USE WHEN:         │
+│   • Teaching Claude      • User-invoked        • Need isolation  │
+│     a procedure            workflows           • Specific tools  │
+│   • Reusable knowledge   • Multi-step tasks   • Fresh context   │
+│   • Templates/formats    • Chaining skills    • Focused work    │
+│                            or agents                             │
+│                                                                  │
+│   EXAMPLES:              EXAMPLES:             EXAMPLES:         │
+│   • create-ticket        • /deploy-ticket     • planner         │
+│   • tdd-workflow         • /orchestrate       • tdd-guide       │
+│   • code-style           • /full-lifecycle    • code-reviewer   │
+│                                                                  │
+│   LOCATION:              LOCATION:             LOCATION:         │
+│   .claude/skills/        .claude/commands/     .claude/agents/   │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## Prerequisites
 
 - **Python 3.9+** for the backend
