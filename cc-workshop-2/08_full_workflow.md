@@ -212,4 +212,4 @@ One skill. Three agents. One command. A full development lifecycle from idea to 
 
 ## Next Up
 
-Ready to extend what you've built? Continue to: [Assignment 1](../cc-assignment-1/) — Extend the Development Lifecycle
+Ready to extend what you've built? Continue to: [Assignment](../cc-assignment/) — Extend the Development Lifecycle

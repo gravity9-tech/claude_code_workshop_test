@@ -1,4 +1,4 @@
-# Claude Code Assignment 1: Extending the Development Lifecycle
+# Claude Code Assignment: Extending the Development Lifecycle
 
 **Estimated Duration: 60-90 minutes**
 
