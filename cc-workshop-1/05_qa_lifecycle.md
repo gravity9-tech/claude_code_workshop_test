@@ -154,6 +154,13 @@ Before creating the QA skill, we need to install the Playwright MCP server for b
 
 This will configure the Playwright MCP server automatically.
 
+**Restart Claude Code** for the new MCP server to take effect:
+
+```
+/exit
+claude
+```
+
 Verify it's connected:
 
 ```
