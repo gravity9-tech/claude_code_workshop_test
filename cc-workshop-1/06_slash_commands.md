@@ -139,70 +139,6 @@ The command should:
 
 ---
 
-## Review the Generated Command
-
-Once the `/command-creator` finishes, review what was generated:
-
-```bash
-# macOS/Linux
-cat .claude/commands/deploy-ticket.md
-
-# Windows
-type .claude\commands\deploy-ticket.md
-```
-
-Verify the generated command includes:
-
-**Frontmatter:**
-- `description:` explains what the command does
-- `allowed-tools:` includes the tools needed by the skills (Jira MCP tools, Read, Write, Bash, etc.)
-- `argument-hint:` shows the expected input format
-
-**Body:**
-- `$ARGUMENTS` is used as the feature description
-- Four phases in order: create → expand → implement → qa
-- Ticket key is captured from step 1 and passed to subsequent steps
-- Final output format with summary
-
-The structure should look something like:
-
-```yaml
----
-description: Full dev lifecycle — create ticket, expand, implement, and QA
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
-argument-hint: <feature description in project PROJECT_KEY>
----
-
-# Deploy Ticket: Full Development Lifecycle
-
-Run a complete create → expand → implement → QA cycle.
-
-## Arguments
-
-- `$ARGUMENTS` - Feature description and target Jira project
-
-## Workflow
-
-### Phase 1: Create Ticket
-1. Use the create-ticket skill with the feature description
-2. Capture the ticket key
-
-### Phase 2: Expand
-3. Use the expand-ticket skill with the ticket key
-4. Capture the subtask keys
-
-### Phase 3: Implement
-5. Use the implement-ticket skill with the ticket key
-
-### Phase 4: QA
-6. Use the qa-ticket skill with the ticket key
-
-### Phase 5: Report
-7. Output final summary with ticket key, subtask status, and results
-```
-
----
-
 ## Test the Command
 
 Try running the command with a feature. In Claude Code:
@@ -247,30 +183,6 @@ The final output should include a summary of the entire lifecycle.
 ```
 
 Every layer is built. One command runs the entire development lifecycle.
-
----
-
-## Checkpoint
-
-- [ ] Understand what slash commands are (orchestration scripts invoked with `/command-name`)
-- [ ] Understand how commands differ from skills
-- [ ] Used `/command-creator` to generate `/deploy-ticket`
-- [ ] Verified the command chains all four skills in sequence
-- [ ] Tested the command with a real feature
-
----
-
-## Workshop 1 Complete
-
-You've built a complete, Jira-driven development lifecycle:
-
-1. **Connected to Jira** via MCP for ticket management
-2. **Created four lifecycle skills:**
-   - `create-ticket` — BDD ticket creation
-   - `expand-ticket` — DEV + QA subtask breakdown
-   - `implement-ticket` — Code implementation
-   - `qa-ticket` — Playwright testing
-3. **Built the `/deploy-ticket` command** — Orchestrates everything with one invocation
 
 ---
 

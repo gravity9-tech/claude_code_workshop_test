@@ -108,29 +108,6 @@ Use `/compact` when:
 
 ---
 
-## Try It Out
-
-1. Start a Claude Code session in your tea-store-demo directory
-2. Have a brief conversation
-3. Run `/stats` to see your usage
-4. Try `/context` to see what's taking up space
-5. Try `/compact` to see how it summarizes
-6. Run `/stats` again to see the difference
-
----
-
-## Checkpoint
-
-You now understand:
-
-- [ ] What a context window is (Claude's working memory)
-- [ ] That 200K tokens ≈ 500 pages of text
-- [ ] Agents get their own separate context windows
-- [ ] How to check usage with `/stats` and `/context`
-- [ ] How to manage context with `/clear` and `/compact`
-
----
-
 ## Next Up
 
 Continue to: [02_getting_started.md](./02_getting_started.md) - Start using Claude Code

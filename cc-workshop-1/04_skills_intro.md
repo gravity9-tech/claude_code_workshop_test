@@ -100,17 +100,6 @@ When this skill is active, follow these steps:
 
 ---
 
-## Checkpoint
-
-You now understand:
-
-- [ ] Tools (MCP) provide capabilities — they execute actions
-- [ ] Skills provide knowledge — they guide how Claude uses tools
-- [ ] Skills are markdown files with YAML frontmatter + instructions
-- [ ] Skills live in `.claude/skills/` (project) or `~/.claude/skills/` (personal)
-
----
-
 ## Next Up
 
-Continue to: [05_dev_lifecycle.md](./05_dev_lifecycle.md) - Build Your Dev Lifecycle Skill Suite
+Continue to: [05_dev_lifecycle.md](./05_qa_lifecycle.md) - Build Your Dev Lifecycle Skill Suite

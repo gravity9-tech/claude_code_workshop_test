@@ -15,7 +15,7 @@
 **Model Context Protocol (MCP)** is an open standard for connecting AI tools to external services. MCP servers give Claude Code new capabilities:
 
 - **Jira** — Create and manage tickets
-- **Playwright** — Browser automation (Workshop 2)
+- **Playwright** — Browser automation
 - **Databases** — Query and modify data
 - **GitHub** — Manage repos and PRs
 
@@ -89,7 +89,7 @@ Use our meta-skill to create the Jira MCP server configuration:
 
 This will set up the MCP server configuration automatically.
 
-Once complete, verify the connection by checking that Jira MCP is registered:
+Once complete, `restart claude` verify the connection by checking that Jira MCP is registered:
 
 ```
 /mcp
@@ -122,39 +122,6 @@ What's the status of {Ticket-ID}?
 ```
 Create a task in {Project Name}: "Test MCP integration"
 ```
-
----
-
-**"Authentication failed":**
-- Verify JIRA_HOST is just the domain (e.g., `your-domain.atlassian.net`, not `https://...`)
-- Check that JIRA_EMAIL is your Atlassian account email
-- Confirm the API token is correct (regenerate if unsure)
-
-**Node.js issues:**
-```bash
-# Ensure Node.js is installed
-node --version  # Should be v18+
-```
-
----
-
-## Checkpoint
-
-Before continuing, verify:
-
-- [ ] Jira API token created
-- [ ] `.env` file created from `env.example` with your credentials
-- [ ] `/mcp` shows jira server as connected
-- [ ] Can list projects or search issues
-
----
-
-## What You've Learned
-
-1. **MCP** extends Claude Code with external service integrations
-2. **`.env` files** keep credentials secure and easy to manage (never commit them!)
-3. **mcp-atlassian** is a community package providing Jira and Confluence tools
-
 ---
 
 ## Next Up

@@ -91,29 +91,6 @@ This exploration will be useful later when we create tickets for new features.
 
 ---
 
-## Essential Commands
-
-| Command | Description |
-|---------|-------------|
-| `/init` | Generate CLAUDE.md |
-| `/help` | Show available commands |
-| `/clear` | Clear conversation |
-| `/stats` | Show token usage |
-
----
-
-## Checkpoint
-
-Before continuing, verify:
-
-- [ ] Claude Code is running in tea-store-demo
-- [ ] You ran `/init`
-- [ ] `CLAUDE.md` exists in project root
-- [ ] You understand the permission model
-- [ ] You've explored the project structure
-
----
-
 ## Next Up
 
 Continue to: [03_jira_mcp.md](./03_jira_mcp.md) - Set up Jira integration
