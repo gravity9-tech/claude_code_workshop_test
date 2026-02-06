@@ -44,56 +44,6 @@ Update the `tdd-guide` agent to:
 
 ---
 
-## Part 1: Update the Agent
-
-Modify `.claude/agents/tdd-guide.md` to include git commit behavior.
-
-Make sure the agent has access to run git commands.
-
----
-
-## Part 2: Test the Updated Agent
-
-Run the tdd-guide agent directly with a multi-step implementation plan. After completion, check the git log:
-
-```bash
-git log --oneline -10
-```
-
-Verify:
-- Individual commits for each step
-- Meaningful commit messages
-- Clean git history
-
----
-
-## Part 3: Test via /orchestrate
-
-Run the full `/orchestrate` workflow and verify commits are created during the tdd-guide phase.
-
----
-
-## Alternative Approach
-
-Instead of modifying the agent directly, you could:
-
-1. Create a `git-commit-style` skill that defines commit conventions
-2. Inject that skill into `tdd-guide`
-
-This separates the "how to commit" knowledge from the agent itself.
-
----
-
-## Success Criteria
-
-- [ ] `tdd-guide` agent creates commits during implementation
-- [ ] Commits happen after GREEN phase (not with failing tests)
-- [ ] Commit messages are meaningful and follow a consistent format
-- [ ] Git history shows logical, atomic commits
-- [ ] Works when run via `/orchestrate`
-
----
-
 ## Congratulations!
 
 You've completed all assignments. Your development lifecycle now includes:
