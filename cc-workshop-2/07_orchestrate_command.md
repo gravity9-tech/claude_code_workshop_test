@@ -138,6 +138,12 @@ The command should:
 - The argument hint should be: <task or feature description>
 ```
 
+Restart Claude Code to load the new command:
+
+```bash
+claude
+```
+
 ---
 
 ## Review the Generated Command

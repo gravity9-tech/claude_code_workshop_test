@@ -126,6 +126,12 @@ The agent should:
   - A final verdict: PASS, PASS WITH NOTES, or FAIL
 ```
 
+Restart Claude Code to load the new agent:
+
+```bash
+claude
+```
+
 ---
 
 ## Review the Generated Agent

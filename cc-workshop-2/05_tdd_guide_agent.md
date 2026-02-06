@@ -116,6 +116,12 @@ The agent should:
   - Final test results (pass/fail counts)
 ```
 
+Restart Claude Code to load the new agent:
+
+```bash
+claude
+```
+
 ---
 
 ## Review the Generated Agent

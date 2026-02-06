@@ -78,6 +78,12 @@ The agent should:
 - Consider both frontend and backend changes when relevant
 ```
 
+Restart Claude Code to load the new agent:
+
+```bash
+claude
+```
+
 ---
 
 ## Review the Generated Agent

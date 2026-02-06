@@ -137,6 +137,12 @@ The command should:
 - The argument hint should be: <feature description in project PROJECT_KEY>
 ```
 
+Restart Claude Code to load the new command:
+
+```bash
+claude
+```
+
 ---
 
 ## Test the Command
