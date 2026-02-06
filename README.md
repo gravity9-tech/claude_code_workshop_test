@@ -265,8 +265,7 @@ Assignment 1: Practice
 │  Extend what you built:
 │  ├── security-reviewer agent
 │  ├── /full-lifecycle command (Jira + agents)
-│  ├── documentation-agent (bonus)
-│  └── auto git commits (bonus)
+│  └── documentation-agent (bonus)
 │
 └─────────────────────────────────────┘
 ```

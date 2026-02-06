@@ -16,7 +16,6 @@ These assignments reinforce concepts from Workshop 1 and Workshop 2 by challengi
 | 01 | [Security Reviewer](./01_security_reviewer.md) | Add a security review phase to `/orchestrate` | Required |
 | 02 | [Full Lifecycle](./02_full_lifecycle.md) | Bridge Jira skills (W1) with agents (W2) | Required |
 | 03 | [Documentation Agent](./03_documentation_agent.md) | Auto-generate documentation from code | Bonus |
-| 04 | [Git Commits](./04_git_commits.md) | Add automatic commits to TDD workflow | Bonus |
 
 ## What You'll Practice
 
