@@ -202,7 +202,7 @@ When to use what:
   ```bash
   npm install -g @anthropic-ai/claude-code
   ```
-- Jira Cloud account with API access
+- Jira Cloud account (*.atlassian.net)
 - Basic command line familiarity
 
 ## Workshops
@@ -279,7 +279,7 @@ The target project comes with five meta-skills that workshops rely on:
 | `skill-creator` | Generates `SKILL.md` files from natural language descriptions | Workshop 1 & 2 |
 | `command-creator` | Generates slash command `.md` files with orchestration logic | Workshop 1 & 2 |
 | `agent-creator` | Generates `AGENT.md` files with tools, model, and skill injection | Workshop 2 |
-| `create-jira-mcp` | Guides setup of the Jira MCP server (credentials, install, register) | Workshop 1 |
+| `create-jira-mcp` | Sets up the Official Atlassian MCP server (OAuth, no credentials needed) | Workshop 1 |
 | `create-playwright-mcp` | Guides setup of the Playwright MCP server (browsers, install, register) | Workshop 1 |
 
 These live in `.claude/skills/` and are available from the start. The creator skills generate well-structured artifacts from plain English descriptions. The MCP skills walk through tool setup step by step.
