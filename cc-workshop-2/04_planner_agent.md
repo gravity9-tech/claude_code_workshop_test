@@ -148,7 +148,7 @@ Analyze tasks and produce structured implementation plans.
 Try running the planner with a sample task. In Claude Code:
 
 ```
-/planner "Add a product rating feature where users can rate products 1-5 stars and see the average rating on each product card"
+Use the planner subagent to generate a plan for "Add a product rating feature where users can rate products 1-5 stars and see the average rating on each product card"
 ```
 
 The agent should:
