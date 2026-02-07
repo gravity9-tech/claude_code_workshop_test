@@ -154,7 +154,7 @@ Verify the generated agent includes:
 Try running the tdd-guide with a small plan. In Claude Code:
 
 ```
-/tdd-guide implement the following plan:
+Use the tdd-guide agent to implement the following plan:
 
 ## Plan: Add a health check timestamp
 
