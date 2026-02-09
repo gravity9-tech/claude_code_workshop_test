@@ -57,30 +57,30 @@ Named after Ralph Wiggum from The Simpsons, the philosophy is simple: **persiste
 
 ```
 ┌──────────────────────────────────────────────────────┐
-│                   RALPH LOOP                          │
-│                                                       │
-│   ┌─────────┐     ┌──────────────┐     ┌──────────┐ │
-│   │  PROMPT  │────►│  Claude Code  │────►│  WORK    │ │
-│   │ (same    │     │  works on     │     │ (files,  │ │
-│   │  every   │     │  the task     │     │  tests,  │ │
-│   │  time)   │     │              │     │  code)   │ │
-│   └─────────┘     └──────┬───────┘     └──────────┘ │
-│        ▲                 │                            │
-│        │                 ▼                            │
-│        │          ┌──────────────┐                    │
-│        │          │ Try to exit  │                    │
-│        │          └──────┬───────┘                    │
-│        │                 │                            │
-│        │          ┌──────▼───────┐                    │
-│        │          │ Stop Hook    │                    │
-│        │          │ checks:      │                    │
-│        │          │ Done?        │                    │
-│        │          └──┬───────┬───┘                    │
-│        │          NO │       │ YES                    │
-│        │             │       │                        │
-│        └─────────────┘       ▼                        │
-│                        EXIT (done)                    │
-│                                                       │
+│                   RALPH LOOP                         │
+│                                                      │
+│   ┌─────────┐     ┌──────────────┐     ┌──────────┐  │
+│   │  PROMPT │────►│  Claude Code │────►│  WORK    │  │
+│   │ (same   │     │  works on    │     │ (files,  │  │ 
+│   │  every  │     │  the task    │     │  tests,  │  │
+│   │  time)  │     │              │     │  code)   │  │
+│   └─────────┘     └──────┬───────┘     └──────────┘  │
+│        ▲                 │                           │
+│        │                 ▼                           │
+│        │          ┌──────────────┐                   │
+│        │          │ Try to exit  │                   │
+│        │          └──────┬───────┘                   │
+│        │                 │                           │
+│        │          ┌──────▼───────┐                   │
+│        │          │ Stop Hook    │                   │
+│        │          │ checks:      │                   │
+│        │          │ Done?        │                   │
+│        │          └──┬───────┬───┘                   │
+│        │          NO │       │ YES                   │
+│        │             │       │                       │
+│        └─────────────┘       ▼                       │
+│                        EXIT (done)                   │
+│                                                      │
 └──────────────────────────────────────────────────────┘
 ```
 
@@ -152,8 +152,8 @@ The key insight: LISA produces specs in a format that Ralph can **read at the st
 │  • Spec (.json)  │          │  • Read spec     │
 │  • Progress file │          │  • Check status  │
 │                  │          │  • Work on next  │
-│                  │          │    incomplete     │
-│                  │          │    item           │
+│                  │          │    incomplete    │
+│                  │          │    item          │
 └──────────────────┘          └──────────────────┘
 ```
 
@@ -250,7 +250,7 @@ specs/customer-login-progress.txt ← Progress tracker for Ralph
 Now hand the spec to Ralph. Start the loop:
 
 ```
-/ralph-loop "Implement the feature described in specs/customer-login.md.
+/ralph-loop:ralph-loop "Implement the feature described in specs/customer-login.md.
 Read specs/customer-login-progress.txt at the start of each iteration
 to check what's done. For each incomplete user story, implement it using
 TDD (write tests first, then code). After implementing each story, run
