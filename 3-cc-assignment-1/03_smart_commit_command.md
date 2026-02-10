@@ -88,10 +88,11 @@ The command orchestrates a git commit workflow:
    - If cancel: stop the workflow
    - After staging, proceed to GENERATE phase
 
-3. GENERATE PHASE — Spawn the commit-writer agent:
-   - Use the Task tool to launch the "commit-writer" agent
-   - The agent analyzes staged changes and generates a commit message
-   - Capture the suggested commit message from the agent's response
+3. GENERATE PHASE — Spawn the "commit-writer" agent (created in Part 2):
+   - Use the Task tool to launch the "commit-writer" agent as a subagent
+   - The agent runs in isolation, injects the "commit-standards" skill, and analyzes the staged changes
+   - Wait for the agent to return the suggested commit message
+   - Capture the commit message from the agent's response
 
 4. PRESENT PHASE — Show the message to the user:
    - Display the suggested commit message clearly
@@ -104,13 +105,14 @@ The command orchestrates a git commit workflow:
    - If cancelled, inform the user no commit was made
 
 The command should:
-- Use the Task tool to spawn the commit-writer agent
+- Use the Task tool to spawn the "commit-writer" agent you created in Part 2
+- The agent already knows how to generate commit messages (it injects the skill from Part 1)
 - Handle all three states: staged changes, unstaged changes, no changes
 - Allow the user to stage files before generating a commit message
 - Allow the user to modify the suggested message before committing
 - Never commit without user confirmation
 
-Tools needed: Task (for spawning agent), Bash (for git commands)
+Tools needed: Task (for spawning the agent), Bash (for git commands)
 ```
 
 ---
