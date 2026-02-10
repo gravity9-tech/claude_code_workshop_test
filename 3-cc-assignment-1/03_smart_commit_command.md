@@ -26,10 +26,19 @@ Use the `/command-creator` to create a command called `smart-commit`.
       │
       ▼
 ┌─────────────────┐
-│ 1. CHECK        │  Run: git diff --staged --quiet
-│    Are there    │  If exit code 0 → no changes, stop
-│    staged       │  If exit code 1 → changes exist, continue
-│    changes?     │
+│ 1. CHECK        │  Check for staged changes (git diff --staged --quiet)
+│    What's the   │  ├─ Staged changes exist → go to step 2
+│    git state?   │  └─ No staged changes → check unstaged...
+│                 │       ├─ Unstaged exist → go to step 1b (stage)
+│                 │       └─ No changes at all → stop
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ 1b. STAGE       │  Show unstaged changes (git diff --stat)
+│     (if needed) │  Ask: "Stage all changes? (yes/select/cancel)"
+│                 │  If yes: git add -A
+│                 │  If select: let user specify files
 └────────┬────────┘
          │
          ▼
@@ -64,29 +73,40 @@ In Claude Code, type:
 
 The command orchestrates a git commit workflow:
 
-1. CHECK PHASE — Verify staged changes exist:
-   - Run: git diff --staged --quiet
-   - If no changes are staged, inform the user and stop
-   - If changes exist, continue to the next phase
+1. CHECK PHASE — Determine the git state:
+   - Run: git diff --staged --quiet (exit code 1 = staged changes exist)
+   - If staged changes exist → proceed to GENERATE phase
+   - If no staged changes, check for unstaged: git diff --quiet
+   - If no changes at all → inform user "Nothing to commit" and stop
+   - If unstaged changes exist → proceed to STAGE phase
 
-2. GENERATE PHASE — Spawn the commit-writer agent:
+2. STAGE PHASE (only if no staged but unstaged changes exist):
+   - Show the unstaged changes: git diff --stat
+   - Ask user: "Stage all changes? (yes/select files/cancel)"
+   - If yes: run git add -A to stage all
+   - If select: ask user which files to stage, then run git add for those
+   - If cancel: stop the workflow
+   - After staging, proceed to GENERATE phase
+
+3. GENERATE PHASE — Spawn the commit-writer agent:
    - Use the Task tool to launch the "commit-writer" agent
    - The agent analyzes staged changes and generates a commit message
    - Capture the suggested commit message from the agent's response
 
-3. PRESENT PHASE — Show the message to the user:
+4. PRESENT PHASE — Show the message to the user:
    - Display the suggested commit message clearly
    - Ask the user to confirm: use as-is, edit, or cancel
    - If the user wants to edit, let them provide modifications
 
-4. COMMIT PHASE — Execute the commit:
+5. COMMIT PHASE — Execute the commit:
    - If confirmed, run: git commit -m "<final message>"
    - Show the commit result (hash, files changed)
    - If cancelled, inform the user no commit was made
 
 The command should:
 - Use the Task tool to spawn the commit-writer agent
-- Handle the case where there are no staged changes gracefully
+- Handle all three states: staged changes, unstaged changes, no changes
+- Allow the user to stage files before generating a commit message
 - Allow the user to modify the suggested message before committing
 - Never commit without user confirmation
 
@@ -106,6 +126,7 @@ Check that the command was created by opening it in your text editor:
 Verify:
 - [ ] `allowed-tools:` includes `Task` and `Bash`
 - [ ] Workflow checks for staged changes first
+- [ ] Workflow handles unstaged changes (offers to stage)
 - [ ] Uses Task tool to spawn the commit-writer agent
 - [ ] Asks for user confirmation before committing
 

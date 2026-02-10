@@ -195,17 +195,49 @@ When changes span multiple scopes, the agent should either:
 
 ---
 
-## Test 5: Edge Case - No Changes
+## Test 5: Unstaged Changes (Auto-Stage)
+
+Test the staging functionality when you have unstaged changes.
+
+**Step 1: Make a change but don't stage it**
 
 ```bash
-git reset HEAD .  # Unstage everything
+# Edit a file but don't run git add
+# For example, add a comment to frontend/src/services/api.ts
+```
+
+**Step 2: Run smart-commit with unstaged changes**
+
+```
+/smart-commit
+```
+
+**Step 3: Observe the staging prompt**
+
+The command should:
+1. Detect no staged changes
+2. Detect unstaged changes exist
+3. Show you the unstaged files (`git diff --stat`)
+4. Ask if you want to stage all, select files, or cancel
+
+**Step 4: Choose to stage all**
+
+Select "yes" to stage all changes, then the workflow continues to generate the commit message.
+
+---
+
+## Test 6: Edge Case - No Changes
+
+```bash
+git reset HEAD .        # Unstage everything
+git checkout .          # Discard all changes
 ```
 
 ```
 /smart-commit
 ```
 
-The command should inform you that there are no staged changes to commit.
+The command should inform you that there are no changes to commit (neither staged nor unstaged).
 
 ---
 
@@ -231,7 +263,8 @@ Your assignment is complete when all items are checked:
 ### Command Verification
 - [ ] Command uses Task tool to spawn agent
 - [ ] Command checks for staged changes first
-- [ ] Command asks for user confirmation
+- [ ] Command offers to stage unstaged changes if no staged changes exist
+- [ ] Command asks for user confirmation before committing
 - [ ] Command executes `git commit` when confirmed
 
 ### Context Isolation

@@ -47,8 +47,14 @@ User: /smart-commit
          │
          ▼
 ┌─────────────────┐
-│  Check staged   │  Step 1: Verify there are changes to commit
-│  changes        │
+│  Check git      │  Step 1: Check for staged/unstaged changes
+│  state          │
+└────────┬────────┘
+         │
+         ▼ (if unstaged only)
+┌─────────────────┐
+│  Stage changes  │  Step 1b: Show changes, ask to stage all/select
+│  (if needed)    │
 └────────┬────────┘
          │
          ▼
