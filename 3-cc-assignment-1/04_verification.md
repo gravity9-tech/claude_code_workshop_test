@@ -218,38 +218,6 @@ Confirm to create a third commit, or cancel if you prefer.
 
 ---
 
-## Checklist
-
-Your assignment is complete when all items are checked:
-
-### Files Created
-- [ ] `.claude/skills/commit-standards/SKILL.md` exists
-- [ ] `.claude/agents/commit-writer.md` exists
-- [ ] `.claude/commands/smart-commit.md` exists
-
-### Skill Verification
-- [ ] Skill defines Conventional Commits format
-- [ ] Skill includes all commit types (feat, fix, docs, etc.)
-- [ ] Skill has examples of good and bad commits
-
-### Agent Verification
-- [ ] Agent frontmatter includes `skills: commit-standards`
-- [ ] Agent analyzes `git diff --staged`
-- [ ] Agent outputs properly formatted commit messages
-
-### Command Verification
-- [ ] Command uses Task tool to spawn agent
-- [ ] Command checks for staged changes first
-- [ ] Command offers to stage unstaged changes if none are staged
-- [ ] Command asks for user confirmation before committing
-- [ ] Command executes `git commit` when confirmed
-
-### End-to-End
-- [ ] Successfully created at least one real commit using `/smart-commit`
-- [ ] Verified commit with `git log`
-
----
-
 ## Congratulations!
 
 You've built a complete **skill → agent → command** workflow that demonstrates:
@@ -259,37 +227,6 @@ You've built a complete **skill → agent → command** workflow that demonstrat
 3. **Commands** orchestrating agents via the Task tool
 
 This pattern scales to complex workflows — just add more skills, agents, and commands as needed.
-
----
-
-## Bonus Challenges
-
-Ready for more? Try these extensions:
-
-### 1. Pre-commit Validation Agent
-
-Create a `pre-commit-checker` agent that:
-- Runs linting on staged files
-- Runs relevant tests
-- Returns pass/fail status
-
-Update `/smart-commit` to run this agent before `commit-writer`.
-
-### 2. Commit Scope Detection
-
-Enhance `commit-writer` to auto-detect scope from file paths:
-- `backend/*` → scope: `api`
-- `frontend/src/components/*` → scope: `ui`
-- `frontend/src/services/*` → scope: `services`
-
-### 3. Breaking Change Detection
-
-Add logic to detect potential breaking changes:
-- Removed exports
-- Changed function signatures
-- Modified public APIs
-
-Warn the user and suggest using `!` in the commit type.
 
 ---
 
