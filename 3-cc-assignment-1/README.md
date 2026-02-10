@@ -27,9 +27,8 @@ In this assignment, you'll build a complete **skill → agent → command** work
 |---------|-----------------|
 | Skills | Create `commit-standards` with clear guidelines |
 | Skill Injection | Agent injects the skill via frontmatter |
-| Agents | `commit-writer` runs in isolated context |
+| Agents | `commit-writer` generates commit messages |
 | Commands | `/smart-commit` orchestrates via Task tool |
-| Context Isolation | Compare `/context` before/after |
 
 ## Assignment Parts
 
@@ -83,7 +82,6 @@ Your assignment is complete when:
 - [ ] The `commit-standards` skill exists and defines clear commit message guidelines
 - [ ] The `commit-writer` agent injects the skill and generates messages based on staged changes
 - [ ] The `/smart-commit` command orchestrates the full workflow
-- [ ] Running `/context` before and after shows the agent ran in isolation
 - [ ] A real commit can be made using your workflow
 
 ## Bonus Challenges

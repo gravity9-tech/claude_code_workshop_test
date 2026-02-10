@@ -4,240 +4,220 @@
 
 ## Objective
 
-Test your complete workflow using real changes to the tea-store-demo codebase and verify that context isolation is working correctly.
+Test your complete workflow using real changes to the tea-store-demo codebase.
 
 ---
 
-## Test 1: Context Isolation
+## Test 1: Auto-Stage Flow (Dry Run)
 
-This test verifies that the agent runs in an isolated context.
+First, test the staging functionality without actually committing.
 
-**Step 1: Clear and check baseline**
+**Step 1: Make a backend change**
 
+Open `backend/app/api/routes.py` in your editor.
+
+Find this line near the top (around line 8):
+
+```python
+from app.models import Product
 ```
-/clear
+
+Add a new line right after it:
+
+```python
+VALID_CATEGORIES = ["black", "green", "oolong", "herbal"]
 ```
 
-```
-/context
-```
+Save the file.
 
-Note the context size (should be minimal).
-
-**Step 2: Make a documentation change**
-
-Update the health endpoint's docstring in the backend:
+**Step 2: View your changes**
 
 ```bash
-# Edit backend/app/api/routes.py
-# Find the health endpoint and improve its docstring
+git diff                  # See the actual changes
+git diff --stat           # See summary
 ```
 
-Or use Claude Code:
-
-```
-Add a more detailed docstring to the health endpoint in backend/app/api/routes.py
-explaining what it returns and when to use it
-```
-
-Then stage the change:
-
-```bash
-git add backend/app/api/routes.py
-```
-
-**Step 3: Run the command**
+**Step 3: Run smart-commit (without staging first)**
 
 ```
 /smart-commit
 ```
 
-Watch the workflow execute:
-1. It should detect staged changes
-2. The commit-writer agent should generate a message
-3. You should see a suggested message like: `docs(api): improve health endpoint docstring`
-4. Choose to cancel for now (we'll do a real commit in Test 2)
+**Step 4: Observe the auto-stage prompt**
 
-**Step 4: Check context after**
+The command should:
+1. Detect no staged changes
+2. Detect your unstaged changes in `routes.py`
+3. Show `git diff --stat` output
+4. Ask if you want to stage all, select files, or cancel
 
-```
-/context
-```
+**Step 5: Cancel this time**
 
-Compare to your baseline. The context should have grown only by the agent's **result**, not all of its internal work (the git diffs it read, its reasoning, etc.).
-
-**Step 5: Reset for the next test**
-
-```bash
-git checkout backend/app/api/routes.py
-```
+Choose **cancel** — we'll commit this change in the next test.
 
 ---
 
-## Test 2: Feature Change (Frontend)
+## Test 2: Complete Commit Flow
 
-Test with a real frontend change.
+Now let's commit the backend change for real.
 
-**Step 1: Add a small feature**
-
-Add a hover effect to the ProductCard component:
-
-```bash
-# Edit frontend/src/components/ProductCard.tsx
-# Add a subtle scale transform on hover
-```
-
-Or use Claude Code:
-
-```
-Add a subtle hover scale effect (scale 1.02) to the ProductCard component
-in frontend/src/components/ProductCard.tsx using Tailwind classes
-```
-
-**Step 2: Stage and commit**
-
-```bash
-git add frontend/src/components/ProductCard.tsx
-```
+**Step 1: Run smart-commit again**
 
 ```
 /smart-commit
 ```
 
-**Step 3: Review the message**
+**Step 2: Stage when prompted**
+
+Choose **yes** to stage all changes.
+
+**Step 3: Review the generated message**
 
 The agent should generate something like:
-```
-feat(ui): add hover scale effect to ProductCard
 
-Adds subtle visual feedback when users hover over product cards.
+```
+feat(api): add VALID_CATEGORIES constant
+
+Defines valid tea categories as a reusable constant.
 ```
 
 Verify:
-- Type is `feat` (new feature) or `style` (visual change)
-- Scope detected as `ui` or `components`
-- Description is in imperative mood
+- Type is `feat` or `refactor`
+- Scope is `api` or `backend`
+- Description is clear and in imperative mood
 
 **Step 4: Confirm the commit**
 
 If the message looks good, confirm to create the commit.
 
-**Step 5: Verify**
+**Step 5: Verify the commit**
 
 ```bash
-git log -1
+git log -1 --oneline
 ```
+
+You should see your commit with the generated message.
 
 ---
 
-## Test 3: Backend Change
+## Test 3: Frontend Change
 
-Test with a backend API change.
+Add a visual enhancement to the ProductCard component.
 
-**Step 1: Add a field to the health endpoint**
+**Step 1: Make a frontend change**
+
+Open `frontend/src/components/shared/ProductCard.tsx` in your editor.
+
+Find this line (around line 27):
+
+```tsx
+<div data-testid="product-card" className="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+```
+
+Replace it with (adds hover scale effect):
+
+```tsx
+<div data-testid="product-card" className="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+```
+
+Save the file.
+
+**Step 2: Run smart-commit**
+
+```
+/smart-commit
+```
+
+The command will detect unstaged changes and offer to stage them.
+
+**Step 3: Stage and review**
+
+Choose to stage, then review the generated message. Expected format:
+
+```
+style(ui): add hover scale effect to ProductCard
+```
+
+**Step 4: Confirm and verify**
+
+Confirm the commit, then verify:
 
 ```bash
-# Edit backend/app/api/routes.py
-# Add a "version" field to the health endpoint response
+git log -2 --oneline
 ```
 
-Or use Claude Code:
+You should now see both commits.
+
+---
+
+## Test 4: Edge Case - No Changes
+
+Verify the command handles the "nothing to commit" case gracefully.
+
+**Step 1: Check working directory**
+
+```bash
+git status
+```
+
+Should show "nothing to commit, working tree clean" (since we committed everything).
+
+**Step 2: Run smart-commit**
 
 ```
-Add a "version" field with value "1.0.0" to the health endpoint
-response in backend/app/api/routes.py
+/smart-commit
 ```
 
-**Step 2: Stage and run**
+**Step 3: Observe the response**
+
+The command should inform you that there are no changes to commit and exit gracefully.
+
+---
+
+## Test 5: Pre-Staged Changes (Optional)
+
+Test that the command works when changes are already staged.
+
+**Step 1: Make and stage a change**
+
+Open `backend/app/api/routes.py` and find the health endpoint (near the bottom):
+
+```python
+@router.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+```
+
+Replace with:
+
+```python
+@router.get("/health")
+async def health_check():
+    return {"status": "healthy", "version": "1.0.0"}
+```
+
+Save and stage manually:
 
 ```bash
 git add backend/app/api/routes.py
-/smart-commit
 ```
 
-**Step 3: Review**
-
-Expected message format:
-```
-feat(api): add version field to health endpoint
-```
-
----
-
-## Test 4: Multi-Scope Changes
-
-Test how the agent handles changes across multiple areas.
-
-**Step 1: Make changes in multiple locations**
-
-```bash
-# Make a small change in both frontend and backend
-# For example: update a comment in each
-```
-
-**Step 2: Stage both**
-
-```bash
-git add frontend/src/services/api.ts backend/app/api/routes.py
-```
-
-**Step 3: Run smart-commit**
+**Step 2: Run smart-commit**
 
 ```
 /smart-commit
 ```
 
-**Step 4: Observe scope handling**
+**Step 3: Observe the flow**
 
-When changes span multiple scopes, the agent should either:
-- Omit the scope: `chore: update API documentation`
-- Use a general scope: `docs(api): update endpoint documentation`
+This time the command should:
+1. Detect staged changes exist
+2. Skip the staging prompt
+3. Go directly to generating the commit message
 
----
+**Step 4: Complete or cancel**
 
-## Test 5: Unstaged Changes (Auto-Stage)
-
-Test the staging functionality when you have unstaged changes.
-
-**Step 1: Make a change but don't stage it**
-
-```bash
-# Edit a file but don't run git add
-# For example, add a comment to frontend/src/services/api.ts
-```
-
-**Step 2: Run smart-commit with unstaged changes**
-
-```
-/smart-commit
-```
-
-**Step 3: Observe the staging prompt**
-
-The command should:
-1. Detect no staged changes
-2. Detect unstaged changes exist
-3. Show you the unstaged files (`git diff --stat`)
-4. Ask if you want to stage all, select files, or cancel
-
-**Step 4: Choose to stage all**
-
-Select "yes" to stage all changes, then the workflow continues to generate the commit message.
-
----
-
-## Test 6: Edge Case - No Changes
-
-```bash
-git reset HEAD .        # Unstage everything
-git checkout .          # Discard all changes
-```
-
-```
-/smart-commit
-```
-
-The command should inform you that there are no changes to commit (neither staged nor unstaged).
+Confirm to create a third commit, or cancel if you prefer.
 
 ---
 
@@ -263,16 +243,13 @@ Your assignment is complete when all items are checked:
 ### Command Verification
 - [ ] Command uses Task tool to spawn agent
 - [ ] Command checks for staged changes first
-- [ ] Command offers to stage unstaged changes if no staged changes exist
+- [ ] Command offers to stage unstaged changes if none are staged
 - [ ] Command asks for user confirmation before committing
 - [ ] Command executes `git commit` when confirmed
 
-### Context Isolation
-- [ ] `/context` before and after shows isolation working
-- [ ] Agent's internal work doesn't pollute main context
-
 ### End-to-End
-- [ ] Successfully created a real commit using `/smart-commit`
+- [ ] Successfully created at least one real commit using `/smart-commit`
+- [ ] Verified commit with `git log`
 
 ---
 
@@ -281,9 +258,8 @@ Your assignment is complete when all items are checked:
 You've built a complete **skill → agent → command** workflow that demonstrates:
 
 1. **Skills** as reusable knowledge modules
-2. **Agents** running in isolated contexts with skill injection
+2. **Agents** running with skill injection
 3. **Commands** orchestrating agents via the Task tool
-4. **Context isolation** keeping your main session clean
 
 This pattern scales to complex workflows — just add more skills, agents, and commands as needed.
 
@@ -305,9 +281,9 @@ Update `/smart-commit` to run this agent before `commit-writer`.
 ### 2. Commit Scope Detection
 
 Enhance `commit-writer` to auto-detect scope from file paths:
-- `src/api/*` → scope: `api`
-- `src/components/*` → scope: `ui`
-- `tests/*` → scope: `test`
+- `backend/*` → scope: `api`
+- `frontend/src/components/*` → scope: `ui`
+- `frontend/src/services/*` → scope: `services`
 
 ### 3. Breaking Change Detection
 
