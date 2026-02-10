@@ -1,6 +1,6 @@
 # Claude Code Workshop 1: Foundations
 
-**Total Duration: ~70 min**
+**Total Duration: ~85 min**
 
 A hands-on guide to getting started with Claude Code and building a complete dev lifecycle automation using Jira.
 
@@ -22,6 +22,7 @@ A hands-on guide to getting started with Claude Code and building a complete dev
 | 04 | [Skills Introduction](./04_skills_intro.md) | 5 min |
 | 05 | [Dev Lifecycle Skills](./05_qa_lifecycle.md) | 25 min |
 | 06 | [Deploy Ticket Command](./06_slash_commands.md) | 10 min |
+| 07 | [Introduction to Agents](./07_agents_intro.md) | 15 min |
 
 ## Learning Path
 
@@ -41,6 +42,14 @@ Project Setup → Context Window → Getting Started
    │            │ │            │ │             │ │         │     layer)
    └─────┬──────┘ └─────┬──────┘ └──────┬──────┘ └────┬────┘
          │              │               │              │
+         │              │               ▼              │
+         │              │        ┌─────────────┐       │
+         │              │        │ implementer │       │   ← Agent
+         │              │        │   agent     │       │     (isolated
+         │              │        │ (injects    │       │      context)
+         │              │        │  skill)     │       │
+         │              │        └──────┬──────┘       │
+         │              │               │              │
          └──────────────┼───────────────┼──────────────┘
                         ▼               ▼
                ┌─────────────────────────────┐
@@ -57,15 +66,17 @@ After completing Workshop 1:
 ```
 tea-store-demo/
 ├── .claude/
+│   ├── agents/
+│   │   └── implementer.md      # Your agent: isolated implementation (injects skill)
 │   ├── commands/
 │   │   └── deploy-ticket.md    # Slash command: full lifecycle orchestrator
 │   └── skills/
 │       ├── skill-creator/      # Pre-built: creates domain skills
 │       ├── command-creator/    # Pre-built: creates slash commands
-│       ├── agent-creator/      # Pre-built: creates custom agents (for W2)
+│       ├── agent-creator/      # Pre-built: creates custom agents
 │       ├── create-ticket/      # Your skill: BDD ticket creation
 │       ├── expand-ticket/      # Your skill: DEV + QA subtasks
-│       ├── implement-ticket/   # Your skill: implement & transition
+│       ├── implement-ticket/   # Your skill: implement & transition (also injected into agent)
 │       └── qa-ticket/          # Your skill: Playwright testing
 ├── .mcp.json                    # Jira MCP server config
 └── CLAUDE.md                    # Project memory (via /init)

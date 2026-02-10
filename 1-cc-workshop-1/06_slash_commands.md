@@ -192,4 +192,4 @@ Every layer is built. One command runs the entire development lifecycle.
 
 ---
 
-Continue to **[Workshop 2](../cc-workshop-2/)** to build custom agents, TDD workflows, and advanced orchestration.
+Continue to: [07_agents_intro.md](./07_agents_intro.md) — Introduction to Agents
