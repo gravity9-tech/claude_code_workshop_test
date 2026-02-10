@@ -51,7 +51,7 @@ The skill should:
 
 **Review the generated skill** (open in your editor or use terminal):
 
-```bash
+```
 .claude/skills/create-ticket/SKILL.md
 ```
 
@@ -93,7 +93,7 @@ The skill should:
 
 **Review the generated skill** (open in your editor or use terminal):
 
-```bash
+```
 .claude/skills/expand-ticket/SKILL.md
 ```
 
@@ -131,8 +131,8 @@ The skill should:
 
 **Review the generated skill** (open in your editor or use terminal):
 
-```bash
-cat .claude/skills/implement-ticket/SKILL.md
+```
+.claude/skills/implement-ticket/SKILL.md
 ```
 
 Verify it:
@@ -201,7 +201,7 @@ The skill should:
 
 **Review the generated skill** (open in your editor or use terminal):
 
-```bash
+```
 .claude/skills/qa-ticket/SKILL.md
 ```
 

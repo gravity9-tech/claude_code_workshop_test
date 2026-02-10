@@ -4,47 +4,10 @@
 
 ## What You'll Learn
 
-- Why skills in the main context can become problematic
 - What agents are and how they differ from skills
 - How agents run in isolated context windows
 - How to inject skills into agents for reusable knowledge
 - Update `/deploy-ticket` to use an agent
-
----
-
-## The Context Problem
-
-In the previous modules, you built four skills that run in the **main context window**. Every file Claude reads, every command it runs, and every response it generates — all of that accumulates in the shared context.
-
-Let's see this in action.
-
-**Step 1: Check your current context**
-
-In Claude Code, type:
-
-```
-/context
-```
-
-Note the current context usage (e.g., "Context: 12,450 tokens").
-
-**Step 2: Run the deploy-ticket command**
-
-```
-/deploy-ticket Add a product rating feature to PROJECT_KEY
-```
-
-(Replace PROJECT_KEY with your Jira project key)
-
-**Step 3: Check context again**
-
-```
-/context
-```
-
-Notice how the context has grown significantly. Every file read, every Jira API call, every piece of reasoning — it's all in your context now.
-
-**The problem:** If you run multiple features through `/deploy-ticket`, your context fills up. Claude may lose track of earlier information, and you'll eventually need to start fresh.
 
 ---
 
@@ -148,10 +111,10 @@ Output format - return a structured summary:
 - Overall status (Complete / Partial with reason)
 ```
 
-**Review the generated agent:**
+**Review the generated agent** by opening it in your text editor:
 
-```bash
-cat .claude/agents/implementer.md
+```
+.claude/agents/implementer.md
 ```
 
 Verify it includes:
@@ -206,40 +169,6 @@ The key difference: instead of Claude following the skill instructions in the ma
 
 ---
 
-## Test the Agent-Based Workflow
-
-**Step 1: Clear your context**
-
-```
-/clear
-```
-
-**Step 2: Check baseline context**
-
-```
-/context
-```
-
-Note the starting context size.
-
-**Step 3: Run deploy-ticket with the agent**
-
-```
-/deploy-ticket Add a wishlist feature to PROJECT_KEY
-```
-
-(Replace PROJECT_KEY with your Jira project key)
-
-**Step 4: Check context after**
-
-```
-/context
-```
-
-Compare to before. The implementation phase ran in an isolated context — only the summary came back. Your main context stayed cleaner.
-
----
-
 ## The Hybrid Architecture
 
 You now have a hybrid setup:
@@ -280,11 +209,9 @@ You now have a hybrid setup:
 
 You've now:
 
-- [ ] Observed context growth with `/context`
 - [ ] Understood the difference between skills and agents
 - [ ] Created the `implementer` agent with skill injection
 - [ ] Updated `/deploy-ticket` to use the Task tool to spawn the agent
-- [ ] Tested the hybrid workflow and compared context usage
 
 ---
 
