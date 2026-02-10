@@ -132,24 +132,6 @@ Verify:
 
 ---
 
-## Test the Command
-
-Restart Claude Code to load the new command:
-
-```bash
-claude
-```
-
-Verify the command is available:
-
-```
-/help
-```
-
-You should see `/smart-commit` in the list.
-
----
-
 ## Next
 
 Continue to [04_verification.md](./04_verification.md) to test the complete workflow.
