@@ -84,14 +84,4 @@ Your assignment is complete when:
 - [ ] The `/smart-commit` command orchestrates the full workflow
 - [ ] A real commit can be made using your workflow
 
-## Bonus Challenges
-
-After completing the main assignment, try these extensions:
-
-1. **Pre-commit validation** — Add an agent that runs linting/tests before allowing commit
-2. **Scope detection** — Auto-detect the commit scope from changed file paths
-3. **Breaking change detection** — Warn if changes might be breaking
-
----
-
 Start with [01_commit_standards_skill.md](./01_commit_standards_skill.md)
