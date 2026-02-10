@@ -4,7 +4,7 @@
 
 ## Objective
 
-Test your complete workflow and verify that context isolation is working correctly.
+Test your complete workflow using real changes to the tea-store-demo codebase and verify that context isolation is working correctly.
 
 ---
 
@@ -24,14 +24,26 @@ This test verifies that the agent runs in an isolated context.
 
 Note the context size (should be minimal).
 
-**Step 2: Stage some changes**
+**Step 2: Make a documentation change**
 
-Make a small change to test with:
+Update the health endpoint's docstring in the backend:
 
 ```bash
-# Create a test file
-echo "export const TEST_VALUE = 42;" > test-temp.ts
-git add test-temp.ts
+# Edit backend/app/api/routes.py
+# Find the health endpoint and improve its docstring
+```
+
+Or use Claude Code:
+
+```
+Add a more detailed docstring to the health endpoint in backend/app/api/routes.py
+explaining what it returns and when to use it
+```
+
+Then stage the change:
+
+```bash
+git add backend/app/api/routes.py
 ```
 
 **Step 3: Run the command**
@@ -43,8 +55,8 @@ git add test-temp.ts
 Watch the workflow execute:
 1. It should detect staged changes
 2. The commit-writer agent should generate a message
-3. You should see the suggested message
-4. Choose to cancel (don't actually commit the test file)
+3. You should see a suggested message like: `docs(api): improve health endpoint docstring`
+4. Choose to cancel for now (we'll do a real commit in Test 2)
 
 **Step 4: Check context after**
 
@@ -54,28 +66,39 @@ Watch the workflow execute:
 
 Compare to your baseline. The context should have grown only by the agent's **result**, not all of its internal work (the git diffs it read, its reasoning, etc.).
 
-**Step 5: Clean up**
+**Step 5: Reset for the next test**
 
 ```bash
-git reset HEAD test-temp.ts
-rm test-temp.ts
+git checkout backend/app/api/routes.py
 ```
 
 ---
 
-## Test 2: Full Commit Flow
+## Test 2: Feature Change (Frontend)
 
-Now test with a real change you want to commit.
+Test with a real frontend change.
 
-**Step 1: Make a real change**
+**Step 1: Add a small feature**
 
-Edit a file in your project (documentation, code, config — anything meaningful).
+Add a hover effect to the ProductCard component:
 
 ```bash
-git add <your-changed-file>
+# Edit frontend/src/components/ProductCard.tsx
+# Add a subtle scale transform on hover
 ```
 
-**Step 2: Run smart-commit**
+Or use Claude Code:
+
+```
+Add a subtle hover scale effect (scale 1.02) to the ProductCard component
+in frontend/src/components/ProductCard.tsx using Tailwind classes
+```
+
+**Step 2: Stage and commit**
+
+```bash
+git add frontend/src/components/ProductCard.tsx
+```
 
 ```
 /smart-commit
@@ -83,48 +106,106 @@ git add <your-changed-file>
 
 **Step 3: Review the message**
 
-- Does it follow Conventional Commits format?
-- Is the type correct (feat, fix, docs, etc.)?
-- Is the description clear and in imperative mood?
-- Is the scope appropriate (if detected)?
+The agent should generate something like:
+```
+feat(ui): add hover scale effect to ProductCard
 
-**Step 4: Confirm or edit**
+Adds subtle visual feedback when users hover over product cards.
+```
+
+Verify:
+- Type is `feat` (new feature) or `style` (visual change)
+- Scope detected as `ui` or `components`
+- Description is in imperative mood
+
+**Step 4: Confirm the commit**
 
 If the message looks good, confirm to create the commit.
 
-**Step 5: Verify the commit**
+**Step 5: Verify**
 
 ```bash
 git log -1
 ```
 
-Check that the commit was created with your approved message.
+---
+
+## Test 3: Backend Change
+
+Test with a backend API change.
+
+**Step 1: Add a field to the health endpoint**
+
+```bash
+# Edit backend/app/api/routes.py
+# Add a "version" field to the health endpoint response
+```
+
+Or use Claude Code:
+
+```
+Add a "version" field with value "1.0.0" to the health endpoint
+response in backend/app/api/routes.py
+```
+
+**Step 2: Stage and run**
+
+```bash
+git add backend/app/api/routes.py
+/smart-commit
+```
+
+**Step 3: Review**
+
+Expected message format:
+```
+feat(api): add version field to health endpoint
+```
 
 ---
 
-## Test 3: Edge Cases
+## Test 4: Multi-Scope Changes
 
-### No staged changes
+Test how the agent handles changes across multiple areas.
 
-```
-/smart-commit
-```
-
-With nothing staged, the command should inform you that there are no changes to commit.
-
-### Multiple file types
-
-Stage changes across different areas:
+**Step 1: Make changes in multiple locations**
 
 ```bash
-git add src/component.tsx docs/README.md
+# Make a small change in both frontend and backend
+# For example: update a comment in each
+```
+
+**Step 2: Stage both**
+
+```bash
+git add frontend/src/services/api.ts backend/app/api/routes.py
+```
+
+**Step 3: Run smart-commit**
+
+```
+/smart-commit
+```
+
+**Step 4: Observe scope handling**
+
+When changes span multiple scopes, the agent should either:
+- Omit the scope: `chore: update API documentation`
+- Use a general scope: `docs(api): update endpoint documentation`
+
+---
+
+## Test 5: Edge Case - No Changes
+
+```bash
+git reset HEAD .  # Unstage everything
 ```
 
 ```
 /smart-commit
 ```
 
-Does the agent correctly identify when changes span multiple scopes?
+The command should inform you that there are no staged changes to commit.
 
 ---
 

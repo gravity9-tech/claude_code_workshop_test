@@ -94,26 +94,64 @@ Verify the frontmatter includes:
 
 ## Test the Agent
 
-Stage some changes and test the agent directly:
+Make a real change to the tea-store-demo codebase and test the agent.
+
+**Step 1: Make a change**
+
+Edit a file — for example, add a comment to the cart context:
 
 ```bash
-# Make a small change to any file
-echo "// test" >> some-file.js
-git add some-file.js
+# Edit frontend/src/contexts/CartContext.tsx
+# Add a comment explaining the localStorage key used for persistence
 ```
 
-Then in Claude Code:
+**Step 2: View unstaged changes**
+
+Before staging, see what you changed:
+
+```bash
+git diff                  # See the actual code changes
+git diff --stat           # See summary of files changed
+```
+
+This shows your working directory changes that aren't staged yet.
+
+**Step 3: Stage the changes**
+
+```bash
+git add frontend/src/contexts/CartContext.tsx
+```
+
+**Step 4: View staged changes**
+
+Now verify what's staged for commit:
+
+```bash
+git diff --staged         # See the actual staged changes
+git diff --staged --stat  # See summary of staged files
+```
+
+This is what the agent will analyze.
+
+**Step 5: Run the agent**
+
+In Claude Code:
 
 ```
 Use the commit-writer agent to generate a commit message for my staged changes
 ```
 
-The agent should analyze the staged changes and return a properly formatted commit message.
+The agent should:
+1. Run `git diff --staged` to analyze the changes
+2. Detect the type (likely `docs` or `chore` for comments)
+3. Detect the scope from the file path (`cart`)
+4. Return a properly formatted commit message
 
-**Don't forget to unstage or reset your test change:**
+**Step 6: Reset your test change**
+
 ```bash
-git reset HEAD some-file.js
-git checkout some-file.js
+git reset HEAD frontend/src/contexts/CartContext.tsx   # Unstage
+git checkout frontend/src/contexts/CartContext.tsx     # Discard changes
 ```
 
 ---
