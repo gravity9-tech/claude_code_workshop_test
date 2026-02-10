@@ -98,10 +98,10 @@ can generate high-quality commit messages for any code change.
 
 ## Verify Your Work
 
-Check that the skill was created:
+Check that the skill was created by opening it in your text editor:
 
-```bash
-cat .claude/skills/commit-standards/SKILL.md
+```
+.claude/skills/commit-standards/SKILL.md
 ```
 
 The skill should include:

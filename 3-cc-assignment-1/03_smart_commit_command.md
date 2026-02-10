@@ -97,10 +97,10 @@ Tools needed: Task (for spawning agent), Bash (for git commands)
 
 ## Verify Your Work
 
-Check that the command was created:
+Check that the command was created by opening it in your text editor:
 
-```bash
-cat .claude/commands/smart-commit.md
+```
+.claude/commands/smart-commit.md
 ```
 
 Verify:

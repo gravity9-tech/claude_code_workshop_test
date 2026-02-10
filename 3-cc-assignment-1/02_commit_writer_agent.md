@@ -79,10 +79,10 @@ Tools needed: Bash (for git commands), Read, Glob, Grep (for code context)
 
 ## Verify Your Work
 
-Check that the agent was created:
+Check that the agent was created by opening it in your text editor:
 
-```bash
-cat .claude/agents/commit-writer.md
+```
+.claude/agents/commit-writer.md
 ```
 
 Verify the frontmatter includes:
