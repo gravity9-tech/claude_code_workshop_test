@@ -180,20 +180,17 @@ Test that the command works when changes are already staged.
 
 **Step 1: Make and stage a change**
 
-Open `backend/app/api/routes.py` and find the health endpoint (near the bottom):
+Open `backend/app/api/routes.py` and find this line (around line 10):
 
 ```python
-@router.get("/health")
-async def health_check():
-    return {"status": "healthy"}
+router = APIRouter()
 ```
 
-Replace with:
+Add a comment above it:
 
 ```python
-@router.get("/health")
-async def health_check():
-    return {"status": "healthy", "version": "1.0.0"}
+# API router for tea product endpoints
+router = APIRouter()
 ```
 
 Save and stage manually:
