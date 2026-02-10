@@ -205,16 +205,6 @@ You now have a hybrid setup:
 
 ---
 
-## Checkpoint
-
-You've now:
-
-- [ ] Understood the difference between skills and agents
-- [ ] Created the `implementer` agent with skill injection
-- [ ] Updated `/deploy-ticket` to use the Task tool to spawn the agent
-
----
-
 ## Key Takeaways
 
 1. **Context isolation** — Agents run in their own context, keeping main context clean
@@ -227,14 +217,8 @@ You've now:
 
 ## What's Next
 
-In **Workshop 2**, you'll build a complete three-agent architecture:
-
-- **Planner agent** — Analyzes codebase and creates implementation plans
-- **TDD Guide agent** — Implements features using test-driven development
-- **Code Reviewer agent** — Validates work against the plan
-
-Each agent runs in isolation, injecting specialized skills, and coordinated by a single `/orchestrate` command.
+In **Assignment 1**, you'll apply what you've learned by building your own skills, commands, and agents from scratch.
 
 ---
 
-Continue to **[Workshop 2](../2-cc-workshop-2/)** for: TDD workflows, custom agents, and advanced orchestration
+Continue to **[Assignment 1](../3-cc-assignment-1/)** to put your knowledge into practice
