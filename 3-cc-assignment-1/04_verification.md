@@ -8,89 +8,47 @@ Test your complete workflow using real changes to the tea-store-demo codebase.
 
 ---
 
-## Test 1: Auto-Stage Flow (Dry Run)
+## Test 1: Commit Your Work
 
-First, test the staging functionality without actually committing.
+You already have unstaged work from building the skill, agent, and command. Let's use `/smart-commit` to commit it.
 
-**Step 1: Make a backend change**
-
-Open `backend/app/api/routes.py` in your editor.
-
-Find this line near the top (around line 8):
-
-```python
-from app.models import Product
-```
-
-Add a new line right after it:
-
-```python
-VALID_CATEGORIES = ["black", "green", "oolong", "herbal"]
-```
-
-Save the file.
-
-**Step 2: View your changes**
+**Step 1: View your changes**
 
 ```bash
-git diff                  # See the actual changes
+git status                # See changed files
 git diff --stat           # See summary
 ```
 
-**Step 3: Run smart-commit (without staging first)**
+You should see your new files in `.claude/`.
+
+**Step 2: Run smart-commit**
 
 ```
 /smart-commit
 ```
 
-**Step 4: Observe the auto-stage prompt**
+**Step 3: Observe the auto-stage prompt**
 
 The command should:
 1. Detect no staged changes
-2. Detect your unstaged changes in `routes.py`
+2. Detect your unstaged changes
 3. Show `git diff --stat` output
 4. Ask if you want to stage all, select files, or cancel
 
-**Step 5: Cancel this time**
+**Step 4: Stage and review**
 
-Choose **cancel** — we'll commit this change in the next test.
-
----
-
-## Test 2: Complete Commit Flow
-
-Now let's commit the backend change for real.
-
-**Step 1: Run smart-commit again**
-
-```
-/smart-commit
-```
-
-**Step 2: Stage when prompted**
-
-Choose **yes** to stage all changes.
-
-**Step 3: Review the generated message**
-
-The agent should generate something like:
-
-```
-feat(api): add VALID_CATEGORIES constant
-
-Defines valid tea categories as a reusable constant.
-```
+Choose **yes** to stage all changes, then review the generated message.
 
 Verify:
-- Type is `feat` or `refactor`
-- Scope is `api` or `backend`
+- Type is appropriate (likely `feat` or `chore`)
+- Scope makes sense
 - Description is clear and in imperative mood
 
-**Step 4: Confirm the commit**
+**Step 5: Confirm the commit**
 
 If the message looks good, confirm to create the commit.
 
-**Step 5: Verify the commit**
+**Step 6: Verify the commit**
 
 ```bash
 git log -1 --oneline
@@ -100,7 +58,7 @@ You should see your commit with the generated message.
 
 ---
 
-## Test 3: Frontend Change
+## Test 2: Frontend Change
 
 Add a visual enhancement to the ProductCard component.
 
@@ -150,7 +108,7 @@ You should now see both commits.
 
 ---
 
-## Test 4: Edge Case - No Changes
+## Test 3: Edge Case - No Changes
 
 Verify the command handles the "nothing to commit" case gracefully.
 
@@ -174,7 +132,7 @@ The command should inform you that there are no changes to commit and exit grace
 
 ---
 
-## Test 5: Pre-Staged Changes (Optional)
+## Test 4: Pre-Staged Changes (Optional)
 
 Test that the command works when changes are already staged.
 
