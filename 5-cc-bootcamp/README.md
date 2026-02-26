@@ -7,7 +7,10 @@ A hands-on bootcamp that takes AI Champions from understanding context engineeri
 ## Prerequisites
 
 - Completed [Workshop 1](../1-cc-workshop-1/) and [Workshop 2](../2-cc-workshop-2/)
-- Claude Code installed (`claude --version` should show `2.x.x`)
+- Claude Code installed (see [official install instructions](https://code.claude.com/docs/en/overview)):
+  - **macOS/Linux/WSL:** `curl -fsSL https://claude.ai/install.sh | bash`
+  - **Windows PowerShell:** `irm https://claude.ai/install.ps1 | iex`
+  - Verify with `claude --version`
 - Tea Store project (`claude_code_workshop`) cloned and runnable
 - Jira MCP server configured
 - Pre-built skills available: `skill-creator`, `agent-creator`, `command-creator`
@@ -164,7 +167,11 @@ tea-store-demo/
 
 **Claude Code not found:**
 ```bash
-npm install -g @anthropic-ai/claude-code
+# macOS/Linux/WSL
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Windows PowerShell
+irm https://claude.ai/install.ps1 | iex
 ```
 
 **Skills not triggering:**

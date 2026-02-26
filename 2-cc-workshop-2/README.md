@@ -7,7 +7,9 @@ A hands-on guide to building a complete development lifecycle automation using c
 ## Prerequisites
 
 - Completed [Workshop 1](../cc-workshop-1/)
-- Claude Code installed (`npm install -g @anthropic-ai/claude-code`)
+- Claude Code installed (see [official install instructions](https://code.claude.com/docs/en/overview)):
+  - **macOS/Linux/WSL:** `curl -fsSL https://claude.ai/install.sh | bash`
+  - **Windows PowerShell:** `irm https://claude.ai/install.ps1 | iex`
 - Node.js (for MCP servers)
 - Basic command line familiarity
 
@@ -81,7 +83,11 @@ tea-store-demo/
 
 **Claude Code not found:**
 ```bash
-npm install -g @anthropic-ai/claude-code
+# macOS/Linux/WSL
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Windows PowerShell
+irm https://claude.ai/install.ps1 | iex
 ```
 
 **Skills not triggering:**

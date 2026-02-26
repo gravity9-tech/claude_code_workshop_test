@@ -197,11 +197,26 @@ When to use what:
 ## Prerequisites
 
 - **Python 3.9+** for the backend
-- **Node.js 18+** for the frontend and Claude Code
-- Claude Code installed:
+- **Node.js 18+** for the frontend
+- **Claude Code installed** — choose one method:
+
+  **macOS / Linux / WSL:**
   ```bash
-  npm install -g @anthropic-ai/claude-code
+  curl -fsSL https://claude.ai/install.sh | bash
   ```
+
+  **Windows PowerShell:**
+  ```powershell
+  irm https://claude.ai/install.ps1 | iex
+  ```
+
+  **Windows CMD:** (requires [Git for Windows](https://git-scm.com/downloads/win))
+  ```batch
+  curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+  ```
+
+  **Alternative:** `brew install --cask claude-code` (macOS/Linux) or `winget install Anthropic.ClaudeCode` (Windows)
+
 - Jira Cloud account (*.atlassian.net)
 - Basic command line familiarity
 

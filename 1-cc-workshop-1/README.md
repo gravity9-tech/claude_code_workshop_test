@@ -6,7 +6,9 @@ A hands-on guide to getting started with Claude Code and building a complete dev
 
 ## Prerequisites
 
-- Claude Code installed (`npm install -g @anthropic-ai/claude-code`)
+- Claude Code installed (see [official install instructions](https://code.claude.com/docs/en/overview)):
+  - **macOS/Linux/WSL:** `curl -fsSL https://claude.ai/install.sh | bash`
+  - **Windows PowerShell:** `irm https://claude.ai/install.ps1 | iex`
 - Node.js (for MCP servers)
 - Jira Cloud account with API access
 - Basic command line familiarity
@@ -88,7 +90,11 @@ tea-store-demo/
 
 **Claude Code not found:**
 ```bash
-npm install -g @anthropic-ai/claude-code
+# macOS/Linux/WSL
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Windows PowerShell
+irm https://claude.ai/install.ps1 | iex
 ```
 
 **Jira MCP issues:**
