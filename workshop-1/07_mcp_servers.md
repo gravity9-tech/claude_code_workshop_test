@@ -5,7 +5,7 @@
 ## What You'll Learn
 
 - What MCP (Model Context Protocol) is
-- How to add a local MCP server (Filesystem)
+- How to add a local MCP server (Playwright)
 - How to add a remote MCP server (Atlassian/Jira)
 - Managing MCP servers with `/mcp`
 
@@ -18,7 +18,7 @@
 ```
 ┌─────────────┐     MCP Protocol     ┌─────────────────┐
 │ Claude Code │ ◄──────────────────► │   MCP Server    │
-└─────────────┘                      │   (Filesystem,  │
+└─────────────┘                      │  (Playwright,   │
                                      │    Jira, etc.)  │
                                      ├─────────────────┤
                                      │  Provides tools │
@@ -41,26 +41,17 @@ You'll set up one of each.
 
 ---
 
-## Part 1: Local MCP — Filesystem
+## Part 1: Local MCP — Playwright
 
-The Filesystem MCP server gives Claude scoped access to read and write files in a specific directory.
+The Playwright MCP server gives Claude the ability to interact with web browsers — navigate pages, click elements, fill forms, take screenshots, and more. This is perfect for testing our Tea Store app.
 
-### Task 1: Add the Filesystem MCP Server
-
-Create a test directory and add the MCP server:
+### Task 1: Add the Playwright MCP Server
 
 ```bash
-mkdir -p ~/mcp-test-files
-echo "Hello from MCP" > ~/mcp-test-files/greeting.txt
+claude mcp add --transport stdio playwright -- npx -y @anthropic-ai/mcp-playwright@latest
 ```
 
-Now add the server:
-
-```bash
-claude mcp add --transport stdio filesystem -- npx -y @modelcontextprotocol/server-filesystem ~/mcp-test-files
-```
-
-This registers a **local** MCP server called `filesystem` that runs `npx` with the filesystem server package, scoped to `~/mcp-test-files`.
+This registers a **local** MCP server called `playwright` that launches a browser Claude can control.
 
 ### Task 2: Verify and Test
 
@@ -70,21 +61,23 @@ Restart Claude Code (or start a new session), then check:
 /mcp
 ```
 
-You should see `filesystem` listed with its tools. Now test it:
+You should see `playwright` listed with its tools (browser_navigate, browser_click, browser_screenshot, etc.).
+
+Make sure your Tea Store app is running (`./start.sh | ./start.bat` in the project directory), then test:
 
 ```
-List all files in the filesystem MCP directory
+Navigate to http://localhost:4321 and take a screenshot
 ```
 
 ```
-Read the greeting.txt file using the filesystem tools
+Click on the "Green" category filter and tell me what products are shown
 ```
 
 ```
-Create a new file called notes.txt with "Workshop 07 complete" using the filesystem tools
+Add "Dragon Well Green Tea" to the cart and take a screenshot of the cart sidebar
 ```
 
-Claude uses the MCP tools (not its built-in file tools) to interact with the scoped directory.
+Claude uses the Playwright MCP tools to interact with the live application in a real browser — useful for visual verification and end-to-end testing.
 
 ---
 
@@ -118,7 +111,7 @@ Authentication tokens are stored securely and refresh automatically.
 ### Task 5: Test the Jira Connection
 
 ```
-List all projects I have access to in Jira
+List 2 projects I have access to in Jira
 ```
 
 If successful, you'll see your Jira projects. Now try:
@@ -162,11 +155,10 @@ For team-shared servers, use `--scope project` to create a `.mcp.json` that gets
 
 ## Clean Up
 
-Remove the test filesystem server if you want:
+Remove the Playwright server if you want:
 
 ```bash
-claude mcp remove filesystem
-rm -rf ~/mcp-test-files
+claude mcp remove playwright
 ```
 
 Keep the Atlassian MCP — you'll use it in the next modules.
@@ -175,9 +167,9 @@ Keep the Atlassian MCP — you'll use it in the next modules.
 
 ## Key Takeaways
 
-- **MCP servers** extend Claude with new tools (databases, APIs, browsers)
-- **Local servers** run on your machine, no auth needed
-- **Remote servers** connect to cloud services via OAuth
+- **MCP servers** extend Claude with new tools (browsers, APIs, databases)
+- **Local servers** (like Playwright) run on your machine, no auth needed
+- **Remote servers** (like Jira) connect to cloud services via OAuth
 - Use **`--scope project`** to share MCP configs with your team
 - **`/mcp`** to check status and authenticate
 
