@@ -23,17 +23,17 @@ Every time you start a Devin session, it spins up an **isolated workspace** in t
 │                     Devin Workspace                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌─────────────────┐  ┌──────────────┐  ┌───────────────────┐  │
-│  │   Devin IDE     │  │   Terminal    │  │   Browser         │  │
-│  │   (VS Code)     │  │   / Shell     │  │   (Interactive)   │  │
-│  │                 │  │              │  │                   │  │
-│  │ • Watch edits   │  │ • Run cmds   │  │ • Read docs       │  │
-│  │   in real-time  │  │ • Install    │  │ • Test web apps   │  │
-│  │ • Take over     │  │   deps       │  │ • Download/       │  │
-│  │   and edit code │  │ • Run tests  │  │   upload files    │  │
-│  │ • Navigate      │  │ • Build &    │  │ • Handle MFA/     │  │
-│  │   the codebase  │  │   deploy     │  │   CAPTCHA         │  │
-│  └─────────────────┘  └──────────────┘  └───────────────────┘  │
+│  ┌─────────────────┐  ┌──────────────┐  ┌───────────────────┐   │
+│  │   Devin IDE     │  │   Terminal   │  │   Browser         │   │
+│  │   (VS Code)     │  │   / Shell    │  │   (Interactive)   │   │
+│  │                 │  │              │  │                   │   │
+│  │ • Watch edits   │  │ • Run cmds   │  │ • Read docs       │   │
+│  │   in real-time  │  │ • Install    │  │ • Test web apps   │   │
+│  │ • Take over     │  │   deps       │  │ • Download/       │   │
+│  │   and edit code │  │ • Run tests  │  │   upload files    │   │
+│  │ • Navigate      │  │ • Build &    │  │ • Handle MFA/     │   │
+│  │   the codebase  │  │   deploy     │  │   CAPTCHA         │   │
+│  └─────────────────┘  └──────────────┘  └───────────────────┘   │
 │                                                                 │
 │  ┌──────────────────────────────────────────────────────────┐   │
 │  │                    Chat Interface                        │   │
@@ -99,7 +99,7 @@ DeepWiki is Devin's code understanding engine. It automatically generates and co
 ### How to Access DeepWiki
 
 1. Navigate to **Wiki** in the left sidebar
-2. Select the repository you want to explore (e.g., **gravity9-tech/devin-pandora**)
+2. Select the repository you want to explore (e.g., **PandoraJewelry/ai_workshop**)
 3. Browse the auto-generated documentation pages
 
 DeepWiki pages are organised by topic — you'll find sections for architecture overview, key modules, data models, API surface, and more.

@@ -65,7 +65,7 @@ GitHub Copilot             Windsurf, Cursor           Devin
 
 The shift is from **local, synchronous, single-player** to **cloud, asynchronous, multiplayer**:
 
-| Dimension | Traditional AI Tools | Devin |
+| Dimension | Other AI Tools | Devin |
 |-----------|---------------------|-------|
 | **Where** | Local (your IDE) | Cloud (isolated workspace) |
 | **How** | Synchronous — you wait | Asynchronous — you move on |
@@ -88,8 +88,8 @@ Less than 20% of an engineer's time is actually spent writing code (Microsoft Re
 ### Where Devin Contributes
 
 ```
-┌──────────────────────────────────────────────────────────────────────┐
-│                  Software Development Lifecycle                      │
+┌─────────────────────────────────────────────────────────────────────┐
+│                  Software Development Lifecycle                     │
 ├────────────┬────────────┬────────────┬──────────┬────────┬──────────┤
 │  Analysis  │   Design   │    Dev     │ Testing  │ Deploy │  Maint   │
 ├────────────┼────────────┼────────────┼──────────┼────────┼──────────┤
@@ -130,18 +130,18 @@ This is what makes Devin fundamentally different from a stateless AI tool. Devin
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                 Devin's Learning Loop                    │
+│                 Devin's Learning Loop                   │
 │                                                         │
 │   Session 1        Session 2        Session N           │
-│   ┌──────┐         ┌──────┐         ┌──────┐           │
-│   │ Task │──PR──►  │ Task │──PR──►  │ Task │──PR──►    │
-│   └──┬───┘    ▲    └──┬───┘    ▲    └──┬───┘    ▲      │
-│      │        │       │        │       │        │      │
-│      ▼        │       ▼        │       ▼        │      │
-│   Feedback ───┘    Feedback ───┘    Feedback ───┘      │
+│   ┌──────┐         ┌──────┐         ┌──────┐            │
+│   │ Task │──PR──►  │ Task │──PR──►  │ Task │──PR──►     │
+│   └──┬───┘    ▲    └──┬───┘    ▲    └──┬───┘    ▲       │
+│      │        │       │        │       │        │       │
+│      ▼        │       ▼        │       ▼        │       │
+│   Feedback ───┘    Feedback ───┘    Feedback ───┘       │
 │      │                │                │                │
 │      └────────┬───────┘────────┬───────┘                │
-│               ▼                ▼                         │
+│               ▼                ▼                        │
 │        ┌─────────────────────────────┐                  │
 │        │     Knowledge Base          │                  │
 │        │  (codified decisions,       │                  │

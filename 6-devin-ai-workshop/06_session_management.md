@@ -145,3 +145,7 @@ You've completed the Devin AI onboarding workshop. Here's what you covered:
 5. **Share what works** — add Knowledge items and Playbooks so the whole team benefits
 
 > The more you use Devin, the better it gets — and the better you get at using it.
+
+## Next Up
+
+Continue to: [07_best_practices_playbook.md](./07_best_practices_playbook.md) — Best practices for effective use of Devin AI

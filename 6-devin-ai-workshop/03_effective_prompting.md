@@ -280,15 +280,15 @@ Large tasks should never be a single session. Break them into smaller, well-scop
 | If it fails, you lose everything | If one fails, the others still succeed |
 | Slower (sequential work) | Faster (parallel execution) |
 
-### Tea Store Example: Adding Customization to All Categories
+### Tea Store Example: Migrating from Static Mock Data to MongoDB
 
-Instead of one session — "Add customization options to all tea categories" — break it down:
+Instead of one session — "Replace all mock data with a MongoDB database" — break it down:
 
-**Session 1:** "Add customization config for black tea in `backend/app/customization_config.py`. Include package size, brew strength, add-ons, and gift note. Reference the existing `GREEN_CONFIG` for the pattern. Run `python -m pytest` to verify."
+**Session 1:** "Set up MongoDB connection in `backend/app/`. Create a `database.py` module using `motor` (async MongoDB driver). Add a startup event in `backend/app/main.py` to connect to MongoDB. Add `motor` and `pymongo` to `requirements.txt`. Run `python -m pytest` to verify nothing breaks."
 
-**Session 2:** "Add customization config for oolong tea. Same pattern as `GREEN_CONFIG`. Include package size, roast level, brewing vessel, and gift note. Run `python -m pytest`."
+**Session 2:** "Migrate the product data from `backend/app/mock_data.py` to MongoDB. Create a `products` collection, write a seed script in `backend/scripts/seed_db.py` to insert the existing mock data, and update `backend/app/api/routes.py` to query MongoDB instead of importing from `mock_data.py`. Run `python -m pytest` to verify."
 
-**Session 3:** "Add customization config for herbal tea. Same pattern as `GREEN_CONFIG`. Include package size, blend preference, extras (multi-select), and gift note. Run `python -m pytest`."
+**Session 3:** "Add a `cart` collection in MongoDB. Create new endpoints `POST /api/cart`, `GET /api/cart/{user_id}`, and `DELETE /api/cart/{user_id}/items/{item_id}` in `backend/app/api/routes.py`. Follow the existing route patterns. Add tests for each endpoint. Run `python -m pytest` to verify."
 
 Three parallel sessions, three focused PRs, three easy reviews.
 

@@ -158,6 +158,16 @@ Here's a Playbook for adding a new API endpoint to the Tea Store project, based 
 
 Devin reads the Playbook as its guiding instructions and follows the procedure step by step.
 
+### Example: Using the Playbook to Add a Product Rating Endpoint
+
+Attach the **Add API Endpoint** Playbook and provide the required inputs:
+
+- **Endpoint path:** `/api/products/{product_id}/rating`
+- **HTTP method:** POST
+- **Description:** Submit a rating (1–5) for a specific product and return the updated average rating
+- **Request body schema:** `{ "rating": int }` — value between 1 and 5
+- **Response schema:** `{ "product_id": str, "average_rating": float, "total_ratings": int }`
+
 ### Iterating on Playbooks
 
 Run **2+ Devin sessions in parallel** with the same Playbook to quickly identify gaps or errors in your instructions. Compare the results and refine the Playbook before rolling it out to the team.

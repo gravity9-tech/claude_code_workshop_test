@@ -14,7 +14,7 @@
 
 ## Before You Begin
 
-> You should have received an **invitation email** to Devin AI at your **Pandora email address** (e.g., `yourname@pandora.net`). If you haven't received it, check your spam folder or contact your team lead.
+> You should have received an **invitation email** to Devin AI at your **Pandora email address**. If you haven't received it, check your spam folder or contact Tatiana Klenk (`exttakle@pandora.netv`).
 
 The invitation email contains a link to join your organisation's Devin workspace. Click the link and follow the prompts to activate your account.
 
@@ -28,13 +28,13 @@ Open your browser and navigate to:
 https://app.devin.ai
 ```
 
-Sign in with your Pandora credentials. You'll land on the **Devin Dashboard** — this is your home base for starting sessions, managing repositories, and reviewing Devin's work.
+Sign in with your Pandora credentials. You'll land on the **Devin Environment** — this is your home base for starting sessions, managing repositories, and reviewing Devin's work.
 
-### Dashboard Overview
+### Dashboard Environment
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Devin Dashboard                                            │
+│  Devin Environment                                          │
 ├──────────────┬──────────────────────────────────────────────┤
 │              │                                              │
 │  Navigation  │  Main Area                                   │
@@ -65,19 +65,19 @@ Before Devin can work on your code, it needs access to your repository and a pro
 
 ### 2.1 Grant Repository Access
 
-1. Go to **Settings > Integrations**
-2. Ensure GitHub is Enabled
-3. Verify that the workshop repository is accessible:
-   ```
-   https://github.com/gravity9-tech/claude_code_workshop
-   ```
+1. Go to **Settings > Profile**
+2. Ensure your GitHub account is linked
 
 ### 2.2 Open Devin's Repositories
 
 1. Navigate to **Repositories** in the left sidebar (under **Settings** group)
 2. All available repos to your account will be displayed in the main area
-3. Click **"Add to machine"**
-3. Select **gravity9-tech/claude_code_workshop** from the list
+3. Verify that the workshop repository is accessible. Search `ai_workshop` in the search box.
+   ```
+   https://github.com/PandoraJewelry/ai_workshop
+   ```
+4. Click **"Add to machine"** for **PandoraJewelry/ai_workshop**
+
 
 This opens the **Repo Setup** wizard — an 8-step process that configures Devin's development environment for this repository.
 
@@ -201,8 +201,9 @@ Click **"Finish Setup"** to save the configuration. Devin will replay all comman
 1. Go to **Knowledge** in the sidebar (or **Settings > Knowledge**)
 2. Click **"Add Knowledge"**
 3. Fill in:
-   - **Trigger Description:** A phrase that tells Devin when this knowledge is relevant (e.g., "when writing API endpoints", "when creating database migrations")
+   - **Name:** A phrase that tells Devin when this knowledge is relevant (e.g., "when writing API endpoints", "when creating database migrations")
    - **Content:** The actual instruction or advice
+   - **Macro:** A shorcut that can be used during a session to retrieve the knowledge.
 
 ### What to Include
 
@@ -269,7 +270,7 @@ Devin handles credentials securely through three scopes:
 
 ### Setting Up Secrets
 
-1. Go to **Secrets** in the sidebar (or `https://app.devin.ai/secrets`)
+1. Go to **Secrets** in the sidebar (or `https://app.devin.ai/org/pnd-online-prod/secrets`)
 2. Click **"Add Secret"**
 3. Choose the type (Raw Secret, Site Cookie, or TOTP)
 4. Enter the name, value, and optional notes
@@ -361,33 +362,33 @@ Use **both** — they complement each other. AGENTS.md lives with the code, Know
 At this point, you should have:
 
 - [x] Signed into Devin at `https://app.devin.ai` with your Pandora account
-- [x] Connected the workshop repository (`gravity9-tech/devin-pandora`)
+- [x] Connected the workshop repository (`PandoraJewelry/ai_workshop`)
 - [x] Completed the 8-step Repo Setup wizard
 - [x] Understood how Knowledge, Secrets, and AGENTS.md work together
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│              Your Devin Setup (Complete)                      │
+│              Your Devin Setup (Complete)                     │
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
 │  GitHub ──► Repository Access ──► Repo Setup Wizard          │
 │                                       │                      │
 │                    ┌──────────────────┼──────────────┐       │
-│                    │                  │              │        │
-│                    ▼                  ▼              ▼        │
-│              ┌──────────┐    ┌──────────────┐  ┌─────────┐  │
+│                    │                  │              │       │
+│                    ▼                  ▼              ▼       │
+│              ┌──────────┐    ┌──────────────┐  ┌─────────┐   │
 │              │  Devin's │    │  Knowledge   │  │ Secrets │   │
 │              │  Machine │    │  (org-wide)  │  │ (creds) │   │
-│              │ (env +   │    └──────────────┘  └─────────┘  │
+│              │ (env +   │    └──────────────┘  └─────────┘   │
 │              │  deps)   │           │                        │
 │              └──────────┘           │                        │
-│                    │                ▼                         │
+│                    │                ▼                        │
 │                    │        ┌──────────────┐                 │
 │                    │        │  AGENTS.md   │                 │
 │                    │        │ (in-repo)    │                 │
 │                    │        └──────────────┘                 │
-│                    │                │                         │
-│                    └────────┬───────┘                         │
+│                    │                │                        │
+│                    └────────┬───────┘                        │
 │                             ▼                                │
 │                    ┌──────────────────┐                      │
 │                    │  Devin Session   │                      │
