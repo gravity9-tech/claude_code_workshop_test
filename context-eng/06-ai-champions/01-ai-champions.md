@@ -2,6 +2,41 @@
 
 AI Champions are team leads who bridge the gap between AI tooling and team adoption. They don't just use AI well — they make sure their team does too.
 
+```
+                              AI Champion
+                                  │
+                    ┌─────────────┼──────────────┐
+                    ▼             ▼              ▼
+              ┌──────────┐ ┌──────────┐  ┌──────────────┐
+              │ Team     │ │ Team     │  │ Team         │
+              │ Member A │ │ Member B │  │ Member C     │
+              └────┬─────┘ └────┬─────┘  └──────┬───────┘
+                   │            │               │
+                   ▼            ▼               ▼
+              ┌─────────────────────────────────────────┐
+              │         Marketplace                     │
+              │                                         │
+              │  ┌───────────┐  ┌────────────────────┐  │
+              │  │ DeepWiki  │  │ Starter CLAUDE.md  │  │
+              │  │ Codemaps  │  │ Rule Packs         │  │
+              │  │ Indexing  │  │ Skills Library      │  │
+              │  └─────┬─────┘  └────────┬───────────┘  │
+              │        │    Download     │              │
+              └────────┼─────& Install───┼──────────────┘
+                       ▼                 ▼
+              ┌─────────────────────────────────────────┐
+              │         Project .claude/                 │
+              │                                         │
+              │  Navigation ──► Memory ──► Rules        │
+              │  (Codemaps)    (CLAUDE.md)  (rules/)    │
+              │       │            │           │        │
+              │       └────────────┼───────────┘        │
+              │                    ▼                    │
+              │          AI works with focus,           │
+              │          not full-codebase scans        │
+              └─────────────────────────────────────────┘
+```
+
 ## The Role
 
 - **Own the context** — Maintain CLAUDE.md and rules/ for their team's domain
