@@ -85,12 +85,44 @@ The **Context Engineering Marketplace** is where team members go to get started 
 | **Codemap Tools** | Tree-sitter based indexing for your language |
 | **Skills Library** | Reusable workflow skills (review, deploy, migrate) |
 
-### How It Works
+### Repository
 
-1. Champion selects packages relevant to their team's stack
-2. Team members install via CLI or copy into `.claude/`
-3. Champion customises to match team-specific conventions
-4. Updates flow through the marketplace as the community evolves them
+The marketplace is hosted at: **https://github.com/PandoraJewelry/online-claude-code-marketplace**
+
+```
+online-claude-code-marketplace/
+├── plugins/
+│   ├── community/       ← Community contributions go here
+│   ├── core/            ← Maintained by the platform team
+│   └── integrations/    ← Third-party tool integrations
+├── docs/
+├── marketplace-browser/
+├── schemas/
+└── scripts/
+```
+
+### Getting Started
+
+```bash
+# Clone the marketplace
+git clone https://github.com/PandoraJewelry/online-claude-code-marketplace.git
+
+# Browse available plugins
+ls plugins/core/
+ls plugins/community/
+
+# Copy what you need into your project
+cp -r plugins/core/<plugin-name> /path/to/your-project/.claude/
+```
+
+### Contributing
+
+Contributions go into `plugins/community/`:
+
+1. Fork the repo
+2. Add your plugin to `plugins/community/<your-plugin-name>/`
+3. Include a README describing what it does and which stacks it supports
+4. Open a PR
 
 The marketplace removes the cold-start problem. Teams don't build context from scratch — they start from a proven baseline and adapt.
 
