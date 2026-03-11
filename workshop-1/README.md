@@ -8,7 +8,7 @@ A hands-on workshop for developers learning Claude Code. You'll go from understa
 
 - Claude Code installed and authenticated
 - `gh` CLI installed and authenticated (`gh auth login`)
-- Node.js 18+ (for MCP servers)
+- Node.js 22+ (for MCP servers)
 - Jira Cloud account with project access
 - A project repository to work in
 

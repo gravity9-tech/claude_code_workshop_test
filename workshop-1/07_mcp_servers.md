@@ -48,7 +48,7 @@ The Playwright MCP server gives Claude the ability to interact with web browsers
 ### Task 1: Add the Playwright MCP Server
 
 ```bash
-claude mcp add --transport stdio playwright -- npx -y @anthropic-ai/mcp-playwright@latest
+claude mcp add playwright npx @playwright/mcp@latest
 ```
 
 This registers a **local** MCP server called `playwright` that launches a browser Claude can control.
@@ -88,7 +88,7 @@ The Atlassian MCP server connects Claude to your Jira instance via OAuth. No API
 ### Task 3: Add the Atlassian MCP Server
 
 ```bash
-claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/sse
+claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp
 ```
 
 ### Task 4: Authenticate with OAuth
